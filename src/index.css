@@ -2,17 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-
-body{
-    background: rgb(21, 19, 18);
+body {
+  transition: background-color 0.3s ease;
 }
-@keyframes fadeInDown {
-    from {
-      transform: translateX(-50%) translateY(-20px); /* Start above the icon */
-      opacity: 0; /* Start invisible */
-    }
-    to {
-      transform: translateX(-50%) translateY(0); /* Move to final position */
-      opacity: 1; /* Become visible */
-    }
-  }
+body.dark-mode {
+  background: rgb(21, 19, 18);
+}
+body.light-mode {
+  background: rgb(234, 236, 237); /* رنگ پس‌زمینه لایت مود */
+}

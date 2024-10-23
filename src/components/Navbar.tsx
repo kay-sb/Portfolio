@@ -1,45 +1,61 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { HomeIcon, FolderIcon, BriefcaseIcon, WrenchIcon, PencilSquareIcon } from '@heroicons/react/24/outline';
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import {
+  HomeIcon,
+  FolderIcon,
+  BriefcaseIcon,
+  WrenchIcon,
+  PencilSquareIcon,
+  SunIcon,
+  MoonIcon,
+} from "@heroicons/react/24/outline";
+import { motion } from "framer-motion";
 
 // Define the props for each NavItem
 interface NavItemProps {
   to: string; // Path for navigation
   Icon: React.FC<React.SVGProps<SVGSVGElement>>; // Icon component
   label: string; // Tooltip text
+  darkMode: boolean; // Added darkMode prop
 }
 
+const colors = {
+  darkModeBg: "rgba(255, 255, 255, 0.03)", // Background color in dark mode
+  lightModeBg: "rgba(255, 255, 255, 0.03)", // Background color in light mode
+  darkModeText: "rgba(255, 255, 255, 0.80)", // Text color in dark mode
+  lightModeText: "rgba(0, 0, 0, 0.80)", // Text color in light mode
+  tooltipBgDark: "rgba(255, 255, 255, 0.03)", // Tooltip background color in dark mode
+  tooltipBgLight: "rgba(255, 255, 255, 0.03)", // Tooltip background color in light mode
+  tooltipBorderDark: "rgb(255, 255, 255)", // Tooltip border color in dark mode
+  tooltipBorderLight: "rgb(21, 19, 18)", // Tooltip border color in light mode
+};
+
 // NavItem component
-const NavItem: React.FC<NavItemProps> = ({ to, Icon, label }) => {
-  const [isHovered, setIsHovered] = useState(false); // State to track hover status
+const NavItem: React.FC<NavItemProps> = ({ to, Icon, label, darkMode }) => {
+  const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <div 
-      style={{ position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center' }} 
-      onMouseEnter={() => setIsHovered(true)} // Show label on hover
-      onMouseLeave={() => setIsHovered(false)} // Hide label when not hovered
+    <div
+      className="relative flex flex-col items-center"
+      onMouseEnter={() => setIsHovered(true)} // Show tooltip on hover
+      onMouseLeave={() => setIsHovered(false)} // Hide tooltip when not hovered
     >
       <Link to={to}>
-        <Icon className="h-6 w-6 text-white" />
+        <Icon
+          className={`h-6 w-6 `} style={{ color: darkMode ? colors.darkModeText : colors.lightModeText }} // Change icon color based on dark mode
+        />
       </Link>
       {isHovered && (
-        <span style={{
-          opacity: 1,
-          transition: 'opacity 0.3s ease, transform 0.3s ease',
-          position: 'absolute', 
-          bottom: '-2.5rem',
-          left: '50%',
-          transform: 'translateX(-50%) translateY(-20px)', // Start from above
-          backgroundColor: 'rgba(255, 255, 255, 0.03)',
-          color: 'rgba(255, 255, 255, 1)',
-          fontSize: '0.7rem',
-          padding: '2px 10px',
-          borderRadius: '25px',
-          boxShadow: '0 2px 10px rgba(0, 0, 0, 0.2)',
-          animation: 'fadeInDown 0.3s ease forwards', // Apply the animation
-        }}>
-          {label}
-        </span>
+        <motion.span
+          initial={{ opacity: 0, translateY: -20 }} // Initial state of tooltip
+          animate={{ opacity: 1, translateY: 20 }} // Animation when appearing
+          exit={{ opacity: 0, translateY: -20 }} // Animation when disappearing
+          transition={{ duration: 0.3 }} // Duration of the animation
+          className={`absolute px-2 py-1 items-center justify-center bottom-[-1rem] transform -translate-x-1/2 border-0 rounded-md shadow-lg text-xs `} // Tooltip background color based on dark mode
+          style={{ color: darkMode ? colors.darkModeText : colors.lightModeText }}
+        >
+          {label} {/* Tooltip text */}
+        </motion.span>
       )}
     </div>
   );
@@ -47,27 +63,47 @@ const NavItem: React.FC<NavItemProps> = ({ to, Icon, label }) => {
 
 // Navbar component
 const Navbar: React.FC = () => {
+  const [darkMode, setDarkMode] = useState(false); // State to manage dark mode
+
+  useEffect(() => {
+    document.body.classList.toggle("dark-mode", darkMode); // Toggle body class for dark mode
+    document.body.classList.toggle("light-mode", !darkMode); // Toggle body class for light mode
+  }, [darkMode]);
+
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode); // Toggle dark mode state
+  };
+
   return (
-    <nav style={{ 
-      backgroundColor: 'rgba(255, 255, 255, 0.03)', 
-      width: '300px', 
-      height: '50px', 
-      position: 'absolute', 
-      top: '20px', 
-      left: '50%', 
-      transform: 'translateX(-50%)',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'space-around',
-      borderRadius: '25px',
-      boxShadow: '0 2px 10px rgba(0, 0, 0, 0.2)',
-    }}>
-      <NavItem to="/" Icon={HomeIcon} label="Home" />
-      <NavItem to="/projects" Icon={FolderIcon} label="Projects" />
-      <NavItem to="/experience" Icon={BriefcaseIcon} label="Experience" />
-      <NavItem to="/tools" Icon={WrenchIcon} label="Tools" />
-      <NavItem to="/blog" Icon={PencilSquareIcon} label="Thoughts" />
-    </nav>
+    <div>
+      <nav
+        className={`absolute top-5 left-1/2 transform -translate-x-1/2 flex items-center justify-between w-[300px] h-[50px] rounded-full shadow-lg `} // Set navbar background based on dark mode
+        style={{  background: darkMode ? colors.darkModeBg : colors.lightModeBg }}
+        >
+        <div className="flex items-center justify-around w-full">
+          <NavItem to="/" Icon={HomeIcon} label="Home" darkMode={darkMode} />
+          <NavItem to="/projects" Icon={FolderIcon} label="Projects" darkMode={darkMode} />
+          <NavItem to="/experience" Icon={BriefcaseIcon} label="Experience" darkMode={darkMode} />
+          <NavItem to="/tools" Icon={WrenchIcon} label="Tools" darkMode={darkMode} />
+          <NavItem to="/blog" Icon={PencilSquareIcon} label="Thoughts" darkMode={darkMode} />
+        </div>
+      </nav>
+      <button
+        onClick={toggleDarkMode} // Change dark mode on button click
+        className={`fixed bottom-5 left-5 w-[50px] h-[50px] rounded-full flex items-center justify-center shadow-lg`} // Set button background based on dark mode
+        style={{ color: darkMode ? colors.darkModeBg : colors.lightModeBg }}
+      >
+        {darkMode ? (
+          <MoonIcon className={`h-6 w-6`}
+          style={{ color: darkMode ? colors.darkModeText : colors.lightModeText }}
+           /> // Show moon icon in dark mode
+        ) : (
+          <SunIcon className={`h-6 w-6`}
+          style={{ color: darkMode ? colors.darkModeText : colors.lightModeText }}
+           /> // Show sun icon in light mode
+        )}
+      </button>
+    </div>
   );
 };
 
