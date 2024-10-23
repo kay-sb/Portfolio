@@ -1,3 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+body{
+    background: rgb(21, 19, 18);
+}
+@keyframes fadeInDown {
+    from {
+      transform: translateX(-50%) translateY(-20px); /* Start above the icon */
+      opacity: 0; /* Start invisible */
+    }
+    to {
+      transform: translateX(-50%) translateY(0); /* Move to final position */
+      opacity: 1; /* Become visible */
+    }
+  }
