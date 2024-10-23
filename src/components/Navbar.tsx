@@ -47,12 +47,12 @@ const NavItem: React.FC<NavItemProps> = ({ to, Icon, label, darkMode }) => {
       </Link>
       {isHovered && (
         <motion.span
-          initial={{ opacity: 0, translateY: -20 }} // Initial state of tooltip
-          animate={{ opacity: 1, translateY: 20 }} // Animation when appearing
-          exit={{ opacity: 0, translateY: -20 }} // Animation when disappearing
+          initial={{ opacity: 0, translateY: -25 }} // Initial state of tooltip
+          animate={{ opacity: 1, translateY: 25 }} // Animation when appearing
+          exit={{ opacity: 0, translateY: -25 }} // Animation when disappearing
           transition={{ duration: 0.3 }} // Duration of the animation
-          className={`absolute px-2 py-1 items-center justify-center bottom-[-1rem] transform -translate-x-1/2 border-0 rounded-md shadow-lg text-xs `} // Tooltip background color based on dark mode
-          style={{ color: darkMode ? colors.darkModeText : colors.lightModeText }}
+          className={`absolute px-2 py-[2px] items-center justify-center bottom-[-1rem] transform -translate-x-1/2 border-0 rounded-md shadow-lg text-xs `} // Tooltip background color based on dark mode
+          style={{ color: darkMode ? colors.darkModeText : colors.lightModeText , background: darkMode ? colors.darkModeBg : colors.lightModeBg }}
         >
           {label} {/* Tooltip text */}
         </motion.span>
@@ -77,7 +77,7 @@ const Navbar: React.FC = () => {
   return (
     <div>
       <nav
-        className={`absolute top-5 left-1/2 transform -translate-x-1/2 flex items-center justify-between w-[300px] h-[50px] rounded-full shadow-lg `} // Set navbar background based on dark mode
+        className={`absolute top-5 left-1/2 transform -translate-x-1/2 flex items-center justify-between w-[350px] h-[50px] rounded-full shadow-lg `} // Set navbar background based on dark mode
         style={{  background: darkMode ? colors.darkModeBg : colors.lightModeBg }}
         >
         <div className="flex items-center justify-around w-full">
