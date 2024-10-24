@@ -5,9 +5,9 @@
 body {
   transition: background-color 0.3s ease;
 }
-body.dark-mode {
+.dark-mode {
   background: rgb(21, 19, 18);
 }
-body.light-mode {
-  background: rgb(234, 236, 237); /* رنگ پس‌زمینه لایت مود */
+.light-mode {
+  background: rgb(234, 236, 237); 
 }
