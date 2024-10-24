@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import {
   HomeIcon,
   FolderIcon,
@@ -28,9 +28,9 @@ const colors = {
   darkModeText: "rgba(255, 255, 255, 0.80)", // Text color in dark mode
   lightModeText: "rgba(0, 0, 0, 0.80)", // Text color in light mode
   tooltipBgDark: "rgba(255, 255, 255, 0.08)", // Tooltip background color in dark mode
-  tooltipBgLight: "rgba(255, 255, 255, 0.08)",// Tooltip background color in light mode
-  activeLight: "rgb(255, 130, 130)",// Active color in dark mode
-  activeDark: "rgb(255, 80, 80)", // Active color in light mode
+  tooltipBgLight: "rgba(255, 255, 255, 0.08)", // Tooltip background color in light mode
+  activeLight: "rgb(255, 130, 130)", // Active color in light mode
+  activeDark: "rgb(255, 80, 80)", // Active color in dark mode
 };
 
 // NavItem component
@@ -76,41 +76,44 @@ const NavItem: React.FC<NavItemProps> = ({ to, Icon, label, darkMode, isActive, 
   );
 };
 
+// Define the props for the Navbar
+interface NavbarProps {
+  darkMode: boolean; // Dark mode status
+  toggleDarkMode: (newMode: boolean) => void; // Function to toggle dark mode
+}
+
 // Navbar component
-const Navbar: React.FC = () => {
-  const [darkMode, setDarkMode] = useState(() => {
-    const savedMode = localStorage.getItem("darkMode");
-    return savedMode ? JSON.parse(savedMode) : true; // Default to dark mode if not set
-  });
-  const [activeItem, setActiveItem] = useState<string>('');
+const Navbar: React.FC<NavbarProps> = ({ darkMode, toggleDarkMode }) => {
+  const location = useLocation(); // State to track active nav item
+  const activeItem = location.pathname;
 
   useEffect(() => {
-    document.body.classList.toggle("dark-mode", darkMode); // Toggle body class for dark mode
-    document.body.classList.toggle("light-mode", !darkMode); // Toggle body class for light mode
-  }, [darkMode]);
+    document.body.classList.toggle("dark-mode", darkMode); 
+    document.body.classList.toggle("light-mode", !darkMode); 
+  }, [darkMode])
 
-  const toggleDarkMode = () => {
+  const handleToggleDarkMode = () => {
     const newMode = !darkMode; // Calculate new mode
-    setDarkMode(newMode); // Change dark mode state
+    toggleDarkMode(newMode); // Change dark mode state
     localStorage.setItem("darkMode", JSON.stringify(newMode)); // Save new mode to localStorage
   };
 
   return (
     <div>
       <nav
-        className={`absolute top-5 left-1/2 transform -translate-x-1/2 flex items-center justify-between w-[300px] h-[50px] rounded-xl shadow-lg z-50`} // Set navbar background based on dark mode
+        className={`absolute top-5 left-1/2 transform -translate-x-1/2 flex items-center justify-between w-[300px] h-[50px] rounded-xl shadow-lg z-50`}
         style={{
           background: darkMode ? colors.darkModeBg : colors.lightModeBg,
         }}
       >
         <div className="flex items-center justify-around w-full">
           <NavItem 
-          to="/" 
-          Icon={HomeIcon} 
-          label="Home" 
-          darkMode={darkMode}
-          isActive={activeItem === '/'} 
-          onClick={() => setActiveItem('/')} 
+            to="/" 
+            Icon={HomeIcon} 
+            label="Home" 
+            darkMode={darkMode}
+            isActive={activeItem === '/'} 
+            onClick={() => {}}
           />
           <NavItem
             to="/projects"
@@ -118,7 +121,7 @@ const Navbar: React.FC = () => {
             label="Projects"
             darkMode={darkMode}
             isActive={activeItem === '/projects'} 
-            onClick={() => setActiveItem('/projects')}
+            onClick={() => {}}
           />
           <NavItem
             to="/experience"
@@ -126,8 +129,7 @@ const Navbar: React.FC = () => {
             label="Experience"
             darkMode={darkMode}
             isActive={activeItem === '/experience'} 
-            onClick={() => setActiveItem('/experience')}
-            
+            onClick={() => {}}
           />
           <NavItem
             to="/tools"
@@ -135,21 +137,21 @@ const Navbar: React.FC = () => {
             label="Tools"
             darkMode={darkMode}
             isActive={activeItem === '/tools'} 
-            onClick={() => setActiveItem('/tools')}
+            onClick={() => {}}
           />
           <NavItem
-            to="/blog"
+            to="/thoughts"
             Icon={PencilSquareIcon}
             label="Thoughts"
             darkMode={darkMode}
             isActive={activeItem === '/thoughts'} 
-            onClick={() => setActiveItem('/thoughts')}
+            onClick={() => {}}
           />
         </div>
       </nav>
       <button
-        onClick={toggleDarkMode} // Change dark mode on button click
-        className={`fixed bottom-5 left-5 w-[50px] h-[50px] rounded-full flex items-center justify-center shadow-lg`} // Set button background based on dark mode
+        onClick={handleToggleDarkMode} // Change dark mode on button click
+        className={`fixed bottom-5 left-5 w-[50px] h-[50px] rounded-full flex items-center justify-center shadow-lg`}
         style={{
           background: darkMode ? colors.darkModeBg : colors.lightModeBg,
         }}
