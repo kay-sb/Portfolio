@@ -1,25 +1,22 @@
 import React from "react";
-
-//Icon https://icons8.com/icons
+import { useTheme } from "./ThemeContext"; // Import the useTheme hook
 
 // Define the props that the ProfileCard component will accept
 interface ProfileCardProps {
   name: string; // Name of the person
   description: string; // Description or bio of the person
   profileImage: string; // URL for the profile image
-  darkMode: boolean; // Boolean to toggle between light and dark mode
 }
 
 const colors = {
   socialLight: "rgb(255, 130, 130)", // social color in light mode
   socialDark: "rgb(255, 80, 80)", // social color in dark mode
-  cartBgLight: "rgb(21, 19, 18) ", // background color in light mode
+  cartBgLight: "rgb(21, 19, 18)", // background color in light mode
   cartBgDark: "rgb(234, 236, 237)", // background color in dark mode
-  textLight: "rgb(21, 19, 18)", // text color in Light mode
-  textDark: "rgb(234, 236, 237)", // text color in dark mode
+  textLight: "rgb(234, 236, 237)", // text color in light mode
+  textDark: "rgb(21, 19, 18)", // text color in dark mode
 };
 
-// Array of social media links with platform names and URLs
 const socialLinks = [
   { platform: "telegram", url: "https://t.me/kianoush_sb" },
   { platform: "instagram", url: "https://instagram.com/kianoush_sb" },
@@ -33,12 +30,13 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
   name,
   description,
   profileImage,
-  darkMode,
 }) => {
+  const theme = useTheme(); // Access the theme object to determine if dark mode is active
+  
   const currentColors = {
-    socialColor: darkMode ? colors.socialDark : colors.socialLight,
-    cartBgColor: darkMode ? colors.cartBgDark : colors.cartBgLight,
-    textcolor: darkMode ? colors.textLight : colors.textDark,
+    socialColor: theme.darkMode ? colors.socialDark : colors.socialLight,
+    cartBgColor: theme.darkMode ? colors.cartBgDark : colors.cartBgLight,
+    textColor: theme.darkMode ? colors.textDark : colors.textLight,
   };
 
   return (
@@ -59,14 +57,14 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
       </div>
       <h2
         className="text-xl my-7 font-bold"
-        style={{ color: currentColors.textcolor }}
+        style={{ color: currentColors.textColor }}
       >
         {name}
       </h2>
       <div>
         <p
           className={`text-center flex-grow`}
-          style={{ color: currentColors.textcolor }}
+          style={{ color: currentColors.textColor }}
         >
           {description}
         </p>
@@ -153,14 +151,5 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
   );
 };
 
+
 export default ProfileCard;
-
-
-// ---------- how to use ----------
-
-// <ProfileCard
-// name="Kianoush Sabouri"
-// description="I'm a frontend developer with graphic design skills. I also have experience in music production, photography, and videography."
-// profileImage="Profile.jpg"
-// darkMode={darkMode} 
-// />

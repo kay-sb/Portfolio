@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from "react";
-import ProfileCard from "./ProfileCart"; 
-import Navbar from "./Navbar"; 
+import React, { useEffect } from "react";
+import ProfileCard from "./ProfileCart";
+import Navbar from "./Navbar";
+import { useTheme } from './ThemeContext'; // Importing ThemeContext for managing dark/light mode
 
+// Colors for dark and light modes
 const colors = {
   textTitleLight: "rgb(255, 80, 80)", // social color in light mode
   textTitleDark: "rgb(255, 80, 80)", // social color in dark mode
@@ -11,31 +13,26 @@ const colors = {
   textDark: "rgb(21, 19, 18)", // social color in dark mode
 };
 
+// Portfolio component
 const Portfolio: React.FC = () => {
-  const [darkMode, setDarkMode] = useState(false);
+  const { darkMode } = useTheme(); // Access dark mode state and toggle function from ThemeContext
 
   useEffect(() => {
-    const storedMode = localStorage.getItem("darkMode");
-    if (storedMode) {
-      setDarkMode(JSON.parse(storedMode));
-    }
-  }, []);
-
-  const toggleDarkMode = (newMode: boolean) => {
-    setDarkMode(newMode);
-  };
+    document.body.classList.toggle("dark-mode", darkMode); // Apply dark mode class to body
+    document.body.classList.toggle("light-mode", !darkMode); // Apply light mode class to body
+  }, [darkMode]);
 
   return (
     <div className="min-h-screen flex flex-col items-center">
-      <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
-      <div className="w-full max-w-6xl flex flex-col md:flex-row items-center justify-center gap-10 p-5 mt-12">
+      <Navbar /> {/* Navbar component, no need to pass darkMode or toggleDarkMode props */}
+      <div className="w-full max-w-6xl flex flex-col md:flex-row items-center justify-center gap-10 p-5 mt-16">
+        {/* ProfileCard section */}
         <div className="flex flex-col items-center dark:bg-gray-800 rounded-lg p-5 max-w-sm">
           <div className="md:invisible">
             <ProfileCard
               name="Kianoush Sabouri"
               description="I'm a frontend developer with graphic design skills. I also have experience in music production, photography, and videography."
               profileImage="Profile.jpg"
-              darkMode={darkMode}
             />
           </div>
           <div className="invisible md:visible flex flex-col items-center dark:bg-gray-800 rounded-lg p-5 max-w-sm fixed">
@@ -43,7 +40,6 @@ const Portfolio: React.FC = () => {
               name="Kianoush Sabouri"
               description="I'm a frontend developer with graphic design skills. I also have experience in music production, photography, and videography."
               profileImage="Profile.jpg"
-              darkMode={darkMode}
             />
             <div className="flex gap-4 mt-4 text-2xl">
               <a href="#" className="text-gray-600 dark:text-gray-400">
@@ -62,6 +58,7 @@ const Portfolio: React.FC = () => {
           </div>
         </div>
 
+        {/* Main content section */}
         <div className="flex-1 text-center md:text-left">
           <h1
             className="font-bold text-[40px] sm:text-[50px] md:text-[65px] xl:text-[110px] leading-none tracking-wide"
@@ -145,4 +142,4 @@ const Portfolio: React.FC = () => {
   );
 };
 
-export default Portfolio;
+export default Portfolio; // Exporting Portfolio component

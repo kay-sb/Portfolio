@@ -1,54 +1,28 @@
-
-import React, { useState } from "react";
-import { BrowserRouter as Router } from "react-router-dom";
+import React from "react";
+import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
+import { ThemeProvider } from "./components/ThemeContext";
 import Navbar from "./components/Navbar";
-import Portfolio from "./components/Portfolio";
+import HomePage from "./Page/Home";
+import ProjectsPage from "./Page/Projects";
+import ExperiencePage from "./Page/Experience";
+import ToolsPage from "./Page/Tools";
+import ThoughtPage from "./Page/Thoughts";
 
 const App: React.FC = () => {
-  const [darkMode, setDarkMode] = useState(true);
-
-  const toggleDarkMode = () => {
-    setDarkMode(prevMode => !prevMode);
-  };
-
+  // Access theme directly from the ThemeContext using the useTheme hook
   return (
     <Router>
-      <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
-      <Portfolio />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-
+      <ThemeProvider>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/projects" element={<ProjectsPage />} />
+          <Route path="/experience" element={<ExperiencePage />} />
+          <Route path="/tools" element={<ToolsPage />} />
+          <Route path="/thought" element={<ThoughtPage />} />
+        </Routes>
+        <div style={{ paddingBottom: "4rem" }} />
+      </ThemeProvider>
     </Router>
   );
 };
