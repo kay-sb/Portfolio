@@ -159,7 +159,7 @@ const Navbar: React.FC<NavbarProps> = () => {
       </nav>
       <button
         onClick={handleToggleDarkMode} // Change dark mode state on click
-        className={`fixed bottom-5 left-5 w-[50px] h-[50px] rounded-full flex items-center justify-center shadow-lg`}
+        className={`fixed bottom-5 left-5 w-[50px] h-[50px] rounded-full flex items-center justify-center shadow-lg z-50`}
         style={{
           background: darkMode ? colors.Dark : colors.Light, // Background color for dark and light mode
         }}

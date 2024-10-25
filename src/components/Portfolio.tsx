@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import ProfileCard from "./ProfileCart";
 import Navbar from "./Navbar";
-import { useTheme } from './ThemeContext'; // Importing ThemeContext for managing dark/light mode
+import { useTheme } from "./ThemeContext"; // Importing ThemeContext for managing dark/light mode
 
 // Colors for dark and light modes
 const colors = {
@@ -24,7 +24,8 @@ const Portfolio: React.FC = () => {
 
   return (
     <div className="min-h-screen flex flex-col items-center">
-      <Navbar /> {/* Navbar component, no need to pass darkMode or toggleDarkMode props */}
+      <Navbar />{" "}
+      {/* Navbar component, no need to pass darkMode or toggleDarkMode props */}
       <div className="w-full max-w-6xl flex flex-col md:flex-row items-center justify-center gap-10 p-5 mt-16">
         {/* ProfileCard section */}
         <div className="flex flex-col items-center dark:bg-gray-800 rounded-lg p-5 max-w-sm">
@@ -90,7 +91,7 @@ const Portfolio: React.FC = () => {
           </p>
 
           <div className="flex gap-1 md:gap-5 lg:gap-20 mt-8 justify-center md:justify-start">
-            <div className="text-center">
+            <div className="text-left">
               <h2
                 className="font-bold text-2xl sm:text-3xl md:text-4xl lg:text-6xl"
                 style={{
@@ -99,13 +100,17 @@ const Portfolio: React.FC = () => {
                     : colors.textTitleDark,
                 }}
               >
-                +12
+                +1
               </h2>
-              <p className="text-[10px] sm:text-[12px] md:text-sm text-gray-600 dark:text-gray-400">
-                Years Experience
-              </p>
+              <h3 className="text-[10px] sm:text-[12px] md:text-sm text-gray-600 dark:text-gray-400">
+                Years
+              </h3>
+              <h3 className="text-[10px] sm:text-[12px] md:text-sm text-gray-600 dark:text-gray-400">
+                Experience
+              </h3>
             </div>
-            <div className="text-center">
+
+            <div className="text-left">
               <h2
                 className="font-bold text-2xl sm:text-3xl md:text-4xl lg:text-6xl"
                 style={{
@@ -114,13 +119,17 @@ const Portfolio: React.FC = () => {
                     : colors.textTitleDark,
                 }}
               >
-                +46
+                +1
               </h2>
-              <p className="text-[10px] sm:text-[12px] md:text-sm text-gray-600 dark:text-gray-400">
-                Projects Completed
-              </p>
+              <h3 className="text-[10px] sm:text-[12px] md:text-sm text-gray-600 dark:text-gray-400">
+                Projects
+              </h3>
+              <h3 className="text-[10px] sm:text-[12px] md:text-sm text-gray-600 dark:text-gray-400">
+                Completed
+              </h3>
             </div>
-            <div className="text-center">
+
+            <div className="text-left">
               <h2
                 className="font-bold text-2xl sm:text-3xl md:text-4xl lg:text-6xl"
                 style={{
@@ -129,11 +138,14 @@ const Portfolio: React.FC = () => {
                     : colors.textTitleDark,
                 }}
               >
-                +20
+                +1
               </h2>
-              <p className="text-[10px] sm:text-[12px] md:text-sm text-gray-600 dark:text-gray-400">
-                Worldwide Clients
-              </p>
+              <h3 className="text-[10px] sm:text-[12px] md:text-sm text-gray-600 dark:text-gray-400">
+                Worldwide
+              </h3>
+              <h3 className="text-[10px] sm:text-[12px] md:text-sm text-gray-600 dark:text-gray-400">
+                Clients
+              </h3>
             </div>
           </div>
         </div>
