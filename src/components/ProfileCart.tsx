@@ -1,4 +1,3 @@
-import { use } from "framer-motion/client";
 import React from "react";
 
 //Icon https://icons8.com/icons

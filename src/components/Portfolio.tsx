@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import ProfileCard from "./ProfileCart"; // مطمئن شو که مسیر درست باشه
-import Navbar from "./Navbar"; // فرض می‌کنیم Navbar رو به درستی ایمپورت کردی
+import ProfileCard from "./ProfileCart"; 
+import Navbar from "./Navbar"; 
 
 const colors = {
   textTitleLight: "rgb(255, 80, 80)", // social color in light mode
