@@ -61,7 +61,7 @@ const Portfolio: React.FC = () => {
         {/* Main content section */}
         <div className="flex-1 text-center md:text-left">
           <h1
-            className="font-bold text-[40px] sm:text-[50px] md:text-[65px] xl:text-[110px] leading-none tracking-wide"
+            className="font-bold text-[50px] md:text-[65px] xl:text-[110px] leading-none tracking-wide"
             style={{
               color: darkMode ? colors.textTitleLight : colors.textTitleDark,
             }}
@@ -69,7 +69,7 @@ const Portfolio: React.FC = () => {
             FRONTEND
           </h1>
           <h1
-            className="font-bold text-[35px] sm:text-[45px] md:text-[55px] xl:text-[90px] leading-none tracking-wide mb-4"
+            className="font-bold text-[45px] md:text-[55px] xl:text-[90px] leading-none tracking-wide mb-4"
             style={{
               color: darkMode ? colors.textTitle2Light : colors.textTitle2Dark,
             }}
