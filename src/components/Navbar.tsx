@@ -31,15 +31,24 @@ const colors = {
   tooltipBgLight: "rgba(255, 255, 255, 0.08)", // Tooltip background color in light mode
   activeLight: "rgb(255, 130, 130)", // Active color in light mode
   activeDark: "rgb(255, 80, 80)", // Active color in dark mode
+  Dark: "rgb(21, 19, 18)", // Active color in dark mode
+  Light: "rgb(234, 236, 237)", // Active color in Light mode
 };
 
 // NavItem component
-const NavItem: React.FC<NavItemProps> = ({ to, Icon, label, darkMode, isActive, onClick }) => {
+const NavItem: React.FC<NavItemProps> = ({
+  to,
+  Icon,
+  label,
+  darkMode,
+  isActive,
+  onClick,
+}) => {
   const [isHovered, setIsHovered] = useState(false);
   const handleMouseLeave = () => {
     setTimeout(() => {
       setIsHovered(false);
-    }, 150);//the delay.
+    }, 150); //the delay.
   };
 
   return (
@@ -49,18 +58,24 @@ const NavItem: React.FC<NavItemProps> = ({ to, Icon, label, darkMode, isActive, 
       onMouseLeave={handleMouseLeave} // Hide tooltip when not hovered
     >
       <Link to={to} onClick={onClick}>
-      <Icon
+        <Icon
           className={`h-6 w-6`}
           style={{
-            color: isActive ? (darkMode ? colors.activeDark : colors.activeLight) : (darkMode ? colors.darkModeText : colors.lightModeText),
-          }} 
+            color: isActive
+              ? darkMode
+                ? colors.activeDark
+                : colors.activeLight
+              : darkMode
+              ? colors.darkModeText
+              : colors.lightModeText,
+          }}
         />
       </Link>
       {isHovered && (
         <motion.span
           initial={{ opacity: 0, translateY: -25, scale: 0 }} // Initial state of tooltip
           animate={{ opacity: 1, translateY: 25, scale: 1 }} // Animation when appearing
-          exit={{opacity: 0, translateY: -25, scale: 0,}} // Animation when disappearing
+          exit={{ opacity: 0, translateY: -25, scale: 0 }} // Animation when disappearing
           transition={{ duration: 0.3 }} // Duration of the animation
           onAnimationComplete={() => !isHovered && setIsHovered(false)}
           className={`absolute px-2 py-[2px] items-center justify-center bottom-[-1rem] transform -translate-x-1/2 border-0 rounded-md shadow-lg text-xs `} // Tooltip background color based on dark mode
@@ -88,9 +103,9 @@ const Navbar: React.FC<NavbarProps> = ({ darkMode, toggleDarkMode }) => {
   const activeItem = location.pathname;
 
   useEffect(() => {
-    document.body.classList.toggle("dark-mode", darkMode); 
-    document.body.classList.toggle("light-mode", !darkMode); 
-  }, [darkMode])
+    document.body.classList.toggle("dark-mode", darkMode);
+    document.body.classList.toggle("light-mode", !darkMode);
+  }, [darkMode]);
 
   const handleToggleDarkMode = () => {
     const newMode = !darkMode; // Calculate new mode
@@ -107,12 +122,12 @@ const Navbar: React.FC<NavbarProps> = ({ darkMode, toggleDarkMode }) => {
         }}
       >
         <div className="flex items-center justify-around w-full">
-          <NavItem 
-            to="/" 
-            Icon={HomeIcon} 
-            label="Home" 
+          <NavItem
+            to="/"
+            Icon={HomeIcon}
+            label="Home"
             darkMode={darkMode}
-            isActive={activeItem === '/'} 
+            isActive={activeItem === "/"}
             onClick={() => {}}
           />
           <NavItem
@@ -120,7 +135,7 @@ const Navbar: React.FC<NavbarProps> = ({ darkMode, toggleDarkMode }) => {
             Icon={FolderIcon}
             label="Projects"
             darkMode={darkMode}
-            isActive={activeItem === '/projects'} 
+            isActive={activeItem === "/projects"}
             onClick={() => {}}
           />
           <NavItem
@@ -128,7 +143,7 @@ const Navbar: React.FC<NavbarProps> = ({ darkMode, toggleDarkMode }) => {
             Icon={BriefcaseIcon}
             label="Experience"
             darkMode={darkMode}
-            isActive={activeItem === '/experience'} 
+            isActive={activeItem === "/experience"}
             onClick={() => {}}
           />
           <NavItem
@@ -136,7 +151,7 @@ const Navbar: React.FC<NavbarProps> = ({ darkMode, toggleDarkMode }) => {
             Icon={WrenchIcon}
             label="Tools"
             darkMode={darkMode}
-            isActive={activeItem === '/tools'} 
+            isActive={activeItem === "/tools"}
             onClick={() => {}}
           />
           <NavItem
@@ -144,7 +159,7 @@ const Navbar: React.FC<NavbarProps> = ({ darkMode, toggleDarkMode }) => {
             Icon={PencilSquareIcon}
             label="Thoughts"
             darkMode={darkMode}
-            isActive={activeItem === '/thoughts'} 
+            isActive={activeItem === "/thoughts"}
             onClick={() => {}}
           />
         </div>
@@ -153,19 +168,35 @@ const Navbar: React.FC<NavbarProps> = ({ darkMode, toggleDarkMode }) => {
         onClick={handleToggleDarkMode} // Change dark mode on button click
         className={`fixed bottom-5 left-5 w-[50px] h-[50px] rounded-full flex items-center justify-center shadow-lg`}
         style={{
-          background: darkMode ? colors.darkModeBg : colors.lightModeBg,
+          background: darkMode ? colors.Dark : colors.Light, // Background for dark mode
         }}
       >
+        <div
+          className={`absolute inset-0.1 rounded-full ${
+            darkMode ? "visible" : "invisible"
+          }`}
+          style={{
+            background: colors.Dark, // Background for dark mode
+          }}
+        ></div>
+        <div
+          className={`absolute inset-0.1 rounded-full ${
+            darkMode ? "invisible" : "visible"
+          }`}
+          style={{
+            background: colors.Light, // Background for light mode
+          }}
+        ></div>
         {darkMode ? (
           <MoonIcon
-            className={`h-6 w-6`}
+            className={`h-6 w-6 ${darkMode ? "visible" : "invisible"}`}
             style={{
               color: darkMode ? colors.darkModeText : colors.lightModeText,
             }}
           /> // Show moon icon in dark mode
         ) : (
           <SunIcon
-            className={`h-6 w-6`}
+            className={`h-6 w-6 ${darkMode ? "invisible" : "visible"}`}
             style={{
               color: darkMode ? colors.darkModeText : colors.lightModeText,
             }}
