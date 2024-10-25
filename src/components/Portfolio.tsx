@@ -90,10 +90,10 @@ const Portfolio: React.FC = () => {
             immersive digital experiences.
           </p>
 
-          <div className="flex gap-1 md:gap-5 lg:gap-20 mt-8 justify-center md:justify-start">
+          <div className="flex gap-10 lg:gap-20 mt-8 justify-center md:justify-start">
             <div className="text-left">
               <h2
-                className="font-bold text-2xl sm:text-3xl md:text-4xl lg:text-6xl"
+                className="font-bold text-4xl sm:text-3xl md:text-4xl lg:text-6xl"
                 style={{
                   color: darkMode
                     ? colors.textTitleLight
@@ -102,17 +102,17 @@ const Portfolio: React.FC = () => {
               >
                 +1
               </h2>
-              <h3 className="text-[10px] sm:text-[12px] md:text-sm text-gray-600 dark:text-gray-400">
+              <h3 className="text-[12px] md:text-sm text-gray-600 dark:text-gray-400">
                 Years
               </h3>
-              <h3 className="text-[10px] sm:text-[12px] md:text-sm text-gray-600 dark:text-gray-400">
+              <h3 className="text-[12px] md:text-sm text-gray-600 dark:text-gray-400">
                 Experience
               </h3>
             </div>
 
             <div className="text-left">
               <h2
-                className="font-bold text-2xl sm:text-3xl md:text-4xl lg:text-6xl"
+                className="font-bold text-4xl sm:text-3xl md:text-4xl lg:text-6xl"
                 style={{
                   color: darkMode
                     ? colors.textTitleLight
@@ -121,17 +121,17 @@ const Portfolio: React.FC = () => {
               >
                 +1
               </h2>
-              <h3 className="text-[10px] sm:text-[12px] md:text-sm text-gray-600 dark:text-gray-400">
+              <h3 className="text-[12px] md:text-sm text-gray-600 dark:text-gray-400">
                 Projects
               </h3>
-              <h3 className="text-[10px] sm:text-[12px] md:text-sm text-gray-600 dark:text-gray-400">
+              <h3 className="text-[12px] md:text-sm text-gray-600 dark:text-gray-400">
                 Completed
               </h3>
             </div>
 
             <div className="text-left">
               <h2
-                className="font-bold text-2xl sm:text-3xl md:text-4xl lg:text-6xl"
+                className="font-bold text-4xl sm:text-3xl md:text-4xl lg:text-6xl"
                 style={{
                   color: darkMode
                     ? colors.textTitleLight
@@ -140,10 +140,10 @@ const Portfolio: React.FC = () => {
               >
                 +1
               </h2>
-              <h3 className="text-[10px] sm:text-[12px] md:text-sm text-gray-600 dark:text-gray-400">
+              <h3 className="text-[12px] md:text-sm text-gray-600 dark:text-gray-400">
                 Worldwide
               </h3>
-              <h3 className="text-[10px] sm:text-[12px] md:text-sm text-gray-600 dark:text-gray-400">
+              <h3 className="text-[12px] md:text-sm text-gray-600 dark:text-gray-400">
                 Clients
               </h3>
             </div>
