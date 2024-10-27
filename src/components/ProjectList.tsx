@@ -29,19 +29,19 @@ const ProjectList: React.FC = () => {
       image: "Project1-th.png",
       title: "Project 1",
       description: "Minimal Store",
-      link: "#",
+      link: "https://kianoush-sb.vercel.app",
     },
     {
       image: "Project1-th.png",
       title: "Project 2",
       description: "Stylish Blog",
-      link: "#",
+      link: "https://kianoush-sb.vercel.app",
     },
     {
       image: "Project1-th.png",
       title: "Project 3",
       description: "Creative Portfolio",
-      link: "#",
+      link: "https://kianoush-sb.vercel.app",
     },
     // Add more projects as needed
   ];
@@ -69,7 +69,7 @@ const ProjectList: React.FC = () => {
           {projects.map((project, index) => (
             <li
               key={index}
-              className="flex items-center rounded-xl lg:w-[80%] w-80 h-24 my-4 p-4 transition duration-300 ease-in-out"
+              className="flex items-center rounded-xl lg:w-[80%] w-80 h-24 my-4 p-4 transition duration-300 ease-in-out cursor-pointer" // Added cursor-pointer class for visual feedback
               style={{
                 backgroundColor: darkMode ? colors.bgLight : colors.bgDark, // Background color based on mode
               }}
@@ -85,6 +85,7 @@ const ProjectList: React.FC = () => {
                     ? colors.bgLight
                     : colors.bgDark) // Reset background color on mouse leave
               }
+              onClick={() => window.open(project.link, "_blank")} // Open link in a new tab
             >
               <img
                 src={project.image} // Image for the project
@@ -93,7 +94,7 @@ const ProjectList: React.FC = () => {
               />
               <div className="flex-1">
                 <h3
-                  className=" font-semibold"
+                  className="font-semibold"
                   style={{
                     color: darkMode
                       ? colors.textTitleDark
@@ -106,32 +107,26 @@ const ProjectList: React.FC = () => {
                   style={{
                     color: darkMode
                       ? colors.textTitleDark
-                      : colors.textTitleLight, 
+                      : colors.textTitleLight,
                   }}
                 >
                   {project.description}
                 </p>
               </div>
               <div>
-                <a
-                  href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <svg
+                  fill={colors.Arrow} // Arrow color
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="size-6"
                 >
-                  <svg
-                    fill={colors.Arrow} // Arrow color
-                    viewBox="0 0 24 24"
-                    strokeWidth={1.5}
-                    stroke="currentColor"
-                    className="size-6"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25" // Arrow path
-                    />
-                  </svg>
-                </a>
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25" // Arrow path
+                  />
+                </svg>
               </div>
             </li>
           ))}

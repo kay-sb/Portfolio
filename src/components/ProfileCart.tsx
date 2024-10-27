@@ -5,7 +5,7 @@ import { useTheme } from "./ThemeContext"; // Import the useTheme hook
 const Profile: React.FC = () =>{
 
   return (
-    <div className="flex flex-col items-center dark:bg-gray-800 rounded-lg max-w-sm mx-10">
+    <div className="flex flex-col items-center dark:bg-gray-800 rounded-lg max-w-sm mx-10 mt-6">
           <div className="md:invisible">
             <ProfileCard
               name="Kianoush Sabouri"
@@ -14,7 +14,7 @@ const Profile: React.FC = () =>{
             />
           </div>
           <div className="flex flex-col items-center dark:bg-gray-800 rounded-lg max-w-sm fixed top-24 ">
-            <div className="invisible md:visible">
+            <div className="invisible md:visible hidden md:flex">
               <ProfileCard
                 name="Kianoush Sabouri"
                 description="I'm a frontend developer with graphic design skills. I also have experience in music production, photography, and videography."
@@ -73,7 +73,7 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
         backgroundColor: currentColors.cartBgColor,
       }}
     >
-      <div className="w-60 h-72 pb-4 overflow-hidden py-2">
+      <div className="w-60 h-72 pb-4 py-2">
         <img
           src={profileImage}
           alt="Profile"
