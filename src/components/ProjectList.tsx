@@ -1,19 +1,6 @@
 import React, { useEffect } from "react";
 import { useTheme } from "./ThemeContext"; // Importing ThemeContext for managing dark/light mode
 
-// Define color constants for dark and light modes
-const colors = {
-  textTitleLight: "rgba(255, 255, 255, 0.8)", // Light mode title text color
-  textTitleDark: "rgba(0, 0, 0, 0.8)", // Dark mode title text color
-  textTitle2Light: "rgba(255, 255, 255, 0.1)", // Light mode subtitle text color
-  textTitle2Dark: "rgb(21, 19, 18, 0.3)", // Dark mode subtitle text color
-  bgLight: "rgb(234, 236, 237)", // Light mode background color
-  bgDark: "rgb(21, 19, 18)", // Dark mode background color
-  bgHoverLight: "rgb(255, 80, 80)", // Light mode hover background color
-  bgHoverDark: "rgb(255, 80, 80)", // Dark mode hover background color
-  Arrow: "rgb(255, 130, 130)", // Arrow color for the project link
-};
-
 const ProjectList: React.FC = () => {
   const { darkMode } = useTheme(); // Access dark mode state from ThemeContext
 
@@ -49,18 +36,16 @@ const ProjectList: React.FC = () => {
   return (
     <div className="mt-20 text-center md:text-left">
       <h1
-        className="font-bold text-[40px] md:text-[60px] xl:text-[80px] leading-none tracking-wide mb-2"
-        style={{
-          color: darkMode ? colors.textTitleLight : colors.textTitleDark, // Title color based on mode
-        }}
+        className={`font-bold text-[40px] md:text-[60px] xl:text-[80px] leading-none tracking-wide mb-2 ${
+          darkMode ? "text-text-title-light" : "text-text-title-dark"
+        }`}
       >
         RECENT
       </h1>
       <h1
-        className="font-bold text-[40px] md:text-[60px] xl:text-[80px] leading-none tracking-wide mb-4"
-        style={{
-          color: darkMode ? colors.textTitle2Light : colors.textTitle2Dark, // Subtitle color based on mode
-        }}
+        className={`font-bold text-[40px] md:text-[60px] xl:text-[80px] leading-none tracking-wide mb-4 ${
+          darkMode ? "text-text-title2-light" : "text-text-title2-dark"
+        }`}
       >
         PROJECTS
       </h1>
@@ -69,22 +54,20 @@ const ProjectList: React.FC = () => {
           {projects.map((project, index) => (
             <li
               key={index}
-              className="flex items-center rounded-xl lg:w-[80%] w-80 h-24 my-4 p-4 transition duration-300 ease-in-out cursor-pointer" // Added cursor-pointer class for visual feedback
-              style={{
-                backgroundColor: darkMode ? colors.bgLight : colors.bgDark, // Background color based on mode
+              className={`flex items-center rounded-xl lg:w-[80%] w-80 h-24 my-4 p-4 transition duration-300 ease-in-out cursor-pointer ${
+                darkMode ? "bg-light-mode" : "bg-dark-mode"
+              }`} // Using Tailwind classes for background
+              onMouseEnter={(e) => {
+                e.currentTarget.classList.add(
+                  darkMode ? "bg-active-dark" : "bg-active-dark"
+                );
               }}
-              onMouseEnter={
-                (e) =>
-                  (e.currentTarget.style.backgroundColor = darkMode
-                    ? colors.bgHoverLight
-                    : colors.bgHoverDark) // Change background color on hover
-              }
-              onMouseLeave={
-                (e) =>
-                  (e.currentTarget.style.backgroundColor = darkMode
-                    ? colors.bgLight
-                    : colors.bgDark) // Reset background color on mouse leave
-              }
+              onMouseLeave={(e) => {
+                e.currentTarget.classList.remove("bg-active-dark"); // Reset background color on mouse leave
+                e.currentTarget.classList.add(
+                  darkMode ? "bg-dark-mode" : "bg-light-mode"
+                ); // Reset to default background
+              }}
               onClick={() => window.open(project.link, "_blank")} // Open link in a new tab
             >
               <img
@@ -94,32 +77,28 @@ const ProjectList: React.FC = () => {
               />
               <div className="flex-1">
                 <h3
-                  className="font-semibold"
-                  style={{
-                    color: darkMode
-                      ? colors.textTitleDark
-                      : colors.textTitleLight,
-                  }}
+                  className={`font-semibold ${
+                    darkMode ? "text-text-title-dark" : "text-text-title-light"
+                  }`}
                 >
                   {project.title}
                 </h3>
                 <p
-                  style={{
-                    color: darkMode
-                      ? colors.textTitleDark
-                      : colors.textTitleLight,
-                  }}
+                  className={
+                    darkMode ? "text-light-mode-text" : "text-dark-mode-text"
+                  } // Using Tailwind classes for text color
                 >
                   {project.description}
                 </p>
               </div>
               <div>
                 <svg
-                  fill={colors.Arrow} // Arrow color
                   viewBox="0 0 24 24"
                   strokeWidth={1.5}
                   stroke="currentColor"
-                  className="size-6"
+                  className={`size-6 ${
+                    darkMode ? "fill-active-dark" : "fill-active-dark"
+                  }`}
                 >
                   <path
                     strokeLinecap="round"
