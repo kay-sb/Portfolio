@@ -64,9 +64,6 @@ const ProjectList: React.FC = () => {
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.classList.remove("bg-active-dark"); // Reset background color on mouse leave
-                e.currentTarget.classList.add(
-                  darkMode ? "bg-dark-mode" : "bg-light-mode"
-                ); // Reset to default background
               }}
               onClick={() => window.open(project.link, "_blank")} // Open link in a new tab
             >
