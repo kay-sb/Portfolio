@@ -34,7 +34,7 @@ const ProjectList: React.FC = () => {
   ];
 
   return (
-    <div className="mt-20 text-center md:text-left">
+    <div className="mt-20 text-center md:text-left max-auto">
       <h1
         className={`font-bold text-[40px] md:text-[60px] xl:text-[80px] leading-none tracking-wide mb-2 ${
           darkMode ? "text-text-title-light" : "text-text-title-dark"
@@ -50,21 +50,15 @@ const ProjectList: React.FC = () => {
         PROJECTS
       </h1>
       <div>
-        <ul>
+        <ul className="flex flex-col items-center md:items-start md:px-0">
           {projects.map((project, index) => (
             <li
               key={index}
-              className={`flex items-center rounded-xl lg:w-[80%] w-80 h-24 my-4 p-4 transition duration-300 ease-in-out cursor-pointer ${
-                darkMode ? "bg-light-mode" : "bg-dark-mode"
+              className={`flex items-center rounded-xl w-full max-w-[80%] h-24 my-4 p-4 transition duration-300 ease-in-out cursor-pointer ${
+                darkMode
+                  ? "bg-light-mode hover:bg-active-dark"
+                  : "bg-dark-mode hover:bg-active-dark"
               }`} // Using Tailwind classes for background
-              onMouseEnter={(e) => {
-                e.currentTarget.classList.add(
-                  darkMode ? "bg-active-dark" : "bg-active-dark"
-                );
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.classList.remove("bg-active-dark"); // Reset background color on mouse leave
-              }}
               onClick={() => window.open(project.link, "_blank")} // Open link in a new tab
             >
               <img
@@ -93,14 +87,15 @@ const ProjectList: React.FC = () => {
                   viewBox="0 0 24 24"
                   strokeWidth={1.5}
                   stroke="currentColor"
-                  className={`size-6 ${
-                    darkMode ? "fill-active-dark" : "fill-active-dark"
-                  }`}
+                  className={`size-6 `}
                 >
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25" // Arrow path
+                    d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25"
+                    className={`${
+                      darkMode ? "text-dark-mode" : "text-light-mode"
+                    }`}
                   />
                 </svg>
               </div>

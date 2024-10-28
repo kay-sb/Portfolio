@@ -20,6 +20,7 @@ export default {
         'tooltip-bg-dark': 'rgba(255, 255, 255, 0.08)',
         'tooltip-bg-light': 'rgba(255, 255, 255, 0.08)',
         'active-dark': 'rgb(255, 80, 80)',
+        'active-light': 'rgb(255, 130, 130)',
         'clr-Social': 'rgb(255, 80, 80)',
         'arrow': 'rgb(255, 130, 130)',
         'dark-mode': 'rgb(21, 19, 18)',

@@ -7,6 +7,7 @@ import ProjectsPage from "./Page/Projects";
 import ExperiencePage from "./Page/Experience";
 import ToolsPage from "./Page/Tools";
 import ThoughtPage from "./Page/Thoughts";
+import Footer from "./components/Footer";
 
 const App: React.FC = () => {
   // Access theme directly from the ThemeContext using the useTheme hook
@@ -22,6 +23,7 @@ const App: React.FC = () => {
           <Route path="/thought" element={<ThoughtPage />} />
         </Routes>
         <div style={{ paddingBottom: "4rem" }} />
+        <Footer/>
       </ThemeProvider>
     </Router>
   );
