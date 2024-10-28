@@ -41,7 +41,7 @@ const ProjectList: React.FC = () => {
       image: "Project1-th.png",
       title: "Project 3",
       description: "Creative Portfolio",
-      link: "https://kianoush-sb.vercel.app",
+      link: "",
     },
     // Add more projects as needed
   ];

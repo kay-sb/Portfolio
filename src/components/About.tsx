@@ -1,16 +1,6 @@
 import React, { useEffect } from "react";
 import { useTheme } from "./ThemeContext"; // Importing ThemeContext for managing dark/light mode
 
-// Colors for dark and light modes
-const colors = {
-  textTitleLight: "rgba(255, 255, 255, 0.8)",
-  textTitleDark: "rgba(0, 0, 0, 0.8)",
-  textTitle2Light: "rgba(255, 255, 255, 0.1)",
-  textTitle2Dark: "rgb(21, 19, 18, 0.3)",
-  textLight: "rgb(234, 236, 237)",
-  textDark: "rgb(21, 19, 18)",
-};
-
 const About: React.FC = () => {
   const { darkMode } = useTheme(); // Access dark mode state and toggle function from ThemeContext
 
@@ -22,26 +12,23 @@ const About: React.FC = () => {
   return (
     <div className="">
       <h1
-        className="font-bold text-[50px] md:text-[75px] xl:text-[110px] leading-none tracking-wide pb-2"
-        style={{
-          color: darkMode ? colors.textTitleLight : colors.textTitleDark,
-        }}
+        className={`font-bold text-[50px] md:text-[75px] xl:text-[110px] leading-none tracking-wide pb-2 ${
+          darkMode ? "text-text-title-light" : "text-text-title-dark"
+        }`}
       >
         FRONTEND
       </h1>
       <h1
-        className="font-bold text-[45px] md:text-[65px] xl:text-[90px] leading-none tracking-wide pb-4"
-        style={{
-          color: darkMode ? colors.textTitle2Light : colors.textTitle2Dark,
-        }}
+        className={`font-bold text-[45px] md:text-[65px] xl:text-[90px] leading-none tracking-wide pb-4 ${
+          darkMode ? "text-text-title2-light" : "text-text-title2-dark"
+        }`}
       >
         DEVELOPER
       </h1>
       <p
-        className="text-sm max-w-[300px] md:max-w-[450px] lg:max-w-[500px] mx-auto md:mx-0"
-        style={{
-          color: darkMode ? colors.textLight : colors.textDark,
-        }}
+        className={`text-sm max-w-[300px] md:max-w-[450px] lg:max-w-[500px] mx-auto md:mx-0 ${
+          darkMode ? "text-text-title-light" : "text-text-title-dark"
+        }`}
       >
         As a frontend developer with a flair for graphic design, I bring ideas
         to life through clean, interactive user interfaces. My background in
@@ -51,53 +38,64 @@ const About: React.FC = () => {
       </p>
 
       <div className="flex gap-10 lg:gap-20 mt-8 justify-center md:justify-start">
-        <div className="text-left ">
+        <div className="text-left">
           <h2
-            className="font-bold text-4xl sm:text-3xl md:text-4xl lg:text-6xl "
-            style={{
-              color: darkMode ? colors.textTitleLight : colors.textTitleDark,
-            }}
+            className={`font-bold text-4xl sm:text-3xl md:text-4xl lg:text-6xl ${
+              darkMode ? "text-text-title-light" : "text-text-title-dark"
+            }`}
           >
             +1
           </h2>
-          <h3 className="text-[12px] md:text-sm text-gray-600 dark:text-gray-400">
+          <h3 className={`text-[12px] md:text-sm ${
+              darkMode ? "text-text-title-light" : "text-text-title-dark"
+            }`}>
             Years
           </h3>
-          <h3 className="text-[12px] md:text-sm text-gray-600 dark:text-gray-400">
+          <h3 className={`text-[12px] md:text-sm ${
+              darkMode ? "text-text-title-light" : "text-text-title-dark"
+            }`}>
             Experience
           </h3>
         </div>
 
         <div className="text-left">
           <h2
-            className="font-bold text-4xl sm:text-3xl md:text-4xl lg:text-6xl"
-            style={{
-              color: darkMode ? colors.textTitleLight : colors.textTitleDark,
-            }}
+            className={`font-bold text-4xl sm:text-3xl md:text-4xl lg:text-6xl ${
+              darkMode ? "text-text-title-light" : "text-text-title-dark"
+            }`}
           >
             +1
           </h2>
-          <h3 className="text-[12px] md:text-sm text-gray-600 dark:text-gray-400">
+          <h3 className={`text-[12px] md:text-sm ${
+              darkMode ? "text-text-title-light" : "text-text-title-dark"
+            }`}>
             Projects
           </h3>
-          <h3 className="text-[12px] md:text-sm text-gray-600 dark:text-gray-400">
+          <h3
+            className={`text-[12px] md:text-sm ${
+              darkMode ? "text-text-title-light" : "text-text-title-dark"
+            }`}
+          >
             Completed
           </h3>
         </div>
 
         <div className="text-left">
           <h2
-            className="font-bold text-4xl sm:text-3xl md:text-4xl lg:text-6xl"
-            style={{
-              color: darkMode ? colors.textTitleLight : colors.textTitleDark,
-            }}
+            className={`font-bold text-4xl sm:text-3xl md:text-4xl lg:text-6xl ${
+              darkMode ? "text-text-title-light" : "text-text-title-dark"
+            }`}
           >
             +1
           </h2>
-          <h3 className="text-[12px] md:text-sm text-gray-600 dark:text-gray-400">
+          <h3 className={`text-[12px] md:text-sm ${
+              darkMode ? "text-text-title-light" : "text-text-title-dark"
+            }`}>
             Worldwide
           </h3>
-          <h3 className="text-[12px] md:text-sm text-gray-600 dark:text-gray-400">
+          <h3 className={`text-[12px] md:text-sm ${
+              darkMode ? "text-text-title-light" : "text-text-title-dark"
+            }`}>
             Clients
           </h3>
         </div>

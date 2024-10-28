@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { useTheme } from './ThemeContext'; // Importing ThemeContext for managing dark/light mode
+import { useTheme } from "./ThemeContext"; // Importing ThemeContext for managing dark/light mode
 import {
   HomeIcon,
   FolderIcon,
@@ -21,20 +21,6 @@ interface NavItemProps {
   isActive: boolean; // Active status
   onClick?: () => void; // Optional click handler
 }
-
-// Colors for dark and light mode
-const colors = {
-  darkModeBg: "rgba(255, 255, 255, 0.03)", // Background color in dark mode
-  lightModeBg: "rgba(255, 255, 255, 0.03)", // Background color in light mode
-  darkModeText: "rgba(255, 255, 255, 0.80)", // Text color in dark mode
-  lightModeText: "rgba(0, 0, 0, 0.80)", // Text color in light mode
-  tooltipBgDark: "rgba(255, 255, 255, 0.08)", // Tooltip background in dark mode
-  tooltipBgLight: "rgba(255, 255, 255, 0.08)", // Tooltip background in light mode
-  activeLight: "rgb(255, 130, 130)", // Active color in light mode
-  activeDark: "rgb(255, 80, 80)", // Active color in dark mode
-  Dark: "rgb(21, 19, 18)", // Background color in dark mode
-  Light: "rgb(234, 236, 237)", // Background color in light mode
-};
 
 // NavItem component
 const NavItem: React.FC<NavItemProps> = ({
@@ -61,16 +47,15 @@ const NavItem: React.FC<NavItemProps> = ({
     >
       <Link to={to} onClick={onClick}>
         <Icon
-          className={`h-6 w-6`}
-          style={{
-            color: isActive
+          className={`h-6 w-6 ${
+            isActive
               ? darkMode
-                ? colors.activeDark
-                : colors.activeLight
+                ? "text-active-dark" // رنگ فعال در حالت تاریک
+                : "text-active-dark" // رنگ فعال در حالت روشن
               : darkMode
-              ? colors.darkModeText
-              : colors.lightModeText,
-          }}
+              ? "text-dark-mode-text" // رنگ متن در حالت تاریک
+              : "text-light-mode-text" // رنگ متن در حالت روشن
+          }`}
         />
       </Link>
       {isHovered && (
@@ -80,11 +65,11 @@ const NavItem: React.FC<NavItemProps> = ({
           exit={{ opacity: 0, translateY: -25, scale: 0 }} // Animation for hiding tooltip
           transition={{ duration: 0.3 }} // Animation duration
           onAnimationComplete={() => !isHovered && setIsHovered(false)}
-          className={`absolute px-2 py-[2px] items-center justify-center bottom-[-1rem] transform -translate-x-1/2 border-0 rounded-md shadow-lg text-xs`}
-          style={{
-            color: darkMode ? colors.darkModeText : colors.lightModeText,
-            background: darkMode ? colors.tooltipBgDark : colors.tooltipBgLight,
-          }}
+          className={`absolute px-2 py-[2px] items-center justify-center bottom-[-1rem] transform -translate-x-1/2 border-0 rounded-md shadow-lg text-xs ${
+            darkMode
+              ? "text-dark-mode-text bg-tooltip-bg-dark"
+              : "text-light-mode-text bg-tooltip-bg-light"
+          }`}
         >
           {label} {/* Tooltip text */}
         </motion.span>
@@ -114,10 +99,9 @@ const Navbar: React.FC<NavbarProps> = () => {
   return (
     <div>
       <nav
-        className={`absolute top-5 left-1/2 transform -translate-x-1/2 flex items-center justify-between w-[300px] h-[50px] rounded-xl shadow-lg z-50`}
-        style={{
-          background: darkMode ? colors.darkModeBg : colors.lightModeBg,
-        }}
+        className={`absolute top-5 left-1/2 transform -translate-x-1/2 flex items-center justify-between w-[300px] h-[50px] rounded-xl shadow-lg z-50 ${
+          darkMode ? 'bg-dark-mode-bg' : 'bg-light-mode-bg'
+        }`}
       >
         <div className="flex items-center justify-around w-full">
           <NavItem
@@ -159,24 +143,17 @@ const Navbar: React.FC<NavbarProps> = () => {
       </nav>
       <button
         onClick={handleToggleDarkMode} // Change dark mode state on click
-        className={`fixed bottom-5 left-5 w-[50px] h-[50px] rounded-full flex items-center justify-center shadow-lg z-50`}
-        style={{
-          background: darkMode ? colors.Dark : colors.Light, // Background color for dark and light mode
-        }}
+        className={`fixed bottom-5 left-5 w-[50px] h-[50px] rounded-full flex items-center justify-center shadow-lg z-50 ${
+          darkMode ? 'dark-mode' : 'light-mode'
+        }`}
       >
         {darkMode ? (
           <MoonIcon
-            className={`h-6 w-6`}
-            style={{
-              color: darkMode ? colors.darkModeText : colors.lightModeText,
-            }}
+            className="h-6 w-6 text-dark-mode-text"
           />
         ) : (
           <SunIcon
-            className={`h-6 w-6`}
-            style={{
-              color: darkMode ? colors.darkModeText : colors.lightModeText,
-            }}
+            className="h-6 w-6 text-light-mode-text "
           />
         )}
       </button>
