@@ -62,7 +62,7 @@ const ThoughtsList: React.FC = () => {
               }`}
               onClick={() => thought.link && window.open(thought.link, "_blank")}
             >
-              <div className="flex-1">
+              <div className="mb-2 flex-1">
                 <h3
                   className={`text-lg font-semibold  top-4 left-4 ${
                     darkMode ? "text-text-title-dark" : "text-text-title-light"
@@ -79,12 +79,12 @@ const ThoughtsList: React.FC = () => {
                 </p>
 
                 {/* Date in bottom-left corner */}
-                <span className={`absolute bottom-2 left-2 text-xs ${ darkMode ? "text-dark-mode" : "text-light-mode"}`}>
+                <span className={`absolute bottom-3 left-4 text-xs ${ darkMode ? "text-dark-mode" : "text-light-mode"}`}>
                   {thought.date}
                 </span>
 
                 {/* Read time in bottom-right corner */}
-                <span className={`absolute bottom-2 right-2 text-xs ${ darkMode ? "text-dark-mode" : "text-light-mode"}`}>
+                <span className={`absolute bottom-3 right-4 text-xs ${ darkMode ? "text-dark-mode" : "text-light-mode"}`}>
                   {thought.readTime}
                 </span>
               </div>

@@ -67,7 +67,7 @@ const ExperoenceList: React.FC = () => {
                   {experience.title}
                 </h3>
                 <p
-                  className={` text-[0.6rem] flex text-start ${
+                  className={`mb-2 text-[0.6rem] flex text-start ${
                     darkMode ? "text-text-title-dark" : "text-text-title-light"
                   }`}
                 >
