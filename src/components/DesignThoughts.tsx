@@ -14,21 +14,21 @@ const ThoughtsList: React.FC = () => {
   const Thoughts = [
     {
       title: "Thoughts 1",
-      description: "Minimal Store",
+      description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos illum blanditiis unde officia placeat. Cupiditate tenetur, vel delectus facere perferendis, voluptatem possimus architecto, doloremque nam non officiis rem velit! Consectetur. ",
       link: "https://kianoush-sb.vercel.app",
       date: "Oct 27, 2024",
       readTime: "3 min read",
     },
     {
       title: "Thoughts 2",
-      description: "Stylish Blog",
+      description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos illum blanditiis unde officia placeat. Cupiditate tenetur, vel delectus facere perferendis, voluptatem possimus architecto, doloremque nam non officiis rem velit! Consectetur. ",
       link: "https://kianoush-sb.vercel.app",
       date: "Oct 15, 2024",
       readTime: "5 min read",
     },
     {
       title: "Thoughts 3",
-      description: "Creative Portfolio",
+      description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos illum blanditiis unde officia placeat. Cupiditate tenetur, vel delectus facere perferendis, voluptatem possimus architecto, doloremque nam non officiis rem velit! Consectetur. ",
       link: "",
       date: "Oct 10, 2024",
       readTime: "4 min read",
@@ -57,14 +57,14 @@ const ThoughtsList: React.FC = () => {
           {Thoughts.map((thought, index) => (
             <li
               key={index}
-              className={`relative flex items-center rounded-xl w-full max-w-[80%] h-[150px] my-4 p-4 transition duration-300 ease-in-out cursor-pointer ${
+              className={`relative flex items-center rounded-xl w-full max-w-[80%] h-auto my-4 p-4 transition duration-300 ease-in-out cursor-pointer ${
                 darkMode ? "bg-light-mode hover:bg-active-dark" : "bg-dark-mode hover:bg-active-dark"
               }`}
               onClick={() => thought.link && window.open(thought.link, "_blank")}
             >
               <div className="flex-1">
                 <h3
-                  className={`font-semibold ${
+                  className={`text-lg font-semibold  top-4 left-4 ${
                     darkMode ? "text-text-title-dark" : "text-text-title-light"
                   }`}
                 >
@@ -72,7 +72,7 @@ const ThoughtsList: React.FC = () => {
                 </h3>
                 <p
                   className={
-                    darkMode ? "text-light-mode-text" : "text-dark-mode-text"
+                    ` text-[0.6rem] text-start my-4 mb-6 ${darkMode ? "text-light-mode-text" : "text-dark-mode-text"}`
                   }
                 >
                   {thought.description}
@@ -88,7 +88,7 @@ const ThoughtsList: React.FC = () => {
                   {thought.readTime}
                 </span>
               </div>
-              <div>
+              <div className="absolute top-2 right-2 ">
                 <svg
                   viewBox="0 0 24 24"
                   strokeWidth={1.5}

@@ -14,30 +14,30 @@ const ExperoenceList: React.FC = () => {
   const Experoence = [
     {
       title: "Experoence 1",
-      description: "Minimal Store",
+      description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos illum blanditiis unde officia placeat. Cupiditate tenetur, vel delectus facere perferendis, voluptatem possimus architecto, doloremque nam non officiis rem velit! Consectetur. ",
       link: "https://kianoush-sb.vercel.app",
     },
     {
       title: "Experoence 2",
-      description: "Stylish Blog",
+      description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos illum blanditiis unde officia placeat. Cupiditate tenetur, vel delectus facere perferendis, voluptatem possimus architecto, doloremque nam non officiis rem velit! Consectetur.",
       link: "https://kianoush-sb.vercel.app",
     },
     {
       title: "Experoence 3",
-      description: "Creative Portfolio",
+      description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos illum blanditiis unde officia placeat. Cupiditate tenetur, vel delectus facere perferendis, voluptatem possimus architecto, doloremque nam non officiis rem velit! Consectetur.",
       link: "",
     },
     // Add more experiences as needed
   ];
 
   return (
-    <div className="mt-20 text-center md:text-left">
+    <div className=" mt-20 text-center md:text-left">
       <h1
         className={`font-bold text-[40px] md:text-[60px] xl:text-[80px] leading-none tracking-wide mb-2 ${
           darkMode ? "text-text-title-light" : "text-text-title-dark"
         }`}
       >
-        YEARS OF
+        YEARS OF 
       </h1>
       <h1
         className={`font-bold text-[40px] md:text-[60px] xl:text-[80px] leading-none tracking-wide mb-4 ${
@@ -47,34 +47,34 @@ const ExperoenceList: React.FC = () => {
         EXPEROENCE
       </h1>
       <div>
-        <ul className="flex flex-col items-center md:items-start md:px-0 ">
+        <ul className=" flex flex-col items-center md:items-start md:px-0 ">
           {Experoence.map((experience, index) => (
             <li
               key={index}
-              className={`relative flex items-center rounded-xl w-full max-w-[80%] h-[150px] my-4 p-4 transition duration-300 ease-in-out cursor-pointer ${
+              className={`relative flex items-center rounded-xl w-full max-w-[80%] h-auto my-4 p-4 transition duration-300 ease-in-out cursor-pointer ${
                 darkMode
                   ? "bg-light-mode hover:bg-active-dark"
                   : "bg-dark-mode hover:bg-active-dark"
               }`}
               onClick={() => window.open(experience.link, "_blank")} // Open link in a new tab
             >
-              <div className="flex-1">
+              <div className="flex-1 top-4 left-4">
                 <h3
-                  className={`font-semibold ${
+                  className={`text-lg flex font-semibold items-start ${
                     darkMode ? "text-text-title-dark" : "text-text-title-light"
                   }`}
                 >
                   {experience.title}
                 </h3>
                 <p
-                  className={
-                    darkMode ? "text-light-mode-text" : "text-dark-mode-text"
-                  } // Using Tailwind classes for text color
+                  className={` text-[0.6rem] flex text-start ${
+                    darkMode ? "text-text-title-dark" : "text-text-title-light"
+                  }`}
                 >
                   {experience.description}
                 </p>
               </div>
-              <div>
+              <div className="absolute top-2 right-2">
                 <svg
                   viewBox="0 0 24 24"
                   strokeWidth={1.5}
@@ -85,9 +85,7 @@ const ExperoenceList: React.FC = () => {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25"
-                    className={`${
-                      darkMode ? "text-dark-mode" : "text-light-mode"
-                    }`}
+                    className={`${darkMode ? "text-dark-mode" : "text-light-mode"}`}
                   />
                 </svg>
               </div>

@@ -116,7 +116,7 @@ const PremiumTools: React.FC = () => {
       >
         TOOLS
       </h1>
-      <div className="flex-col items-center md:items-start px-10 md:px-0 lg:max-w-[80%]">
+      <div className="flex flex-col justify-center items-center md:items-start px-10 md:px-0 lg:max-w-[80%]">
         <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-3 gap-4 ">
           {Tools.map((tool, index) => (
             <div
