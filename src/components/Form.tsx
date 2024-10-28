@@ -232,7 +232,7 @@ const FormHome: React.FC = () => {
         {/* Submit button */}
         <button
           type="submit"
-          className="bg-active-dark text-white font-semibold py-2 px-4 rounded-md rounded-xl hover:bg-active-dark transition duration-200"
+          className="bg-active-dark text-white font-semibold py-2 px-4 rounded-xl hover:bg-active-dark transition duration-200"
         >
           Submit
         </button>
