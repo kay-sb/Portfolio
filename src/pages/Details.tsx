@@ -1,15 +1,16 @@
-import React, { useEffect, useState } from "react"; 
+import React, { useEffect, useState } from "react";
 import Profile from "../components/ProfileCart";
 import { useTheme } from "../components/ThemeContext";
 import Form from "../components/Form";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation, useParams, useNavigate } from "react-router-dom";
 import { experienceData, projectsData, thoughtsData } from "../data/datas.json"; // اطمینان حاصل کن که به درستی داده‌ها رو وارد می‌کنی
 
 const DetailsPage: React.FC = () => {
   const { darkMode } = useTheme();
   const { id } = useParams<{ id: string }>();
   const location = useLocation();
-  
+  const navigate = useNavigate();
+
   const [data, setData] = useState<any>(null);
   const { type } = location.state || {};
 
@@ -49,9 +50,9 @@ const DetailsPage: React.FC = () => {
       case "project":
         return data.title || "Project Title";
       case "experience":
-        return data.title || "Experience Title"; 
+        return data.title || "Experience Title";
       case "thought":
-        return data.title || "Thought Title"; 
+        return data.title || "Thought Title";
       default:
         return "Details";
     }
@@ -61,23 +62,33 @@ const DetailsPage: React.FC = () => {
     <div className="min-h-screen flex flex-col items-center">
       <div className="w-full max-w-6xl flex flex-col md:flex-row items-center justify-center mt-20">
         <Profile />
-        <div className="flex-1 w-full text-center md:text-left mt-10 md:mt-5">
+        <div className="flex-1 w-full  max-w-[80%] text-center md:text-left mt-10 ">
           {data ? (
-            <div>
+            <div className="text-center  md:text-left rounded-lg max-w-[80%] mx-auto md:mx-0 w-[80%] md:w-full">
               <h2
-                className={`font-bold text-[40px] md:text-[60px] xl:text-[80px] leading-none tracking-wide mb-2 ${
+                className={`font-bold text-[40px] md:text-[60px] xl:text-[80px] leading-none tracking-wide mb-14 ${
                   darkMode ? "text-text-title-light" : "text-text-title-dark"
                 }`}
               >
                 {renderTitle()}
               </h2>
               <p
-                className={`mb-2 text-xl flex text-start ${
+                className={`text-xl flex text-start mb-10 ${
                   darkMode ? "text-text-title-light" : "text-text-title-dark"
                 }`}
               >
                 {data.description || "No description provided."}
               </p>
+              <button
+                onClick={() => navigate(-1)}
+                className={` ${
+                  darkMode
+                    ? "bg-text-title2-light text-light-mode"
+                    : "bg-text-title2-dark text-dark-mode"
+                } font-semibold mt-2 py-2 w-full rounded-xl hover:bg-active-dark transition duration-200`}
+              >
+                Back
+              </button>
             </div>
           ) : (
             <p
