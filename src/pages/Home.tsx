@@ -27,9 +27,7 @@ const HomePage: React.FC = () => {
     <div>
       <div className="min-h-screen flex flex-col items-center ">
         <div className="w-full max-w-6xl flex flex-col md:flex-row items-center justify-center mt-20 ">
-          <div className=" hidden md:flex">
             <Profile />
-          </div>
           <div className="flex-1 text-center md:text-left mt-10 md:mt-5">
             <About />
             <ProjectList />
