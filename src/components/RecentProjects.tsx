@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
 import { useTheme } from "./ThemeContext"; // Importing ThemeContext for managing dark/light mode
+import { usePageContext } from "./PageContext"
 
 const ProjectList: React.FC = () => {
   const { darkMode } = useTheme(); // Access dark mode state from ThemeContext
-
+  const { isDetailPage } = usePageContext();
   // Effect to apply dark/light mode class to the body
   useEffect(() => {
     document.body.classList.toggle("dark-mode", darkMode); // Apply dark mode class
@@ -30,8 +31,17 @@ const ProjectList: React.FC = () => {
       description: "Creative Portfolio",
       link: "",
     },
+    {
+      image: "Project1-th.png",
+      title: "Project 4",
+      description: "Creative Portfolio",
+      link: "",
+    },
     // Add more projects as needed
   ];
+
+
+  const displayedProjects = isDetailPage ? projects : projects.slice(0, 3);
 
   return (
     <div className="mt-20 text-center md:text-left max-auto">
@@ -51,7 +61,7 @@ const ProjectList: React.FC = () => {
       </h1>
       <div>
         <ul className="flex flex-col items-center md:items-start md:px-0">
-          {projects.map((project, index) => (
+          {displayedProjects.map((project, index) => (
             <li
               key={index}
               className={`flex items-center rounded-xl w-full max-w-[80%] h-24 my-4 p-4 transition duration-300 ease-in-out cursor-pointer ${

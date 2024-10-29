@@ -3,9 +3,11 @@ import { useTheme } from "./ThemeContext";
 import { FaReact } from "react-icons/fa";
 import { SiTypescript, SiCinema4D, SiAdobexd } from "react-icons/si";
 import { DiPhotoshop, DiIllustrator } from "react-icons/di";
+import { usePageContext } from "./PageContext"
 
 const PremiumTools: React.FC = () => {
   const { darkMode } = useTheme();
+  const { isDetailPage } = usePageContext();
 
   useEffect(() => {
     document.body.classList.toggle("dark-mode", darkMode);
@@ -100,6 +102,9 @@ const PremiumTools: React.FC = () => {
     },
   ];
 
+  const displayedProjects = isDetailPage ? Tools : Tools.slice(0, 9);
+
+
   return (
     <div className="mt-20 text-center md:text-left">
       <h1
@@ -118,7 +123,7 @@ const PremiumTools: React.FC = () => {
       </h1>
       <div className="flex flex-col justify-center items-center md:items-start px-10 md:px-0 lg:max-w-[80%]">
         <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-3 gap-4 ">
-          {Tools.map((tool, index) => (
+          {displayedProjects .map((tool, index) => (
             <div
               key={index}
               className={`flex items-center rounded-xl h-24 w-24 lg:w-auto my-4 p-4 transition duration-300 ease-in-out cursor-pointer overflow-hidden ${

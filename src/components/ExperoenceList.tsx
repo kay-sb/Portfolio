@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
 import { useTheme } from "./ThemeContext"; // Importing ThemeContext for managing dark/light mode
+import { usePageContext } from "./PageContext"
 
 const ExperoenceList: React.FC = () => {
   const { darkMode } = useTheme(); // Access dark mode state from ThemeContext
-
+  const { isDetailPage } = usePageContext();
   // Effect to apply dark/light mode class to the body
   useEffect(() => {
     document.body.classList.toggle("dark-mode", darkMode); // Apply dark mode class
@@ -27,8 +28,15 @@ const ExperoenceList: React.FC = () => {
       description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos illum blanditiis unde officia placeat. Cupiditate tenetur, vel delectus facere perferendis, voluptatem possimus architecto, doloremque nam non officiis rem velit! Consectetur.",
       link: "",
     },
+    {
+      title: "Experoence 4",
+      description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos illum blanditiis unde officia placeat. Cupiditate tenetur, vel delectus facere perferendis, voluptatem possimus architecto, doloremque nam non officiis rem velit! Consectetur.",
+      link: "",
+    },
     // Add more experiences as needed
   ];
+
+  const displayedProjects = isDetailPage ? Experoence : Experoence.slice(0, 3);
 
   return (
     <div className=" mt-20 text-center md:text-left">
@@ -48,7 +56,7 @@ const ExperoenceList: React.FC = () => {
       </h1>
       <div>
         <ul className=" flex flex-col items-center md:items-start md:px-0 ">
-          {Experoence.map((experience, index) => (
+          {displayedProjects.map((experience, index) => (
             <li
               key={index}
               className={`relative flex items-center rounded-xl w-full max-w-[80%] h-auto my-4 p-4 transition duration-300 ease-in-out cursor-pointer ${

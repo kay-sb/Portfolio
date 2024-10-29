@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
 import { useTheme } from "./ThemeContext"; // Importing ThemeContext for managing dark/light mode
+import { usePageContext } from "./PageContext"
 
 const ThoughtsList: React.FC = () => {
   const { darkMode } = useTheme(); // Access dark mode state from ThemeContext
-
+  const { isDetailPage } = usePageContext();
   // Effect to apply dark/light mode class to the body
   useEffect(() => {
     document.body.classList.toggle("dark-mode", darkMode); // Apply dark mode class
@@ -33,8 +34,17 @@ const ThoughtsList: React.FC = () => {
       date: "Oct 10, 2024",
       readTime: "4 min read",
     },
+    {
+      title: "Thoughts 4",
+      description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos illum blanditiis unde officia placeat. Cupiditate tenetur, vel delectus facere perferendis, voluptatem possimus architecto, doloremque nam non officiis rem velit! Consectetur. ",
+      link: "",
+      date: "Oct 2, 2024",
+      readTime: "6 min read",
+    },
     // Add more thoughts as needed
   ];
+
+  const displayedProjects = isDetailPage ? Thoughts : Thoughts.slice(0, 3);
 
   return (
     <div className="mt-20 text-center md:text-left">
@@ -54,7 +64,7 @@ const ThoughtsList: React.FC = () => {
       </h1>
       <div>
         <ul className="flex flex-col items-center md:items-start md:px-0">
-          {Thoughts.map((thought, index) => (
+          {displayedProjects.map((thought, index) => (
             <li
               key={index}
               className={`relative flex items-center rounded-xl w-full max-w-[80%] h-auto my-4 p-4 transition duration-300 ease-in-out cursor-pointer ${

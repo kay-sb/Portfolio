@@ -7,14 +7,21 @@ import ExperoenceList  from "../components/ExperoenceList";
 import PremiumTools from "../components/PremiumTools";
 import Thoughts from "../components/DesignThoughts";
 import Form from "../components/Form";
+import { usePageContext } from "../components/PageContext";
 
 const HomePage: React.FC = () => {
   const { darkMode } = useTheme();
+  const { setIsDetailPage } = usePageContext();
 
   useEffect(() => {
     document.body.classList.toggle("dark-mode", darkMode); // Apply dark mode class to body
     document.body.classList.toggle("light-mode", !darkMode); // Apply light mode class to body
   }, [darkMode]);
+
+  useEffect(() => {
+    setIsDetailPage(false);
+    return () => setIsDetailPage(true); // Reset when leaving
+  }, [setIsDetailPage]);
 
   return (
     <div>
