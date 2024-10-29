@@ -119,7 +119,7 @@ const FormHome: React.FC = () => {
                 darkMode
                   ? "bg-text-title2-light text-light-mode"
                   : "bg-text-title2-dark text-dark-mode"
-              } focus:outline-active-dark focus:border-active-dark`}
+              }`}
               required // Required field
             />
           </div>
@@ -140,7 +140,7 @@ const FormHome: React.FC = () => {
                 darkMode
                   ? "bg-text-title2-light text-light-mode"
                   : "bg-text-title2-dark text-dark-mode"
-              } focus:outline-active-dark focus:border-active-dark`}
+              } `}
               required // Required field
             />
           </div>
@@ -223,7 +223,7 @@ const FormHome: React.FC = () => {
               darkMode
                   ? "bg-text-title2-light text-light-mode"
                   : "bg-text-title2-dark text-dark-mode"
-            } focus:outline-active-dark focus:border-active-dark`}
+            }`}
             rows={4} // Number of rows for the textarea
             required // Required field
           />
