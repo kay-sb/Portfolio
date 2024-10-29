@@ -62,7 +62,7 @@ const DetailsPage: React.FC = () => {
     <div className="min-h-screen flex flex-col items-center">
       <div className="w-full max-w-6xl flex flex-col md:flex-row items-center justify-center mt-20">
         <Profile />
-        <div className="flex-1 w-full  max-w-[80%] text-center md:text-left mt-10 ">
+        <div className="flex-1 w-full  max-w-[80%] text-center md:text-left mt-20 md:mt-0 ">
           {data ? (
             <div className="text-center  md:text-left rounded-lg max-w-[80%] mx-auto md:mx-0 w-[80%] md:w-full">
               <h2
