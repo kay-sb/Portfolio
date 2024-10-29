@@ -3,13 +3,13 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "./components/ThemeContext";
 import { PageProvider } from "./components/PageContext";
 import Navbar from "./components/Navbar";
-import HomePage from "./Page/Home";
-import ProjectsPage from "./Page/Projects";
-import ExperiencePage from "./Page/Experience";
-import ToolsPage from "./Page/Tools";
-import ThoughtPage from "./Page/Thoughts";
+import HomePage from "./pages/Home";
+import ProjectsPage from "./pages/Projects";
+import ExperiencePage from "./pages/Experience";
+import ToolsPage from "./pages/Tools";
+import ThoughtPage from "./pages/Thoughts";
 import Footer from "./components/Footer";
-import DetailsPage from "./Page/Details";
+import DetailsPage from "./pages/Details";
 
 const App: React.FC = () => {
   // Access theme directly from the ThemeContext using the useTheme hook

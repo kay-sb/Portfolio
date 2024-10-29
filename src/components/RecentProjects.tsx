@@ -1,7 +1,7 @@
 import React, { useEffect } from "react"; // Importing React and useEffect hook for managing component lifecycle
 import { useNavigate } from "react-router-dom"; // Importing useNavigate for navigation
 import { useTheme } from "./ThemeContext"; // Importing ThemeContext for managing dark/light mode
-import { projectsData } from "./data.json"; // Importing project data from JSON file
+import { projectsData } from "../data/datas.json"; // Importing project data from JSON file
 import { usePageContext } from "./PageContext"; // Importing PageContext to manage page state
 
 const ProjectList: React.FC = () => {

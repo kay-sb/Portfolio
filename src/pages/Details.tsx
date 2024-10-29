@@ -4,7 +4,7 @@ import { useTheme } from "../components/ThemeContext";
 import Form from "../components/Form";
 import { useLocation } from "react-router-dom";
 import { useParams } from "react-router-dom";
-import { projectsData } from "../components/data.json"; // فرض می‌کنم اینجا داده‌ها را وارد می‌کنی
+import { projectsData } from "../Data/datas.json"; // فرض می‌کنم اینجا داده‌ها را وارد می‌کنی
 
 const DetailsPage: React.FC = () => {
   const { darkMode } = useTheme();
@@ -35,7 +35,7 @@ const DetailsPage: React.FC = () => {
       case "project":
         return data.title || "Project Title";
       case "experience":
-        return data.role || "Experience Role";
+        return data.role || "Experience Title";
       case "thought":
         return data.title || "Thought Title";
       default:

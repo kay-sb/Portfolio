@@ -2,7 +2,7 @@ import React, { useEffect } from "react"; // Importing React and useEffect hook 
 import { useTheme } from "./ThemeContext"; // Importing ThemeContext for managing dark/light mode
 import { usePageContext } from "./PageContext"; // Importing PageContext to manage page state
 import { useNavigate } from "react-router-dom"; // Importing useNavigate for navigation
-import { thoughtsData } from "./data.json"; // Importing thoughts data from JSON file
+import { thoughtsData } from "../data/datas.json"; // Importing thoughts data from JSON file
 
 const ThoughtsList: React.FC = () => {
   const { darkMode } = useTheme(); // Access dark mode state from ThemeContext
