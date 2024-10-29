@@ -9,6 +9,7 @@ import {
   PencilSquareIcon,
   SunIcon,
   MoonIcon,
+  ArrowUpIcon,
 } from "@heroicons/react/24/outline";
 import { motion } from "framer-motion";
 
@@ -50,11 +51,11 @@ const NavItem: React.FC<NavItemProps> = ({
           className={`h-6 w-6 ${
             isActive
               ? darkMode
-                ? "text-active-dark" // رنگ فعال در حالت تاریک
-                : "text-active-dark" // رنگ فعال در حالت روشن
+                ? "text-active-dark"
+                : "text-active-dark"
               : darkMode
-              ? "text-dark-mode-text" // رنگ متن در حالت تاریک
-              : "text-light-mode-text" // رنگ متن در حالت روشن
+              ? "text-dark-mode-text"
+              : "text-light-mode-text"
           }`}
         />
       </Link>
@@ -86,21 +87,43 @@ const Navbar: React.FC<NavbarProps> = () => {
   const { darkMode, toggleDarkMode } = useTheme(); // Access dark mode state and toggle function from ThemeContext
   const location = useLocation(); // Get the current location
   const activeItem = location.pathname; // Get the active path
+  const [showScrollToTop, setShowScrollToTop] = useState(false);
 
   useEffect(() => {
     document.body.classList.toggle("dark-mode", darkMode); // Toggle class for dark mode
     document.body.classList.toggle("light-mode", !darkMode); // Toggle class for light mode
   }, [darkMode]);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 200) {
+        // Show button if scrolled down more than 200px
+        setShowScrollToTop(true);
+      } else {
+        setShowScrollToTop(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll); // Add scroll event listener
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll); // Clean up the event listener
+    };
+  }, []);
+
   const handleToggleDarkMode = () => {
     toggleDarkMode(); // Toggle dark mode on button click
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
     <div>
       <nav
         className={`absolute top-5 left-1/2 transform -translate-x-1/2 flex items-center justify-between w-[300px] h-[50px] rounded-xl shadow-lg z-50 ${
-          darkMode ? 'bg-dark-mode-bg' : 'bg-light-mode-bg'
+          darkMode ? "bg-dark-mode-bg" : "bg-light-mode-bg"
         }`}
       >
         <div className="flex items-center justify-around w-full">
@@ -144,19 +167,29 @@ const Navbar: React.FC<NavbarProps> = () => {
       <button
         onClick={handleToggleDarkMode} // Change dark mode state on click
         className={`fixed bottom-5 left-5 w-[50px] h-[50px] rounded-full flex items-center justify-center shadow-lg z-50 ${
-          darkMode ? 'dark-mode' : 'light-mode'
+          darkMode ? "dark-mode" : "light-mode"
         }`}
       >
         {darkMode ? (
-          <MoonIcon
-            className="h-6 w-6 text-dark-mode-text"
-          />
+          <MoonIcon className="h-6 w-6 text-dark-mode-text" />
         ) : (
-          <SunIcon
-            className="h-6 w-6 text-light-mode-text "
-          />
+          <SunIcon className="h-6 w-6 text-light-mode-text " />
         )}
       </button>
+      {showScrollToTop && (
+        <button
+          onClick={scrollToTop} // Scroll to top on click
+          className={`fixed bottom-5 right-5 w-[50px] h-[50px] rounded-full flex items-center justify-center shadow-lg z-50 ${
+            darkMode ? "dark-mode" : "light-mode"
+          }`}
+        >
+          {darkMode ? (
+            <ArrowUpIcon className="h-6 w-6 text-dark-mode-text" />
+          ) : (
+            <ArrowUpIcon className="h-6 w-6 text-light-mode-text " />
+          )}
+        </button>
+      )}
     </div>
   );
 };
