@@ -1,20 +1,22 @@
-import React, { useEffect } from "react";
-import { useTheme } from "./ThemeContext";
-import { FaReact } from "react-icons/fa";
-import { SiTypescript, SiCinema4D, SiAdobexd } from "react-icons/si";
-import { DiPhotoshop, DiIllustrator } from "react-icons/di";
-import { usePageContext } from "./PageContext"
+import React, { useEffect } from "react"; // Importing React and the useEffect hook from React
+import { useTheme } from "./ThemeContext"; // Importing the useTheme hook to access the theme context
+import { FaReact } from "react-icons/fa"; // Importing React icon
+import { SiTypescript, SiCinema4D, SiAdobexd } from "react-icons/si"; // Importing icons for TypeScript, Cinema 4D, and Adobe XD
+import { DiPhotoshop, DiIllustrator } from "react-icons/di"; // Importing icons for Photoshop and Illustrator
+import { usePageContext } from "./PageContext"; // Importing the usePageContext hook to access page context
 
 const PremiumTools: React.FC = () => {
-  const { darkMode } = useTheme();
-  const { isDetailPage } = usePageContext();
+  const { darkMode } = useTheme(); // Destructuring darkMode from the theme context
+  const { isDetailPage } = usePageContext(); // Destructuring isDetailPage from the page context
 
   useEffect(() => {
-    document.body.classList.toggle("dark-mode", darkMode);
-    document.body.classList.toggle("light-mode", !darkMode);
-  }, [darkMode]);
+    // Effect to toggle dark and light mode classes on the body element
+    document.body.classList.toggle("dark-mode", darkMode); // Apply dark mode class if darkMode is true
+    document.body.classList.toggle("light-mode", !darkMode); // Apply light mode class if darkMode is false
+  }, [darkMode]); // Dependency array to re-run the effect when darkMode changes
 
   const Tools = [
+    // Array of tools with their corresponding icons, titles, and links
     {
       icon: (
         <FaReact
@@ -23,8 +25,8 @@ const PremiumTools: React.FC = () => {
           }`}
         />
       ),
-      title: "React",
-      link: "https://kianoush-sb.vercel.app",
+      title: "React", // Tool title
+      link: "https://kianoush-sb.vercel.app", // Link to tool
     },
     {
       icon: (
@@ -104,7 +106,6 @@ const PremiumTools: React.FC = () => {
 
   const displayedProjects = isDetailPage ? Tools : Tools.slice(0, 9);
 
-
   return (
     <div className="mt-20 text-center md:text-left">
       <h1
@@ -123,28 +124,37 @@ const PremiumTools: React.FC = () => {
       </h1>
       <div className="flex flex-col justify-center items-center md:items-start px-10 md:px-0 lg:max-w-[80%]">
         <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-3 gap-4 ">
-          {displayedProjects .map((tool, index) => (
-            <div
-              key={index}
-              className={`flex items-center rounded-xl h-24 w-24 lg:w-auto my-4 p-4 transition duration-300 ease-in-out cursor-pointer overflow-hidden ${
-                darkMode ? "bg-text-title2-dark hover:bg-text-title2-light" : "bg-text-title2-light hover:bg-text-title2-dark"
-              }`}
-              onClick={() => window.open(tool.link, "_blank")}
-            >
-              <div className="flex items-center justify-center">
-                {tool.icon}
+          {displayedProjects.map(
+            (
+              tool,
+              index // Iterating over the Tools array to render each tool
+            ) => (
+              <div
+                key={index}
+                className={`flex items-center rounded-xl h-24 w-24 lg:w-auto my-4 p-4 transition duration-300 ease-in-out cursor-pointer overflow-hidden ${
+                  darkMode
+                    ? "bg-text-title2-dark hover:bg-text-title2-light"
+                    : "bg-text-title2-light hover:bg-text-title2-dark"
+                }`}
+                onClick={() => window.open(tool.link, "_blank")}
+              >
+                <div className="flex items-center justify-center">
+                  {tool.icon}
+                </div>
+                <div className="hidden lg:flex">
+                  <h3
+                    className={`font-semibold font-xl pl-1 ${
+                      darkMode
+                        ? "text-text-title-light"
+                        : "text-text-title-dark"
+                    }`}
+                  >
+                    {tool.title}
+                  </h3>
+                </div>
               </div>
-              <div className="hidden lg:flex">
-                <h3
-                  className={`font-semibold font-xl pl-1 ${
-                    darkMode ? "text-text-title-light" : "text-text-title-dark"
-                  }`}
-                >
-                  {tool.title}
-                </h3>
-              </div>
-            </div>
-          ))}
+            )
+          )}
         </div>
       </div>
     </div>

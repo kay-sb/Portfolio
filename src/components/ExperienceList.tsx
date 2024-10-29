@@ -2,9 +2,9 @@ import React, { useEffect } from "react"; // Importing React and useEffect hook 
 import { useTheme } from "./ThemeContext"; // Importing ThemeContext for managing dark/light mode
 import { usePageContext } from "./PageContext"; // Importing PageContext to manage page state
 import { useNavigate } from "react-router-dom"; // Importing useNavigate for navigation
-import { thoughtsData } from "./data.json"; // Importing thoughts data from JSON file
+import { experienceData } from "./data.json"; // Importing experience data from JSON file
 
-const ThoughtsList: React.FC = () => {
+const ExperienceList: React.FC = () => {
   const { darkMode } = useTheme(); // Access dark mode state from ThemeContext
   const { isDetailPage } = usePageContext(); // Access whether the page is a detail page from PageContext
   const navigate = useNavigate(); // Initialize navigation function
@@ -25,10 +25,10 @@ const ThoughtsList: React.FC = () => {
     return description; // Otherwise return the full description
   };
 
-  // Determine which thoughts to display based on whether it's a detail page
+  // Determine which experiences to display based on whether it's a detail page
   const displayedProjects = isDetailPage
-    ? thoughtsData // If it's a detail page, display all thoughts
-    : thoughtsData.slice(0, 3); // Otherwise, display the first 3 thoughts
+    ? experienceData // If it's a detail page, display all experiences
+    : experienceData.slice(0, 3); // Otherwise, display the first 3 experiences
 
   return (
     <div className="mt-20 text-center md:text-left"> {/* Container for the component */}
@@ -37,66 +37,48 @@ const ThoughtsList: React.FC = () => {
           darkMode ? "text-text-title-light" : "text-text-title-dark"
         }`}
       >
-        DESIGN {/* Main title */}
+        YEARS OF {/* Main title */}
       </h1>
       <h1
         className={`font-bold text-[40px] md:text-[60px] xl:text-[80px] leading-none tracking-wide mb-4 ${
           darkMode ? "text-text-title2-light" : "text-text-title2-dark"
         }`}
       >
-        THOUGHTS {/* Sub-title */}
+        EXPERIENCE {/* Sub-title */}
       </h1>
       <div>
-        <ul className="flex flex-col items-center md:items-start md:px-0"> {/* List of thoughts */}
-          {displayedProjects.map((thought, index) => ( // Map through the displayed thoughts
+        <ul className="flex flex-col items-center md:items-start md:px-0"> {/* List of experiences */}
+          {displayedProjects.map((experience) => ( // Map through the displayed experiences
             <li
-              key={index} // Use index as key for list items
+              key={experience.id} // Use experience ID as key for list items
               className={`relative flex items-center rounded-xl w-full max-w-[80%] h-auto my-4 p-4 transition duration-300 ease-in-out cursor-pointer ${
                 darkMode
                   ? "bg-text-title2-dark hover:bg-text-title2-light" // Background color for dark mode
                   : "bg-text-title2-light hover:bg-text-title2-dark" // Background color for light mode
               }`}
               onClick={() =>
-                navigate(`/details/thought/${thought.id}`, {
-                  state: { data: thought, type: "thought" }, // Navigate to detail page with thought data
+                navigate(`/details/experience/${experience.id}`, {
+                  state: { data: experience, type: "experience" }, // Navigate to detail page with experience data
                 })
               }
             >
-              <div className="mb-2 flex-1"> {/* Container for thought details */}
+              <div className="flex-1 top-4 left-4"> {/* Container for experience details */}
                 <h3
-                  className={`text-lg font-semibold text-start top-4 left-4 ${
+                  className={`text-lg flex font-semibold items-start ${
                     darkMode ? "text-text-title-light" : "text-text-title-dark"
                   }`}
                 >
-                  {thought.title} {/* Display thought title */}
+                  {experience.title} {/* Display experience title */}
                 </h3>
                 <p
-                  className={` text-[0.8rem] text-start my-4 mb-6 ${
+                  className={`mb-2 text-[0.8rem] flex text-start ${
                     darkMode ? "text-text-title-light" : "text-text-title-dark"
                   }`}
                 >
-                  {truncateDescription(thought.description, 300)} {/* Display truncated description */}
+                  {truncateDescription(experience.description, 300)} {/* Display truncated description */}
                 </p>
-
-                {/* Date in bottom-left corner */}
-                <span
-                  className={`absolute bottom-3 left-4 text-xs ${
-                    darkMode ? "text-text-title-light" : "text-text-title-dark"
-                  }`}
-                >
-                  {thought.date} {/* Display thought date */}
-                </span>
-
-                {/* Read time in bottom-right corner */}
-                <span
-                  className={`absolute bottom-3 right-4 text-xs ${
-                    darkMode ? "text-text-title-light" : "text-text-title-dark"
-                  }`}
-                >
-                  {thought.readTime} {/* Display read time */}
-                </span>
               </div>
-              <div className="absolute top-2 right-2 "> {/* Icon container */}
+              <div className="absolute top-2 right-2"> {/* Icon container */}
                 <svg
                   viewBox="0 0 24 24"
                   strokeWidth={1.5}
@@ -123,4 +105,4 @@ const ThoughtsList: React.FC = () => {
   );
 };
 
-export default ThoughtsList; // Export the component for use in other files
+export default ExperienceList; // Export the component for use in other files

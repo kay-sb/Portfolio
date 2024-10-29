@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import Profile from "../components/ProfileCart";
 import { useTheme } from "../components/ThemeContext"; // Importing ThemeContext for managing dark/light mode
-import ExperoenceList  from "../components/ExperoenceList";
+import ExperoenceList  from "../components/ExperienceList";
 import { usePageContext } from "../components/PageContext";
 import Form from "../components/Form";
 

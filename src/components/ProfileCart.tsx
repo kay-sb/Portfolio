@@ -1,29 +1,31 @@
-import React from "react";
-import { useTheme } from "./ThemeContext"; // Import the useTheme hook
+import React from "react"; // Importing React
+import { useTheme } from "./ThemeContext"; // Import the useTheme hook to manage dark mode
 import {
   FaTelegramPlane,
   FaInstagram,
   FaGithub,
   FaLinkedin,
   FaYoutube,
-} from "react-icons/fa";
+} from "react-icons/fa"; // Importing icons from react-icons
 
 const Profile: React.FC = () => {
   return (
     <div className="flex flex-col items-center rounded-lg max-w-sm mx-10 mt-6">
+      {/* ProfileCard for mobile view (hidden in md and up) */}
       <div className="md:invisible">
         <ProfileCard
-          name="Kianoush Sabouri"
-          description="I'm a frontend developer with graphic design skills. I also have experience in music production, photography, and videography."
-          profileImage="Profile.jpg"
+          name="Kianoush Sabouri" // Profile name
+          description="I'm a frontend developer with graphic design skills. I also have experience in music production, photography, and videography." // Profile description
+          profileImage="Profile.jpg" // Profile image
         />
       </div>
-      <div className="flex flex-col items-center rounded-lg max-w-sm fixed top-24 ">
+      {/* ProfileCard for desktop view (visible in md and up) */}
+      <div className="flex flex-col items-center rounded-lg max-w-sm fixed top-24">
         <div className="invisible md:visible hidden md:flex">
           <ProfileCard
-            name="Kianoush Sabouri"
-            description="I'm a frontend developer with graphic design skills. I also have experience in music production, photography, and videography."
-            profileImage="Profile.jpg"
+            name="Kianoush Sabouri" // Profile name
+            description="I'm a frontend developer with graphic design skills. I also have experience in music production, photography, and videography." // Profile description
+            profileImage="Profile.jpg" // Profile image
           />
         </div>
       </div>
@@ -38,6 +40,7 @@ interface ProfileCardProps {
   profileImage: string; // URL for the profile image
 }
 
+// Array of social media links
 const socialLinks = [
   { platform: "telegram", url: "https://t.me/kianoush_sb" },
   { platform: "instagram", url: "https://instagram.com/kianoush_sb" },
@@ -61,42 +64,44 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
     <div
       className={`flex flex-col items-center shadow-lg rounded-xl p-4 ${
         theme.darkMode ? "light-mode" : "dark-mode"
-      }`}
+      }`} // Conditional class for dark/light mode
       style={{
-        width: "300px",
-        height: "600px",
+        width: "300px", // Fixed width for the card
+        height: "600px", // Fixed height for the card
       }}
     >
+      {/* Profile image */}
       <div className="w-60 h-72 pb-4 py-2">
         <img
-          src={profileImage}
-          alt="Profile"
-          className="w-full h-full object-cover rounded-xl"
+          src={profileImage} // Profile image source
+          alt="Profile" // Alt text for the image
+          className="w-full h-full object-cover rounded-xl" // Styling for the image
         />
       </div>
+      {/* Profile name */}
       <h2
         className={`text-xl my-7 font-bold ${
           theme.darkMode ? "text-dark-mode" : "text-light-mode"
         }`}
       >
-        {name}
+        {name} {/* Display the name */}
       </h2>
       <div>
+        {/* Profile description */}
         <p
           className={`text-center flex-grow ${
             theme.darkMode ? "text-dark-mode" : "text-light-mode"
           }`}
         >
-          {description}
+          {description} {/* Display the description */}
         </p>
       </div>
       <div className="flex space-x-4 mt-auto">
+        {/* Map through socialLinks array to create icons */}
         {socialLinks.map((link) => {
-          // Map through socialLinks array to create icons
           let icon; // Variable to hold the icon based on the platform
-          switch (
-            link.platform // Determine which icon to render based on platform
-          ) {
+          switch (link.platform) {
+            // Determine which icon to render based on platform
             case "telegram":
               icon = (
                 <FaTelegramPlane
@@ -162,4 +167,4 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
   );
 };
 
-export default Profile;
+export default Profile; // Exporting Profile component

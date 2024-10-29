@@ -3,7 +3,7 @@ import Profile from "../components/ProfileCart";
 import { useTheme } from "../components/ThemeContext"; // Importing ThemeContext for managing dark/light mode
 import About from "../components/About";
 import ProjectList from "../components/RecentProjects";
-import ExperoenceList  from "../components/ExperoenceList";
+import ExperoenceList  from "../components/ExperienceList";
 import PremiumTools from "../components/PremiumTools";
 import Thoughts from "../components/DesignThoughts";
 import Form from "../components/Form";
