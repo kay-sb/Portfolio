@@ -16,7 +16,7 @@ const Profile: React.FC = () => {
         <ProfileCard
           name="Kianoush Sabouri" // Profile name
           description="I'm a frontend developer with graphic design skills. I also have experience in music production, photography, and videography." // Profile description
-          profileImage="Profile.jpg" // Profile image
+          profileImage="/Profile.jpg" // Profile image
         />
       </div>
       {/* ProfileCard for desktop view (visible in md and up) */}
@@ -25,7 +25,7 @@ const Profile: React.FC = () => {
           <ProfileCard
             name="Kianoush Sabouri" // Profile name
             description="I'm a frontend developer with graphic design skills. I also have experience in music production, photography, and videography." // Profile description
-            profileImage="Profile.jpg" // Profile image
+            profileImage="/Profile.jpg" // Profile image
           />
         </div>
       </div>
