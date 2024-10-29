@@ -1,3 +1,4 @@
+// سایر واردات بدون تغییر
 import React, { useEffect, useState } from "react";
 import Profile from "../components/ProfileCart";
 import { useTheme } from "../components/ThemeContext";
@@ -11,7 +12,9 @@ const DetailsPage: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const { previousScrollPosition } = location.state || { previousScrollPosition: 0 };
+  const { previousScrollPosition } = location.state || {
+    previousScrollPosition: 0,
+  };
 
   const [data, setData] = useState<any>(null);
   const { type } = location.state || {};
@@ -60,7 +63,6 @@ const DetailsPage: React.FC = () => {
     }
   };
 
-
   const smoothScrollTo = (targetPosition: number) => {
     const startPosition = window.scrollY;
     const distance = targetPosition - startPosition;
@@ -101,23 +103,54 @@ const DetailsPage: React.FC = () => {
     <div className="min-h-screen flex flex-col items-center">
       <div className="w-full max-w-6xl flex flex-col md:flex-row items-center justify-center mt-20">
         <Profile />
-        <div className="flex-1 w-full max-w-[80%] text-center md:text-left mt-20 md:mt-5 ">
+        <div className="flex-1 w-full  text-center md:text-left mt-20 md:mt-5 ">
           {data ? (
-            <div className="text-center md:text-left rounded-lg max-w-[80%] mx-auto md:mx-0 w-[80%] md:w-full">
-              <h2
-                className={`font-bold text-[20px] xl:text-[40px] leading-none tracking-wide mb-14 ${
-                  darkMode ? "text-text-title-light" : "text-text-title-dark"
+            <div className="text-start md:text-left rounded-lg max-w-[80%] mx-auto md:mx-0 w-[80%] md:w-full">
+              <div
+                className={`p-4 rounded-lg mb-5 ${
+                  darkMode ? "bg-text-title2-light" : "bg-text-title2-dark"
                 }`}
               >
-                {renderTitle()}
-              </h2>
+                {type === "thought" && data.date && data.readTime && (
+                  <div className="flex justify-between text-xs mb-2">
+                    <span
+                      className={`${
+                        darkMode
+                          ? "text-text-title-light"
+                          : "text-text-title-dark"
+                      }`}
+                    >
+                      {data.date}
+                    </span>
+                    <span
+                      className={`${
+                        darkMode
+                          ? "text-text-title-light"
+                          : "text-text-title-dark"
+                      }`}
+                    >
+                      {data.readTime}
+                    </span>
+                  </div>
+                )}
+
+                <h2
+                  className={`font-bold text-[16px] xl:text-[40px] leading-none tracking-wide ${
+                    darkMode ? "text-text-title-light" : "text-text-title-dark"
+                  }`}
+                >
+                  {renderTitle()}
+                </h2>
+              </div>
+
               <p
-                className={`text-xl flex text-start mb-10 ${
+                className={`text-[12px] flex text-start mb-10 ${
                   darkMode ? "text-text-title-light" : "text-text-title-dark"
                 }`}
               >
                 {data.description || "No description provided."}
               </p>
+
               <button
                 onClick={() => {
                   smoothScrollTo(previousScrollPosition);
@@ -141,6 +174,7 @@ const DetailsPage: React.FC = () => {
               Data not available.
             </p>
           )}
+
           <Form />
         </div>
       </div>
