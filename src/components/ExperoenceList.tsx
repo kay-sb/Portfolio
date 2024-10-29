@@ -52,23 +52,21 @@ const ExperoenceList: React.FC = () => {
             <li
               key={index}
               className={`relative flex items-center rounded-xl w-full max-w-[80%] h-auto my-4 p-4 transition duration-300 ease-in-out cursor-pointer ${
-                darkMode
-                  ? "bg-light-mode hover:bg-active-dark"
-                  : "bg-dark-mode hover:bg-active-dark"
+                darkMode ? "bg-text-title2-dark hover:bg-text-title2-light" : "bg-text-title2-light hover:bg-text-title2-dark"
               }`}
               onClick={() => window.open(experience.link, "_blank")} // Open link in a new tab
             >
               <div className="flex-1 top-4 left-4">
                 <h3
                   className={`text-lg flex font-semibold items-start ${
-                    darkMode ? "text-text-title-dark" : "text-text-title-light"
+                    darkMode ? "text-text-title-light" : "text-text-title-dark"
                   }`}
                 >
                   {experience.title}
                 </h3>
                 <p
-                  className={`mb-2 text-[0.6rem] flex text-start ${
-                    darkMode ? "text-text-title-dark" : "text-text-title-light"
+                  className={`mb-2 text-[0.8rem] flex text-start ${
+                    darkMode ? "text-text-title-light" : "text-text-title-dark"
                   }`}
                 >
                   {experience.description}
@@ -85,7 +83,7 @@ const ExperoenceList: React.FC = () => {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25"
-                    className={`${darkMode ? "text-dark-mode" : "text-light-mode"}`}
+                    className={`${darkMode ? "text-text-title-light" : "text-text-title-dark"}`}
                   />
                 </svg>
               </div>

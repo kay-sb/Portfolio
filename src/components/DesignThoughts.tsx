@@ -58,33 +58,33 @@ const ThoughtsList: React.FC = () => {
             <li
               key={index}
               className={`relative flex items-center rounded-xl w-full max-w-[80%] h-auto my-4 p-4 transition duration-300 ease-in-out cursor-pointer ${
-                darkMode ? "bg-light-mode hover:bg-active-dark" : "bg-dark-mode hover:bg-active-dark"
+                darkMode ? "bg-text-title2-dark hover:bg-text-title2-light" : "bg-text-title2-light hover:bg-text-title2-dark"
               }`}
               onClick={() => thought.link && window.open(thought.link, "_blank")}
             >
               <div className="mb-2 flex-1">
                 <h3
-                  className={`text-lg font-semibold  top-4 left-4 ${
-                    darkMode ? "text-text-title-dark" : "text-text-title-light"
+                  className={`text-lg font-semibold text-start top-4 left-4 ${
+                    darkMode ? "text-text-title-light" : "text-text-title-dark"
                   }`}
                 >
                   {thought.title}
                 </h3>
                 <p
                   className={
-                    ` text-[0.6rem] text-start my-4 mb-6 ${darkMode ? "text-light-mode-text" : "text-dark-mode-text"}`
+                    ` text-[0.8rem] text-start my-4 mb-6 ${darkMode ? "text-text-title-light" : "text-text-title-dark"}`
                   }
                 >
                   {thought.description}
                 </p>
 
                 {/* Date in bottom-left corner */}
-                <span className={`absolute bottom-3 left-4 text-xs ${ darkMode ? "text-dark-mode" : "text-light-mode"}`}>
+                <span className={`absolute bottom-3 left-4 text-xs ${darkMode ? "text-text-title-light" : "text-text-title-dark"}`}>
                   {thought.date}
                 </span>
 
                 {/* Read time in bottom-right corner */}
-                <span className={`absolute bottom-3 right-4 text-xs ${ darkMode ? "text-dark-mode" : "text-light-mode"}`}>
+                <span className={`absolute bottom-3 right-4 text-xs ${darkMode ? "text-text-title-light" : "text-text-title-dark"}`}>
                   {thought.readTime}
                 </span>
               </div>
@@ -99,7 +99,7 @@ const ThoughtsList: React.FC = () => {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25"
-                    className={`${darkMode ? "text-dark-mode" : "text-light-mode"}`}
+                    className={`${darkMode ? "text-text-title-light" : "text-text-title-dark"}`}
                   />
                 </svg>
               </div>

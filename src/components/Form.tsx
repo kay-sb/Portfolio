@@ -6,7 +6,7 @@ const Form: React.FC = () => {
   const { darkMode } = useTheme(); // Access dark mode state from ThemeContext
 
   return (
-    <div className="mt-20 text-center md:text-left">
+    <div className="mt-20 text-center w-full md:text-left">
       <div className="flex flex-col items-center md:items-start ">
         {/* Heading for the form */}
         <h1
@@ -40,7 +40,7 @@ const FormHome: React.FC = () => {
     budget: "",
     message: "",
   });
-  const [submitMessage, setSubmitMessage] = useState(""); // State for the submit message
+  const [submitMessage, setSubmitMessage ] = useState(""); // State for the submit message
   const [displayMessage, setDisplayMessage] = useState(""); // State for displaying messages
 
   // Handle input changes in the form
@@ -97,14 +97,14 @@ const FormHome: React.FC = () => {
 
   return (
     <div
-      className={`text-center  md:text-left rounded-lg  max-w-md mx-auto md:mx-0 ${
+      className={`text-center  md:text-left rounded-lg max-w-[80%] mx-auto md:mx-0 w-[80%] md:w-full ${
         darkMode ? "text-light-mode" : "text-dark-mode"
-      }`}
+      } `}
     >
       <form onSubmit={handleSubmit} className="gap-4">
         {/* Name input field */}
         <div className="flex flex-col md:flex-row md:gap-4">
-          <div className="flex-1">
+          <div className={`flex-1`}>
             <label className="block font-semibold mb-1" htmlFor="name">
               Name:
             </label>
@@ -115,11 +115,11 @@ const FormHome: React.FC = () => {
               value={formData.name}
               onChange={handleChange}
               placeholder="Your Name"
-              className={`border border-dark-mode rounded-xl p-2 w-full ${
+              className={`rounded-xl p-2 w-full ${
                 darkMode
-                  ? "bg-light-mode text-dark-mode"
-                  : "bg-dark-mode text-light-mode"
-              }`}
+                  ? "bg-text-title2-light text-light-mode"
+                  : "bg-text-title2-dark text-dark-mode"
+              } focus:outline-active-dark focus:border-active-dark`}
               required // Required field
             />
           </div>
@@ -136,11 +136,11 @@ const FormHome: React.FC = () => {
               placeholder="youremail@example.com"
               value={formData.email}
               onChange={handleChange}
-              className={`border border-dark-mode rounded-xl p-2 w-full ${
+              className={`rounded-xl p-2 w-full ${
                 darkMode
-                  ? "bg-light-mode text-dark-mode"
-                  : "bg-dark-mode text-light-mode"
-              }`}
+                  ? "bg-text-title2-light text-light-mode"
+                  : "bg-text-title2-dark text-dark-mode"
+              } focus:outline-active-dark focus:border-active-dark`}
               required // Required field
             />
           </div>
@@ -156,10 +156,10 @@ const FormHome: React.FC = () => {
             name="budget"
             value={formData.budget}
             onChange={handleChange}
-            className={`border border-dark-mode rounded-xl p-2 w-full ${
+            className={`rounded-xl p-2 w-full ${
               darkMode
-                ? "bg-light-mode text-dark-mode"
-                : "bg-dark-mode text-light-mode"
+                  ? "bg-text-title2-light text-light-mode"
+                  : "bg-text-title2-dark text-dark-mode"
             }`}
             required // Required field
             style={{ appearance: "none" }} // Custom appearance
@@ -167,8 +167,8 @@ const FormHome: React.FC = () => {
             <option
               className={`${
                 darkMode
-                  ? "bg-light-mode text-dark-mode"
-                  : "bg-dark-mode text-light-mode"
+                  ? "bg-dark-mode text-light-mode"
+                  : "bg-light-mode text-dark-mode"
               }`}
               value=""
               disabled
@@ -178,8 +178,8 @@ const FormHome: React.FC = () => {
             <option
               className={`${
                 darkMode
-                  ? "bg-light-mode text-dark-mode"
-                  : "bg-dark-mode text-light-mode"
+                  ? "bg-dark-mode text-light-mode"
+                  : "bg-light-mode text-dark-mode"
               }`}
               value="under_1000"
             >
@@ -188,8 +188,8 @@ const FormHome: React.FC = () => {
             <option
               className={`${
                 darkMode
-                  ? "bg-light-mode text-dark-mode"
-                  : "bg-dark-mode text-light-mode"
+                  ? "bg-dark-mode text-light-mode"
+                  : "bg-light-mode text-dark-mode"
               }`}
               value="1000_to_10000"
             >
@@ -198,8 +198,8 @@ const FormHome: React.FC = () => {
             <option
               className={`${
                 darkMode
-                  ? "bg-light-mode text-dark-mode"
-                  : "bg-dark-mode text-light-mode"
+                  ? "bg-dark-mode text-light-mode"
+                  : "bg-light-mode text-dark-mode"
               }`}
               value="over_10000"
             >
@@ -219,11 +219,11 @@ const FormHome: React.FC = () => {
             value={formData.message}
             onChange={handleChange}
             placeholder="Your message here..."
-            className={`border border-dark-mode rounded-xl p-2 w-full ${
+            className={`rounded-xl p-2 w-full ${
               darkMode
-                ? "bg-light-mode text-dark-mode"
-                : "bg-dark-mode text-light-mode"
-            }`}
+                  ? "bg-text-title2-light text-light-mode"
+                  : "bg-text-title2-dark text-dark-mode"
+            } focus:outline-active-dark focus:border-active-dark`}
             rows={4} // Number of rows for the textarea
             required // Required field
           />
@@ -232,7 +232,11 @@ const FormHome: React.FC = () => {
         {/* Submit button */}
         <button
           type="submit"
-          className="bg-active-dark text-white font-semibold py-2 px-4 rounded-xl hover:bg-active-dark transition duration-200"
+          className={`${
+            darkMode
+              ? "bg-text-title2-light text-light-mode"
+              : "bg-text-title2-dark text-dark-mode"
+          } font-semibold mt-2 py-2 w-full rounded-xl hover:bg-active-dark transition duration-200`}
         >
           Submit
         </button>

@@ -55,9 +55,7 @@ const ProjectList: React.FC = () => {
             <li
               key={index}
               className={`flex items-center rounded-xl w-full max-w-[80%] h-24 my-4 p-4 transition duration-300 ease-in-out cursor-pointer ${
-                darkMode
-                  ? "bg-light-mode hover:bg-active-dark"
-                  : "bg-dark-mode hover:bg-active-dark"
+                darkMode ? "bg-text-title2-dark hover:bg-text-title2-light" : "bg-text-title2-light hover:bg-text-title2-dark"
               }`} // Using Tailwind classes for background
               onClick={() => window.open(project.link, "_blank")} // Open link in a new tab
             >
@@ -69,14 +67,14 @@ const ProjectList: React.FC = () => {
               <div className="flex-1">
                 <h3
                   className={`font-semibold ${
-                    darkMode ? "text-text-title-dark" : "text-text-title-light"
+                    darkMode ? "text-text-title-light" : "text-text-title-dark"
                   }`}
                 >
                   {project.title}
                 </h3>
                 <p
                   className={
-                    darkMode ? "text-light-mode-text" : "text-dark-mode-text"
+                    darkMode ? "text-text-title-light" : "text-text-title-dark"
                   } // Using Tailwind classes for text color
                 >
                   {project.description}
@@ -94,7 +92,7 @@ const ProjectList: React.FC = () => {
                     strokeLinejoin="round"
                     d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25"
                     className={`${
-                      darkMode ? "text-dark-mode" : "text-light-mode"
+                      darkMode ? "text-text-title-light" : "text-text-title-dark"
                     }`}
                   />
                 </svg>
