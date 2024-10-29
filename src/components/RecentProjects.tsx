@@ -48,7 +48,7 @@ const ProjectList: React.FC = () => {
               }`}
               onClick={() =>
                 navigate(`/details/project/${project.id}`, {
-                  state: { data: project, type: "project" }, // Navigate to detail page with project data
+                  state: {previousScrollPosition: window.scrollY, data: project, type: "project" }, // Navigate to detail page with project data
                 })
               } // Call handler on click
             >

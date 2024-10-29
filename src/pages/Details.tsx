@@ -3,13 +3,15 @@ import Profile from "../components/ProfileCart";
 import { useTheme } from "../components/ThemeContext";
 import Form from "../components/Form";
 import { useLocation, useParams, useNavigate } from "react-router-dom";
-import { experienceData, projectsData, thoughtsData } from "../data/datas.json"; // اطمینان حاصل کن که به درستی داده‌ها رو وارد می‌کنی
+import { experienceData, projectsData, thoughtsData } from "../data/datas.json";
 
 const DetailsPage: React.FC = () => {
   const { darkMode } = useTheme();
   const { id } = useParams<{ id: string }>();
   const location = useLocation();
   const navigate = useNavigate();
+
+  const { previousScrollPosition } = location.state || { previousScrollPosition: 0 };
 
   const [data, setData] = useState<any>(null);
   const { type } = location.state || {};
@@ -58,15 +60,52 @@ const DetailsPage: React.FC = () => {
     }
   };
 
+
+  const smoothScrollTo = (targetPosition: number) => {
+    const startPosition = window.scrollY;
+    const distance = targetPosition - startPosition;
+    const duration = 400;
+    let startTime: number | null = null;
+
+    const animation = (currentTime: number) => {
+      if (!startTime) startTime = currentTime;
+      const timeElapsed = currentTime - startTime;
+      const progress = Math.min(timeElapsed / duration, 1);
+
+      window.scrollTo(0, startPosition + distance * progress);
+
+      if (progress < 1) {
+        requestAnimationFrame(animation);
+      }
+    };
+
+    requestAnimationFrame(animation);
+  };
+
+  const scrollToTop = () => {
+    const scrollStep = -window.scrollY / (400 / 15);
+    const scrollInterval = setInterval(() => {
+      if (window.scrollY !== 0) {
+        window.scrollBy(0, scrollStep);
+      } else {
+        clearInterval(scrollInterval);
+      }
+    }, 15);
+  };
+
+  useEffect(() => {
+    scrollToTop();
+  }, [data]);
+
   return (
     <div className="min-h-screen flex flex-col items-center">
       <div className="w-full max-w-6xl flex flex-col md:flex-row items-center justify-center mt-20">
         <Profile />
-        <div className="flex-1 w-full  max-w-[80%] text-center md:text-left mt-20 md:mt-0 ">
+        <div className="flex-1 w-full max-w-[80%] text-center md:text-left mt-20 md:mt-5 ">
           {data ? (
-            <div className="text-center  md:text-left rounded-lg max-w-[80%] mx-auto md:mx-0 w-[80%] md:w-full">
+            <div className="text-center md:text-left rounded-lg max-w-[80%] mx-auto md:mx-0 w-[80%] md:w-full">
               <h2
-                className={`font-bold text-[40px] md:text-[60px] xl:text-[80px] leading-none tracking-wide mb-14 ${
+                className={`font-bold text-[20px] xl:text-[40px] leading-none tracking-wide mb-14 ${
                   darkMode ? "text-text-title-light" : "text-text-title-dark"
                 }`}
               >
@@ -80,7 +119,10 @@ const DetailsPage: React.FC = () => {
                 {data.description || "No description provided."}
               </p>
               <button
-                onClick={() => navigate(-1)}
+                onClick={() => {
+                  smoothScrollTo(previousScrollPosition);
+                  navigate(-1);
+                }}
                 className={` ${
                   darkMode
                     ? "bg-text-title2-light text-light-mode"

@@ -31,7 +31,9 @@ const ExperienceList: React.FC = () => {
     : experienceData.slice(0, 3); // Otherwise, display the first 3 experiences
 
   return (
-    <div className="mt-20 text-center md:text-left"> {/* Container for the component */}
+    <div className="mt-20 text-center md:text-left">
+      {" "}
+      {/* Container for the component */}
       <h1
         className={`font-bold text-[40px] md:text-[60px] xl:text-[80px] leading-none tracking-wide mb-2 ${
           darkMode ? "text-text-title-light" : "text-text-title-dark"
@@ -47,58 +49,77 @@ const ExperienceList: React.FC = () => {
         EXPERIENCE {/* Sub-title */}
       </h1>
       <div>
-        <ul className="flex flex-col items-center md:items-start md:px-0"> {/* List of experiences */}
-          {displayedProjects.map((experience) => ( // Map through the displayed experiences
-            <li
-              key={experience.id} // Use experience ID as key for list items
-              className={`relative flex items-center rounded-xl w-full max-w-[80%] h-auto my-4 p-4 transition duration-300 ease-in-out cursor-pointer ${
-                darkMode
-                  ? "bg-text-title2-dark hover:bg-text-title2-light" // Background color for dark mode
-                  : "bg-text-title2-light hover:bg-text-title2-dark" // Background color for light mode
-              }`}
-              onClick={() =>
-                navigate(`/details/experience/${experience.id}`, {
-                  state: { data: experience, type: "experience" }, // Navigate to detail page with experience data
-                })
-              }
-            >
-              <div className="flex-1 top-4 left-4"> {/* Container for experience details */}
-                <h3
-                  className={`text-lg flex font-semibold items-start ${
-                    darkMode ? "text-text-title-light" : "text-text-title-dark"
-                  }`}
-                >
-                  {experience.title} {/* Display experience title */}
-                </h3>
-                <p
-                  className={`mb-2 text-[0.8rem] flex text-start ${
-                    darkMode ? "text-text-title-light" : "text-text-title-dark"
-                  }`}
-                >
-                  {truncateDescription(experience.description, 300)} {/* Display truncated description */}
-                </p>
-              </div>
-              <div className="absolute top-2 right-2"> {/* Icon container */}
-                <svg
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="currentColor"
-                  className={`size-6 `}
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25" // SVG path for the icon
-                    className={`${
+        <ul className="flex flex-col items-center md:items-start md:px-0">
+          {" "}
+          {/* List of experiences */}
+          {displayedProjects.map(
+            (
+              experience // Map through the displayed experiences
+            ) => (
+              <li
+                key={experience.id} // Use experience ID as key for list items
+                className={`relative flex items-center rounded-xl w-full max-w-[80%] h-auto my-4 p-4 transition duration-300 ease-in-out cursor-pointer ${
+                  darkMode
+                    ? "bg-text-title2-dark hover:bg-text-title2-light" // Background color for dark mode
+                    : "bg-text-title2-light hover:bg-text-title2-dark" // Background color for light mode
+                }`}
+                onClick={() =>
+                  navigate(`/details/experience/${experience.id}`, {
+                    state: {
+                      previousScrollPosition: window.scrollY,
+                      data: experience,
+                      type: "experience",
+                    }, // Navigate to detail page with experience data
+                  })
+                }
+              >
+                <div className="flex-1 top-4 left-4">
+                  {" "}
+                  {/* Container for experience details */}
+                  <h3
+                    className={`text-lg flex font-semibold items-start ${
                       darkMode
                         ? "text-text-title-light"
                         : "text-text-title-dark"
                     }`}
-                  />
-                </svg>
-              </div>
-            </li>
-          ))}
+                  >
+                    {experience.title} {/* Display experience title */}
+                  </h3>
+                  <p
+                    className={`mb-2 text-[0.8rem] flex text-start ${
+                      darkMode
+                        ? "text-text-title-light"
+                        : "text-text-title-dark"
+                    }`}
+                  >
+                    {truncateDescription(experience.description, 300)}{" "}
+                    {/* Display truncated description */}
+                  </p>
+                </div>
+                <div className="absolute top-2 right-2">
+                  {" "}
+                  {/* Icon container */}
+                  <svg
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className={`size-6 `}
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25" // SVG path for the icon
+                      className={`${
+                        darkMode
+                          ? "text-text-title-light"
+                          : "text-text-title-dark"
+                      }`}
+                    />
+                  </svg>
+                </div>
+              </li>
+            )
+          )}
         </ul>
       </div>
     </div>

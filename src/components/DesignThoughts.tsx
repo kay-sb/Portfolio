@@ -31,7 +31,9 @@ const ThoughtsList: React.FC = () => {
     : thoughtsData.slice(0, 3); // Otherwise, display the first 3 thoughts
 
   return (
-    <div className="mt-20 text-center md:text-left"> {/* Container for the component */}
+    <div className="mt-20 text-center md:text-left">
+      {" "}
+      {/* Container for the component */}
       <h1
         className={`font-bold text-[40px] md:text-[60px] xl:text-[80px] leading-none tracking-wide mb-2 ${
           darkMode ? "text-text-title-light" : "text-text-title-dark"
@@ -47,76 +49,98 @@ const ThoughtsList: React.FC = () => {
         THOUGHTS {/* Sub-title */}
       </h1>
       <div>
-        <ul className="flex flex-col items-center md:items-start md:px-0"> {/* List of thoughts */}
-          {displayedProjects.map((thought, index) => ( // Map through the displayed thoughts
-            <li
-              key={index} // Use index as key for list items
-              className={`relative flex items-center rounded-xl w-full max-w-[80%] h-auto my-4 p-4 transition duration-300 ease-in-out cursor-pointer ${
-                darkMode
-                  ? "bg-text-title2-dark hover:bg-text-title2-light" // Background color for dark mode
-                  : "bg-text-title2-light hover:bg-text-title2-dark" // Background color for light mode
-              }`}
-              onClick={() =>
-                navigate(`/details/thought/${thought.id}`, {
-                  state: { data: thought, type: "thought" }, // Navigate to detail page with thought data
-                })
-              }
-            >
-              <div className="mb-2 flex-1"> {/* Container for thought details */}
-                <h3
-                  className={`text-lg font-semibold text-start top-4 left-4 ${
-                    darkMode ? "text-text-title-light" : "text-text-title-dark"
-                  }`}
-                >
-                  {thought.title} {/* Display thought title */}
-                </h3>
-                <p
-                  className={` text-[0.8rem] text-start my-4 mb-6 ${
-                    darkMode ? "text-text-title-light" : "text-text-title-dark"
-                  }`}
-                >
-                  {truncateDescription(thought.description, 300)} {/* Display truncated description */}
-                </p>
-
-                {/* Date in bottom-left corner */}
-                <span
-                  className={`absolute bottom-3 left-4 text-xs ${
-                    darkMode ? "text-text-title-light" : "text-text-title-dark"
-                  }`}
-                >
-                  {thought.date} {/* Display thought date */}
-                </span>
-
-                {/* Read time in bottom-right corner */}
-                <span
-                  className={`absolute bottom-3 right-4 text-xs ${
-                    darkMode ? "text-text-title-light" : "text-text-title-dark"
-                  }`}
-                >
-                  {thought.readTime} {/* Display read time */}
-                </span>
-              </div>
-              <div className="absolute top-2 right-2 "> {/* Icon container */}
-                <svg
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="currentColor"
-                  className={`size-6 `}
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25" // SVG path for the icon
-                    className={`${
+        <ul className="flex flex-col items-center md:items-start md:px-0">
+          {" "}
+          {/* List of thoughts */}
+          {displayedProjects.map(
+            (
+              thought,
+              index // Map through the displayed thoughts
+            ) => (
+              <li
+                key={index} // Use index as key for list items
+                className={`relative flex items-center rounded-xl w-full max-w-[80%] h-auto my-4 p-4 transition duration-300 ease-in-out cursor-pointer ${
+                  darkMode
+                    ? "bg-text-title2-dark hover:bg-text-title2-light" // Background color for dark mode
+                    : "bg-text-title2-light hover:bg-text-title2-dark" // Background color for light mode
+                }`}
+                onClick={() =>
+                  navigate(`/details/thought/${thought.id}`, {
+                    state: {
+                      previousScrollPosition: window.scrollY,
+                      data: thought,
+                      type: "thought",
+                    }, // Navigate to detail page with thought data
+                  })
+                }
+              >
+                <div className="mb-2 flex-1">
+                  {" "}
+                  {/* Container for thought details */}
+                  <h3
+                    className={`text-lg font-semibold text-start top-4 left-4 ${
                       darkMode
                         ? "text-text-title-light"
                         : "text-text-title-dark"
                     }`}
-                  />
-                </svg>
-              </div>
-            </li>
-          ))}
+                  >
+                    {thought.title} {/* Display thought title */}
+                  </h3>
+                  <p
+                    className={` text-[0.8rem] text-start my-4 mb-6 ${
+                      darkMode
+                        ? "text-text-title-light"
+                        : "text-text-title-dark"
+                    }`}
+                  >
+                    {truncateDescription(thought.description, 300)}{" "}
+                    {/* Display truncated description */}
+                  </p>
+                  {/* Date in bottom-left corner */}
+                  <span
+                    className={`absolute bottom-3 left-4 text-xs ${
+                      darkMode
+                        ? "text-text-title-light"
+                        : "text-text-title-dark"
+                    }`}
+                  >
+                    {thought.date} {/* Display thought date */}
+                  </span>
+                  {/* Read time in bottom-right corner */}
+                  <span
+                    className={`absolute bottom-3 right-4 text-xs ${
+                      darkMode
+                        ? "text-text-title-light"
+                        : "text-text-title-dark"
+                    }`}
+                  >
+                    {thought.readTime} {/* Display read time */}
+                  </span>
+                </div>
+                <div className="absolute top-2 right-2 ">
+                  {" "}
+                  {/* Icon container */}
+                  <svg
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className={`size-6 `}
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25" // SVG path for the icon
+                      className={`${
+                        darkMode
+                          ? "text-text-title-light"
+                          : "text-text-title-dark"
+                      }`}
+                    />
+                  </svg>
+                </div>
+              </li>
+            )
+          )}
         </ul>
       </div>
     </div>
