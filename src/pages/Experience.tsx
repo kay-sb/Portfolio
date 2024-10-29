@@ -29,7 +29,7 @@ const ExperiencePage: React.FC = () => {
         <div className="flex-1 w-full text-center md:text-left mt-10 md:mt-5">
           <ExperoenceList />
           <Form/>
-          <div className=" md:hidden">
+          <div className=" flex justify-center items-center md:hidden">
             <Profile />
           </div>
         </div>

@@ -10,7 +10,7 @@ const About: React.FC = () => {
   }, [darkMode]);
 
   return (
-    <div className="">
+    <div className="text-center md:text-left">
       <h1
         className={`font-bold text-[50px] md:text-[75px] xl:text-[110px] leading-none tracking-wide pb-2 ${
           darkMode ? "text-text-title-light" : "text-text-title-dark"
@@ -26,7 +26,7 @@ const About: React.FC = () => {
         DEVELOPER
       </h1>
       <p
-        className={`text-sm max-w-[300px] md:max-w-[450px] lg:max-w-[500px] mx-auto md:mx-0 ${
+        className={`w-full max-w-[80%] text-sm  md:max-w-[450px] lg:max-w-[500px] mx-auto md:mx-0 ${
           darkMode ? "text-text-title-light" : "text-text-title-dark"
         }`}
       >
@@ -37,7 +37,7 @@ const About: React.FC = () => {
         experiences.
       </p>
 
-      <div className="flex gap-10 lg:gap-20 mt-8 justify-center md:justify-start">
+      <div className="flex gap-16 lg:gap-20 mt-8 justify-center md:justify-start ">
         <div className="text-left">
           <h2
             className={`font-bold text-4xl sm:text-3xl md:text-4xl lg:text-6xl ${

@@ -10,9 +10,9 @@ const Footer: React.FC = () => {
         darkMode ? "text-light-mode" : "text-dark-mode"
       }`}
     >
-      <p className="text-lg ">
+      <p className="text-[0.7rem] md:text-lg ">
         Made by{" "}
-        <span className={"text-active-dark text-xl"}>
+        <span className={" text-[0.8rem] text-active-dark md:text-xl"}>
           Kianoush Sabouri
         </span>
       </p>

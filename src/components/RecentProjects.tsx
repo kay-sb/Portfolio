@@ -21,7 +21,7 @@ const ProjectList: React.FC = () => {
     : projectsData.slice(0, 3); // Otherwise, display the first 3 projects
 
   return (
-    <div className="mt-20 text-center md:text-left max-auto"> {/* Main container for the project list */}
+    <div className="mt-20 text-center md:text-left w-full"> {/* Main container for the project list */}
       <h1
         className={`font-bold text-[40px] md:text-[60px] xl:text-[80px] leading-none tracking-wide mb-2 ${
           darkMode ? "text-text-title-light" : "text-text-title-dark"

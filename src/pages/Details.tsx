@@ -178,7 +178,7 @@ const DetailsPage: React.FC = () => {
           )}
 
           <Form />
-          <div className=" md:hidden">
+          <div className=" flex justify-center items-center md:hidden">
             <Profile />
           </div>
         </div>
