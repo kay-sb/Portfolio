@@ -1,17 +1,16 @@
-import React, { useEffect, useState } from "react"; // useState اضافه شده
+import React, { useEffect, useState } from "react"; 
 import Profile from "../components/ProfileCart";
 import { useTheme } from "../components/ThemeContext";
 import Form from "../components/Form";
-import { useLocation } from "react-router-dom";
-import { useParams } from "react-router-dom";
-import { projectsData } from "../Data/datas.json"; // فرض می‌کنم اینجا داده‌ها را وارد می‌کنی
+import { useLocation, useParams } from "react-router-dom";
+import { experienceData, projectsData, thoughtsData } from "../data/datas.json"; // اطمینان حاصل کن که به درستی داده‌ها رو وارد می‌کنی
 
 const DetailsPage: React.FC = () => {
   const { darkMode } = useTheme();
   const { id } = useParams<{ id: string }>();
   const location = useLocation();
   
-  const [data, setData] = useState<any>(null); // استفاده از useState برای ذخیره داده‌ها
+  const [data, setData] = useState<any>(null);
   const { type } = location.state || {};
 
   useEffect(() => {
@@ -21,13 +20,28 @@ const DetailsPage: React.FC = () => {
 
   useEffect(() => {
     const fetchData = () => {
-      const project = projectsData.find((p) => p.id === id);
-      setData(project);
+      let item;
+      switch (type) {
+        case "project":
+          item = projectsData.find((p) => p.id === id);
+          break;
+        case "experience":
+          item = experienceData.find((e) => e.id === id);
+          break;
+        case "thought":
+          item = thoughtsData.find((t) => t.id === id);
+          break;
+        default:
+          item = null;
+      }
+      if (!item) {
+        console.warn(`Data with ID ${id} not found in ${type}.`);
+      }
+      setData(item);
     };
-    
+
     fetchData();
-  }, [id]);
-  
+  }, [id, type]);
 
   const renderTitle = () => {
     if (!data) return "Data not available.";
@@ -35,9 +49,9 @@ const DetailsPage: React.FC = () => {
       case "project":
         return data.title || "Project Title";
       case "experience":
-        return data.role || "Experience Title";
+        return data.title || "Experience Title"; 
       case "thought":
-        return data.title || "Thought Title";
+        return data.title || "Thought Title"; 
       default:
         return "Details";
     }
