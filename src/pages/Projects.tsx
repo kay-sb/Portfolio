@@ -22,11 +22,18 @@ const ProjectsPage: React.FC = () => {
   return (
     <div>
       <div className="min-h-screen flex flex-col items-center ">
-        <div className="w-full max-w-6xl flex flex-col md:flex-row items-center justify-center mt-20 md:mt-0 ">
-          <Profile />
+        <div className="w-full max-w-6xl flex flex-col md:flex-row items-center justify-center mt-0 ">
+          <div className=" hidden md:flex">
+            <div className=" hidden md:flex">
+              <Profile />
+            </div>
+          </div>
           <div className="flex-1 w-full text-center md:text-left mt-10 md:mt-5">
             <ProjectList />
             <Form />
+            <div className=" md:hidden">
+              <Profile />
+            </div>
           </div>
         </div>
       </div>
