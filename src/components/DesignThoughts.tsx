@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useTheme } from "./ThemeContext";
 import { usePageContext } from "./PageContext";
 import { useNavigate } from "react-router-dom";
-import { blogData } from "../data/Blog.json"; // Importing new blog data
+import { blogData } from "../data/blog.json"; // Importing new blog data
 
 const ThoughtsList: React.FC = () => {
   const { darkMode } = useTheme();

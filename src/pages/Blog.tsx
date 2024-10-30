@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useTheme } from "../components/ThemeContext";
 import { useLocation, useParams } from "react-router-dom";
-import blogData from "../data/Blog.json";
+import blogData from "../data/blog.json";
 import Profile from "../components/ProfileCart";
 import Form from "../components/Form";
 
