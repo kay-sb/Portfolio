@@ -10,6 +10,7 @@ import ToolsPage from "./pages/Tools";
 import ThoughtPage from "./pages/Thoughts";
 import Footer from "./components/Footer";
 import DetailsPage from "./pages/Details";
+import BlogPage from "./pages/Blog";
 
 const App: React.FC = () => {
   // Access theme directly from the ThemeContext using the useTheme hook
@@ -25,6 +26,7 @@ const App: React.FC = () => {
             <Route path="/tools" element={<ToolsPage />} />
             <Route path="/thoughts" element={<ThoughtPage />} />
             <Route path="/details/:category/:id" element={<DetailsPage />} />
+            <Route path="/blog/:id" element={<BlogPage />} />
           </Routes>
           <div style={{ paddingBottom: "4rem" }} />
           <Footer />

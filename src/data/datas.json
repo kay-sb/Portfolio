@@ -21,36 +21,6 @@
         "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos illum blanditiis unde officia placeat. Cupiditate tenetur, vel delectus facere perferendis, voluptatem possimus architecto, doloremque nam non officiis rem velit! Consectetur."
       }
     ],
-    "thoughtsData": [
-      {
-        "id": "thoughts1",
-        "title": "Thoughts 1",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos illum blanditiis unde officia placeat. Cupiditate tenetur, vel delectus facere perferendis, voluptatem possimus architecto, doloremque nam non officiis rem velit! Consectetur.",
-        "date": "Oct 27, 2024",
-        "readTime": "3 min read"
-      },
-      {
-        "id": "thoughts2",
-        "title": "Thoughts 2",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos illum blanditiis unde officia placeat. Cupiditate tenetur, vel delectus facere perferendis, voluptatem possimus architecto, doloremque nam non officiis rem velit! Consectetur.",
-        "date": "Oct 15, 2024",
-        "readTime": "5 min read"
-      },
-      {
-        "id": "thoughts3",
-        "title": "Thoughts 3",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos illum blanditiis unde officia placeat. Cupiditate tenetur, vel delectus facere perferendis, voluptatem possimus architecto, doloremque nam non officiis rem velit! Consectetur. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos illum blanditiis unde officia placeat. Cupiditate tenetur, vel delectus facere perferendis, voluptatem possimus architecto, doloremque nam non officiis rem velit! Consectetur.",
-        "date": "Oct 10, 2024",
-        "readTime": "4 min read"
-      },
-      {
-        "id": "thoughts4",
-        "title": "Thoughts 4",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos illum blanditiis unde officia placeat. Cupiditate tenetur, vel delectus facere perferendis, voluptatem possimus architecto, doloremque nam non officiis rem velit! Consectetur.",
-        "date": "Oct 2, 2024",
-        "readTime": "6 min read"
-      }
-    ],
     "projectsData": [
       {
         "id": "project1",

@@ -3,18 +3,13 @@ import React, { useEffect, useState } from "react";
 import Profile from "../components/ProfileCart";
 import { useTheme } from "../components/ThemeContext";
 import Form from "../components/Form";
-import { useLocation, useParams, useNavigate } from "react-router-dom";
-import { experienceData, projectsData, thoughtsData } from "../data/datas.json";
+import { useLocation, useParams } from "react-router-dom";
+import { experienceData, projectsData} from "../data/datas.json";
 
 const DetailsPage: React.FC = () => {
   const { darkMode } = useTheme();
   const { id } = useParams<{ id: string }>();
   const location = useLocation();
-  const navigate = useNavigate();
-
-  const { previousScrollPosition } = location.state || {
-    previousScrollPosition: 0,
-  };
 
   const [data, setData] = useState<any>(null);
   const { type } = location.state || {};
@@ -33,9 +28,6 @@ const DetailsPage: React.FC = () => {
           break;
         case "experience":
           item = experienceData.find((e) => e.id === id);
-          break;
-        case "thought":
-          item = thoughtsData.find((t) => t.id === id);
           break;
         default:
           item = null;
@@ -56,51 +48,19 @@ const DetailsPage: React.FC = () => {
         return data.title || "Project Title";
       case "experience":
         return data.title || "Experience Title";
-      case "thought":
-        return data.title || "Thought Title";
       default:
         return "Details";
     }
   };
 
-  const smoothScrollTo = (targetPosition: number) => {
-    const startPosition = window.scrollY;
-    const distance = targetPosition - startPosition;
-    const duration = 400;
-    let startTime: number | null = null;
-
-    const animation = (currentTime: number) => {
-      if (!startTime) startTime = currentTime;
-      const timeElapsed = currentTime - startTime;
-      const progress = Math.min(timeElapsed / duration, 1);
-
-      window.scrollTo(0, startPosition + distance * progress);
-
-      if (progress < 1) {
-        requestAnimationFrame(animation);
-      }
-    };
-
-    requestAnimationFrame(animation);
-  };
-
-  const scrollToTop = () => {
-    const scrollStep = -window.scrollY / (400 / 15);
-    const scrollInterval = setInterval(() => {
-      if (window.scrollY !== 0) {
-        window.scrollBy(0, scrollStep);
-      } else {
-        clearInterval(scrollInterval);
-      }
-    }, 15);
-  };
 
   useEffect(() => {
-    scrollToTop();
-  }, [data]);
+    window.scrollTo({top: 0});
+  }, []);
+  
 
   return (
-    <div className="min-h-screen flex flex-col items-center">
+    <div className="min-h-screen flex flex-col items-center mt-2">
       <div className="w-full max-w-6xl flex flex-col md:flex-row items-center justify-center mt-20">
         <div className=" hidden md:flex">
           <Profile />
@@ -137,7 +97,7 @@ const DetailsPage: React.FC = () => {
                 )}
 
                 <h2
-                  className={`font-bold text-[16px] xl:text-[40px] leading-none tracking-wide ${
+                  className={`font-bold text-xl leading-none tracking-wide ${
                     darkMode ? "text-text-title-light" : "text-text-title-dark"
                   }`}
                 >
@@ -152,20 +112,6 @@ const DetailsPage: React.FC = () => {
               >
                 {data.description || "No description provided."}
               </p>
-
-              <button
-                onClick={() => {
-                  smoothScrollTo(previousScrollPosition);
-                  navigate(-1);
-                }}
-                className={` ${
-                  darkMode
-                    ? "bg-text-title2-light text-light-mode"
-                    : "bg-text-title2-dark text-dark-mode"
-                } font-semibold mt-2 py-2 w-full rounded-xl hover:bg-active-dark transition duration-200`}
-              >
-                Back
-              </button>
             </div>
           ) : (
             <p
