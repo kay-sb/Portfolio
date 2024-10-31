@@ -6,6 +6,7 @@
         "readTime": "3 min read",
         "title": "The World of Front-End: The Art and Science of Designing User Experiences",
         "introduction": "Front-end development refers to the part of web development that users interact with directly. This includes designing and implementing user interfaces (UI) and user experiences (UX). Here, we explore some key aspects of front-end development:",
+        "image": "/blog1.png",
         "sections": [
           {
             "heading": "1. Core Technologies",
@@ -24,6 +25,7 @@
                 "description": "Adds interactivity to web pages. Using JavaScript, we can perform actions like form validation, creating animations, and interacting with servers."
               }
             ]
+            
           },
           {
             "heading": "2. Frameworks and Libraries",

@@ -37,11 +37,11 @@ const ProjectList: React.FC = () => {
         PROJECTS {/* Sub-title */}
       </h1>
       <div>
-        <ul className="flex flex-col items-center md:items-start md:px-0"> {/* List of projects */}
+        <ul className="flex flex-col items-center md:items-start "> {/* List of projects */}
           {displayedProjects.map((project) => ( // Map through the displayed projects
             <li
               key={project.id} // Use project ID as key for list items
-              className={`flex items-center rounded-xl w-full max-w-[80%] h-24 my-4 p-4 transition duration-300 ease-in-out cursor-pointer ${
+              className={`flex items-center rounded-xl w-[80%] md:w-full h-24 my-4 p-4 transition duration-300 ease-in-out cursor-pointer ${
                 darkMode
                   ? "bg-text-title2-dark hover:bg-text-title2-light" // Background color for dark mode
                   : "bg-text-title2-light hover:bg-text-title2-dark" // Background color for light mode

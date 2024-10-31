@@ -49,7 +49,7 @@ const ExperienceList: React.FC = () => {
         EXPERIENCE {/* Sub-title */}
       </h1>
       <div>
-        <ul className="flex flex-col items-center md:items-start md:px-0">
+        <ul className="flex flex-col items-center md:items-start ">
           {" "}
           {/* List of experiences */}
           {displayedProjects.map(
@@ -58,7 +58,7 @@ const ExperienceList: React.FC = () => {
             ) => (
               <li
                 key={experience.id} // Use experience ID as key for list items
-                className={`relative flex items-center rounded-xl w-full max-w-[80%] h-auto my-4 p-4 transition duration-300 ease-in-out cursor-pointer ${
+                className={`relative flex items-center rounded-xl w-[80%] md:w-full h-auto my-4 p-4 transition duration-300 ease-in-out cursor-pointer ${
                   darkMode
                     ? "bg-text-title2-dark hover:bg-text-title2-light" // Background color for dark mode
                     : "bg-text-title2-light hover:bg-text-title2-dark" // Background color for light mode

@@ -97,7 +97,7 @@ const FormHome: React.FC = () => {
 
   return (
     <div
-      className={`text-center  md:text-left rounded-lg max-w-[80%] mx-auto md:mx-0 w-[80%] md:w-full ${
+      className={`text-center  md:text-left rounded-lg mx-auto md:mx-0 w-[80%] md:w-full ${
         darkMode ? "text-light-mode" : "text-dark-mode"
       } `}
     >

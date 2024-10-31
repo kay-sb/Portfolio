@@ -6,9 +6,11 @@ import Profile from "../components/ProfileCart";
 import Form from "../components/Form";
 
 interface Section {
+  type: "text" | "image" | "list";
   heading: string;
   description: string;
   list?: Array<{ name: string; description: string }>;
+  image?: string;
 }
 
 interface BlogData {
@@ -17,6 +19,7 @@ interface BlogData {
   readTime: string;
   title: string;
   introduction: string;
+  image?: string;
   sections?: Section[];
 }
 
@@ -36,7 +39,7 @@ const BlogPage: React.FC = () => {
     if (stateBlog && stateBlog.id === id) {
       setBlog(stateBlog);
     } else {
-      const foundBlog = blogData.blogData.find((b) => b.id === id);
+      const foundBlog = blogData.blogData.find((b) => b.id === id) as BlogData | undefined;
       if (foundBlog) {
         setBlog(foundBlog);
       }
@@ -47,17 +50,27 @@ const BlogPage: React.FC = () => {
 
   return (
     <div className="min-h-screen flex flex-col items-center mt-2">
-      <div className="w-full max-w-6xl flex flex-col md:flex-row items-center justify-center mt-20">
+      <div className="w-full max-w-5xl flex flex-col md:flex-row items-center justify-center mt-20">
         <div className="hidden md:flex">
           <Profile />
         </div>
         <div className="mt-5 mx-auto w-full">
-          <div className="w-full max-w-[80%] mx-auto md:mx-0">
+          <div className="w-[80%] md:w-full  mx-auto md:mx-0">
+            {blog.image && (
+              <img
+                src={blog.image}
+                alt={blog.title}
+                className="w-full h-auto rounded-md mb-4"
+              />
+            )}  
             <div
               className={`p-4 rounded-lg mb-5 ${
                 darkMode ? "bg-text-title2-light" : "bg-text-title2-dark"
               }`}
             >
+              <p className="text-sm mb-4 flex justify-between text-text-title-light">
+                {blog.date} • {blog.readTime}
+              </p>
               <h1
                 className={`text-xl font-bold mb-4 ${
                   darkMode ? "text-text-title-light" : "text-text-title-dark"
@@ -65,9 +78,6 @@ const BlogPage: React.FC = () => {
               >
                 {blog.title}
               </h1>
-              <p className="text-sm mb-4 text-gray-500">
-                {blog.date} • {blog.readTime}
-              </p>
             </div>
             <p
               className={`mb-8 leading-7 ${

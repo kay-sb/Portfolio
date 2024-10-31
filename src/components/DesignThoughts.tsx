@@ -51,7 +51,7 @@ const ThoughtsList: React.FC = () => {
           {displayedBlogs.map((blog, index) => (
             <li
               key={index}
-              className={`relative flex items-center rounded-xl w-full max-w-[80%] h-auto my-4 p-4 transition duration-300 ease-in-out cursor-pointer ${
+              className={`relative flex items-center rounded-xl w-[80%] md:w-full h-auto my-4 p-4 transition duration-300 ease-in-out cursor-pointer ${
                 darkMode
                   ? "bg-text-title2-dark hover:bg-text-title2-light"
                   : "bg-text-title2-light hover:bg-text-title2-dark"

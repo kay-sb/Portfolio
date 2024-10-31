@@ -61,13 +61,13 @@ const DetailsPage: React.FC = () => {
 
   return (
     <div className="min-h-screen flex flex-col items-center mt-2">
-      <div className="w-full max-w-6xl flex flex-col md:flex-row items-center justify-center mt-20">
+      <div className="w-full max-w-5xl flex flex-col md:flex-row items-center justify-center mt-20">
         <div className=" hidden md:flex">
           <Profile />
         </div>
-        <div className="flex-1 w-full  text-center md:text-left mt-5 ">
+        <div className="flex-1 w-full text-center md:text-left mt-5 ">
           {data ? (
-            <div className="text-start md:text-left rounded-lg max-w-[80%] mx-auto md:mx-0 w-[80%] md:w-full">
+            <div className="text-start md:text-left rounded-lg mx-auto md:mx-0 w-[80%] md:w-full">
               <div
                 className={`p-4 rounded-lg mb-5 ${
                   darkMode ? "bg-text-title2-light" : "bg-text-title2-dark"
@@ -97,7 +97,7 @@ const DetailsPage: React.FC = () => {
                 )}
 
                 <h2
-                  className={`font-bold text-xl leading-none tracking-wide ${
+                  className={`text-xl font-bold mb-4 ${
                     darkMode ? "text-text-title-light" : "text-text-title-dark"
                   }`}
                 >
