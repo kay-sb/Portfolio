@@ -55,7 +55,7 @@ const ProjectList: React.FC = () => {
               <img
                 src={project.image} // Display project thumbnail
                 alt="Thumbnail"
-                className="w-24 h-24 rounded-md mr-4" // Thumbnail styling
+                className="w-16 h-16 md:w-24 md:h-24 rounded-md mr-4" // Thumbnail styling
               />
               <div className="flex-1"> {/* Container for project details */}
                 <h3
@@ -65,13 +65,6 @@ const ProjectList: React.FC = () => {
                 >
                   {project.title} {/* Display project title */}
                 </h3>
-                <p
-                  className={ // Display project description
-                    darkMode ? "text-text-title-light" : "text-text-title-dark"
-                  }
-                >
-                  {project.description} {/* Display full project description */}
-                </p>
               </div>
               <div> {/* Icon container */}
                 <svg
