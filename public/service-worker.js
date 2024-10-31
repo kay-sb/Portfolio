@@ -7,7 +7,10 @@ const urlsToCache = [
   '/icons/icon-512x512.png',
   '/profile.jpg',
   '/Project1-th.png',
-  '/person.svg'
+  '/person.svg',
+  '/blog1.png',
+  '/dist/assets/index-CwOKACNn.js',
+  '/dist/assets/index-CbPON0f7.css',
 ];
 
 // نصب و کش کردن فایل‌های اولیه
