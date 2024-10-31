@@ -39,7 +39,9 @@ const BlogPage: React.FC = () => {
     if (stateBlog && stateBlog.id === id) {
       setBlog(stateBlog);
     } else {
-      const foundBlog = blogData.blogData.find((b) => b.id === id) as BlogData | undefined;
+      const foundBlog = blogData.blogData.find((b) => b.id === id) as
+        | BlogData
+        | undefined;
       if (foundBlog) {
         setBlog(foundBlog);
       }
@@ -62,13 +64,17 @@ const BlogPage: React.FC = () => {
                 alt={blog.title}
                 className="w-full h-auto rounded-md mb-4"
               />
-            )}  
+            )}
             <div
               className={`p-4 rounded-lg mb-5 ${
                 darkMode ? "bg-text-title2-light" : "bg-text-title2-dark"
               }`}
             >
-              <p className="text-sm mb-4 flex justify-between text-text-title-light">
+              <p
+                className={`text-sm mb-4 flex justify-between ${
+                  darkMode ? "text-text-title-light" : "text-text-title-dark"
+                }`}
+              >
                 {blog.date} • {blog.readTime}
               </p>
               <h1

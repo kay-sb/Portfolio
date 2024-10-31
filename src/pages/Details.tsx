@@ -73,29 +73,6 @@ const DetailsPage: React.FC = () => {
                   darkMode ? "bg-text-title2-light" : "bg-text-title2-dark"
                 }`}
               >
-                {type === "thought" && data.date && data.readTime && (
-                  <div className="flex justify-between text-xs mb-2">
-                    <span
-                      className={`${
-                        darkMode
-                          ? "text-text-title-light"
-                          : "text-text-title-dark"
-                      }`}
-                    >
-                      {data.date}
-                    </span>
-                    <span
-                      className={`${
-                        darkMode
-                          ? "text-text-title-light"
-                          : "text-text-title-dark"
-                      }`}
-                    >
-                      {data.readTime}
-                    </span>
-                  </div>
-                )}
-
                 <h2
                   className={`text-xl font-bold mb-4 ${
                     darkMode ? "text-text-title-light" : "text-text-title-dark"
@@ -106,7 +83,7 @@ const DetailsPage: React.FC = () => {
               </div>
 
               <p
-                className={`text-[12px] flex text-start mb-10 ${
+                className={`text-md flex text-start mb-10 ${
                   darkMode ? "text-text-title-light" : "text-text-title-dark"
                 }`}
               >

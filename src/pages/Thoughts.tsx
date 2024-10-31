@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import Profile from "../components/ProfileCart";
 import { useTheme } from "../components/ThemeContext"; // Importing ThemeContext for managing dark/light mode
-import Thoughts from "../components/DesignThoughts";
+import Thoughts from "../components/InspirationThoughts";
 import Form from "../components/Form";
 
 const ThoughtsPage: React.FC = () => {

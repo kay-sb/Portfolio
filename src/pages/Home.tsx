@@ -5,7 +5,7 @@ import About from "../components/About";
 import ProjectList from "../components/RecentProjects";
 import ExperoenceList from "../components/ExperienceList";
 import PremiumTools from "../components/PremiumTools";
-import Thoughts from "../components/DesignThoughts";
+import Thoughts from "../components/InspirationThoughts";
 import Form from "../components/Form";
 import { usePageContext } from "../components/PageContext";
 

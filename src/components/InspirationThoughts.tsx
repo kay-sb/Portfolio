@@ -37,7 +37,7 @@ const ThoughtsList: React.FC = () => {
           darkMode ? "text-text-title-light" : "text-text-title-dark"
         }`}
       >
-        DESIGN
+        INSPIRATION
       </h1>
       <h1
         className={`font-bold text-[40px] md:text-[60px] xl:text-[80px] leading-none tracking-wide mb-4 ${

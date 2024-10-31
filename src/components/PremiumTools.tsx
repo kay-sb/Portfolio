@@ -123,7 +123,7 @@ const PremiumTools: React.FC = () => {
         TOOLS
       </h1>
       <div className="flex flex-col justify-center items-center md:items-start w-full">
-        <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-3 gap-4 w-full">
+        <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-3 gap-4 md:w-full">
           {displayedProjects.map(
             (
               tool,

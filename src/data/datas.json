@@ -2,49 +2,37 @@
     "experienceData": [
       {
         "id": "experience1",
-        "title": "Experience 1",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos illum blanditiis unde officia placeat. Cupiditate tenetur, vel delectus facere perferendis, voluptatem possimus architecto, doloremque nam non officiis rem velit! Consectetur."
-      },
+        "title": "My Journey in Programming",
+        "description": "As an enthusiastic software engineer, my journey in programming began with curiosity and a desire to solve problems. I started learning HTML, CSS, and JavaScript, which laid the foundation for my web development skills. Over time, I explored frameworks like React and Tailwind, enabling me to create engaging and interactive user interfaces. One of the most challenging yet rewarding experiences was building my personal website, where I showcased my projects and skills. Each line of code taught me valuable lessons, and I continue to embrace new challenges to enhance my skills and contribute to exciting projects."
+      },   
       {
         "id": "experience2",
-        "title": "Experience 2",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos illum blanditiis unde officia placeat. Cupiditate tenetur, vel delectus facere perferendis, voluptatem possimus architecto, doloremque nam non officiis rem velit! Consectetur."
-      },
+        "title": "Music Production",
+        "description": "Over the past seven years, I have been immersed in the world of music production, honing my skills in composition using electric guitar and piano. My journey has been self-taught, and I am constantly seeking ways to improve the quality of my music and collaborate with professionals in the field."
+      },      
       {
         "id": "experience3",
-        "title": "Experience 3",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos illum blanditiis unde officia placeat. Cupiditate tenetur, vel delectus facere perferendis, voluptatem possimus architecto, doloremque nam non officiis rem velit! Consectetur."
+        "title": "Graphic Design",
+        "description": "I have developed a strong foundation in graphic design, creating visually appealing content that effectively communicates ideas. My experience ranges from designing logos and branding materials to crafting layouts for digital platforms. I am passionate about using design to enhance user experiences."
       },
       {
         "id": "experience4",
-        "title": "Experience 4",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos illum blanditiis unde officia placeat. Cupiditate tenetur, vel delectus facere perferendis, voluptatem possimus architecto, doloremque nam non officiis rem velit! Consectetur."
-      }
+        "title": "Photography and Videography",
+        "description": "I have a passion for photography and am eager to start my journey in videography. While I haven't worked on video projects yet, I am excited to learn and experiment with different techniques and styles to capture moments and tell stories through visual media."
+      }      
     ],
     "projectsData": [
       {
         "id": "project1",
         "image": "Project1-th.png",
-        "title": "Project 1",
-        "description": "Minimal Store"
-      },
+        "title": "Portfolio Website",
+        "description": "A personal portfolio website that highlights my skills and projects in web development and graphic design. The site is designed to provide a seamless experience for visitors and potential clients."
+      },      
       {
         "id": "project2",
         "image": "Project1-th.png",
-        "title": "Project 2",
-        "description": "Stylish Blog"
-      },
-      {
-        "id": "project3",
-        "image": "Project1-th.png",
-        "title": "Project 3",
-        "description": "Creative Portfolio"
-      },
-      {
-        "id": "project4",
-        "image": "Project1-th.png",
-        "title": "Project 4",
-        "description": "Creative Portfolio"
+        "title": "Photography Portfolio",
+        "description": "A curated collection of my photography work, featuring a range of styles and subjects. This project reflects my journey in photography and my passion for capturing moments."
       }
     ]
   }
