@@ -179,7 +179,7 @@ const Navbar: React.FC<NavbarProps> = () => {
       {showScrollToTop && (
         <button
           onClick={scrollToTop} // Scroll to top on click
-          className={`fixed bottom-5 right-5 w-[50px] h-[50px] rounded-full flex items-center justify-center shadow-lg z-50 ${
+          className={`fixed bottom-5 right-5 w-[50px] h-[50px] rounded-full flex items-center justify-center shadow-lg z-40 ${
             darkMode ? "dark-mode" : "light-mode"
           }`}
         >

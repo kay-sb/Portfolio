@@ -6,7 +6,7 @@ const Footer: React.FC = () => {
 
   return (
     <footer
-      className={`mb-20 p-4 text-center z-40 ${
+      className={`mb-20 p-4 text-center z-30 ${
         darkMode ? "text-light-mode" : "text-dark-mode"
       }`}
     >
