@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "./components/ThemeContext";
 import { PageProvider } from "./components/PageContext";
 import Navbar from "./components/Navbar";
+import GradientOverlay from "./components/GradientOverlay";
 import HomePage from "./pages/Home";
 import ProjectsPage from "./pages/Projects";
 import ExperiencePage from "./pages/Experience";
@@ -12,6 +13,7 @@ import Footer from "./components/Footer";
 import DetailsPage from "./pages/Details";
 import BlogPage from "./pages/Blog";
 
+
 const App: React.FC = () => {
   // Access theme directly from the ThemeContext using the useTheme hook
   return (
@@ -19,6 +21,7 @@ const App: React.FC = () => {
       <ThemeProvider>
         <PageProvider>
           <Navbar />
+          <GradientOverlay />
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/projects" element={<ProjectsPage />} />

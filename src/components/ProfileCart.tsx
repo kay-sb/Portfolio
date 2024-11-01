@@ -10,7 +10,7 @@ import {
 
 const Profile: React.FC = () => {
   return (
-    <div className="flex flex-col items-center rounded-lg max-w-sm mx-10 mt-6">
+    <div className="flex flex-col items-center rounded-lg max-w-sm mx-10 mt-6 z-50">
       {/* ProfileCard for mobile view (hidden in md and up) */}
       <div className="md:invisible">
         <ProfileCard
