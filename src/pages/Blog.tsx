@@ -4,6 +4,8 @@ import { useLocation, useParams } from "react-router-dom";
 import blogData from "../data/blog.json";
 import Profile from "../components/ProfileCart";
 import Form from "../components/Form";
+import { useInView } from "react-intersection-observer";
+import { motion } from "framer-motion";
 
 interface Section {
   type: "text" | "image" | "list";
@@ -28,6 +30,12 @@ const BlogPage: React.FC = () => {
   const location = useLocation();
   const { id } = useParams();
   const [blog, setBlog] = useState<BlogData | null>(null);
+  
+  const { ref, inView } = useInView({
+    triggerOnce: false,
+    threshold: 0.1,
+  });
+
 
   useEffect(() => {
     document.body.classList.toggle("dark-mode", darkMode);
@@ -51,12 +59,18 @@ const BlogPage: React.FC = () => {
   if (!blog) return <p>Blog not available.</p>;
 
   return (
-    <div className="min-h-screen flex flex-col items-center mt-2">
+    <div className="min-h-screen flex flex-col items-center mt-2"
+>
       <div className="w-full max-w-5xl flex flex-col md:flex-row items-center justify-center mt-20">
         <div className="hidden md:flex">
           <Profile />
         </div>
-        <div className="mt-5 mx-auto w-full">
+        <motion.div className="mt-5 mx-auto w-full"
+            ref={ref}
+            initial={{ opacity: 0 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            exit={{ opacity: 0, }} 
+            transition={{ duration: 0.5 }}>
           <div className="w-[80%] md:w-full  mx-auto md:mx-0">
             {blog.image && (
               <img
@@ -132,7 +146,7 @@ const BlogPage: React.FC = () => {
           <div className="flex justify-center items-center md:hidden">
             <Profile />
           </div>
-        </div>
+        </motion.div>
       </div>
     </div>
   );

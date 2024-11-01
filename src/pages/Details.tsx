@@ -4,12 +4,19 @@ import Profile from "../components/ProfileCart";
 import { useTheme } from "../components/ThemeContext";
 import Form from "../components/Form";
 import { useLocation, useParams } from "react-router-dom";
-import { experienceData, projectsData} from "../data/datas.json";
+import { experienceData, projectsData } from "../data/datas.json";
+import { useInView } from "react-intersection-observer";
+import { motion } from "framer-motion";
 
 const DetailsPage: React.FC = () => {
   const { darkMode } = useTheme();
   const { id } = useParams<{ id: string }>();
   const location = useLocation();
+
+  const { ref, inView } = useInView({
+    triggerOnce: false,
+    threshold: 0.1,
+  });
 
   const [data, setData] = useState<any>(null);
   const { type } = location.state || {};
@@ -53,11 +60,9 @@ const DetailsPage: React.FC = () => {
     }
   };
 
-
   useEffect(() => {
-    window.scrollTo({top: 0});
+    window.scrollTo({ top: 0 });
   }, []);
-  
 
   return (
     <div className="min-h-screen flex flex-col items-center mt-2">
@@ -65,7 +70,14 @@ const DetailsPage: React.FC = () => {
         <div className=" hidden md:flex">
           <Profile />
         </div>
-        <div className="flex-1 w-full text-center md:text-left mt-5 ">
+        <motion.div
+          className="flex-1 w-full text-center md:text-left mt-5 "
+          ref={ref}
+          initial={{ opacity: 0 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.5 }}
+        >
           {data ? (
             <div className="text-start md:text-left rounded-lg mx-auto md:mx-0 w-[80%] md:w-full">
               <div
@@ -104,7 +116,7 @@ const DetailsPage: React.FC = () => {
           <div className=" flex justify-center items-center md:hidden">
             <Profile />
           </div>
-        </div>
+        </motion.div>
       </div>
     </div>
   );

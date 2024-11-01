@@ -1,12 +1,25 @@
 import React, { useState, useEffect } from "react"; // Importing React and hooks
 import { useTheme } from "./ThemeContext"; // Importing ThemeContext for managing dark/light mode
+import { useInView } from "react-intersection-observer";
+import { motion } from "framer-motion";
 
 // Main Form component
 const Form: React.FC = () => {
   const { darkMode } = useTheme(); // Access dark mode state from ThemeContext
+  const { ref, inView } = useInView({
+    triggerOnce: false,
+    threshold: 0.1,
+  });
 
   return (
-    <div className="mt-20 text-center w-full md:text-left">
+    <motion.div
+      className="mt-20 text-center w-full md:text-left"
+      ref={ref}
+      initial={{ opacity: 0 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      exit={{ opacity: 0}} 
+      transition={{ duration: 0.5 }}
+    >
       <div className="flex flex-col items-center md:items-start ">
         {/* Heading for the form */}
         <h1
@@ -26,7 +39,7 @@ const Form: React.FC = () => {
         {/* Rendering the FormHome component */}
         <FormHome />
       </div>
-    </div>
+    </motion.div>
   );
 };
 
@@ -40,7 +53,7 @@ const FormHome: React.FC = () => {
     budget: "",
     message: "",
   });
-  const [submitMessage, setSubmitMessage ] = useState(""); // State for the submit message
+  const [submitMessage, setSubmitMessage] = useState(""); // State for the submit message
   const [displayMessage, setDisplayMessage] = useState(""); // State for displaying messages
 
   // Handle input changes in the form
@@ -158,8 +171,8 @@ const FormHome: React.FC = () => {
             onChange={handleChange}
             className={`rounded-xl p-2 w-full ${
               darkMode
-                  ? "bg-text-title2-light text-light-mode"
-                  : "bg-text-title2-dark text-dark-mode"
+                ? "bg-text-title2-light text-light-mode"
+                : "bg-text-title2-dark text-dark-mode"
             }`}
             required // Required field
             style={{ appearance: "none" }} // Custom appearance
@@ -221,8 +234,8 @@ const FormHome: React.FC = () => {
             placeholder="Your message here..."
             className={`rounded-xl p-2 w-full ${
               darkMode
-                  ? "bg-text-title2-light text-light-mode"
-                  : "bg-text-title2-dark text-dark-mode"
+                ? "bg-text-title2-light text-light-mode"
+                : "bg-text-title2-dark text-dark-mode"
             }`}
             rows={4} // Number of rows for the textarea
             required // Required field

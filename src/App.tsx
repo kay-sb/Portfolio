@@ -25,8 +25,8 @@ const App: React.FC = () => {
             <Route path="/experience" element={<ExperiencePage />} />
             <Route path="/tools" element={<ToolsPage />} />
             <Route path="/thoughts" element={<ThoughtPage />} />
-            <Route path="/details/:category/:id" element={<DetailsPage />} />
-            <Route path="/blog/:id" element={<BlogPage />} />
+            <Route path="/:category/d/:id" element={<DetailsPage />} />
+            <Route path="/thoughts/:id" element={<BlogPage />} />
           </Routes>
           <div style={{ paddingBottom: "4rem" }} />
           <Footer />

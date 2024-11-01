@@ -3,17 +3,23 @@ import { useTheme } from "./ThemeContext";
 import { usePageContext } from "./PageContext";
 import { useNavigate } from "react-router-dom";
 import { blogData } from "../data/blog.json"; // Importing new blog data
+import { useInView } from "react-intersection-observer";
+import { motion } from "framer-motion";
 
 const ThoughtsList: React.FC = () => {
   const { darkMode } = useTheme();
   const { isDetailPage } = usePageContext();
   const navigate = useNavigate();
 
+  const { ref, inView } = useInView({
+    triggerOnce: false,
+    threshold: 0.1,
+  });
+
   useEffect(() => {
     document.body.classList.toggle("dark-mode", darkMode);
     document.body.classList.toggle("light-mode", !darkMode);
   }, [darkMode]);
-
 
   const truncateDescription = (description: string, maxLength: number) => {
     if (description.length > maxLength) {
@@ -22,16 +28,20 @@ const ThoughtsList: React.FC = () => {
     }
     return description; // Otherwise return the full description
   };
-  
+
   // Display only needed data: id, date, title, and introduction
   const displayedBlogs = isDetailPage ? blogData : blogData.slice(0, 3);
   // Adjust slice as needed
 
-
-
-
   return (
-    <div className="mt-20 text-center md:text-left">
+    <motion.div
+      className="mt-20 text-center md:text-left"
+      ref={ref}
+      initial={{ opacity: 0}}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      exit={{ opacity: 0 }} 
+      transition={{ duration: 0.5 }}
+    >
       <h1
         className={`font-bold text-[40px] md:text-[60px] xl:text-[80px] leading-none tracking-wide mb-2 ${
           darkMode ? "text-text-title-light" : "text-text-title-dark"
@@ -58,8 +68,8 @@ const ThoughtsList: React.FC = () => {
               }`}
               onClick={() => {
                 localStorage.setItem("selectedBlog", JSON.stringify(blog));
-                navigate(`/blog/${blog.id}`);
-              }} 
+                navigate(`/thoughts/${blog.id}`);
+              }}
             >
               <div className="mb-2 flex-1">
                 <h3
@@ -91,7 +101,8 @@ const ThoughtsList: React.FC = () => {
                   {blog.readTime}
                 </span>
                 <div className="absolute top-2 right-2">
-                  {" "} {/* Icon container */}
+                  {" "}
+                  {/* Icon container */}
                   <svg
                     viewBox="0 0 24 24"
                     strokeWidth={1.5}
@@ -115,7 +126,7 @@ const ThoughtsList: React.FC = () => {
           ))}
         </ul>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

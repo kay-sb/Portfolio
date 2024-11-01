@@ -4,10 +4,17 @@ import { FaReact } from "react-icons/fa"; // Importing React icon
 import { SiTypescript, SiCinema4D, SiAdobexd } from "react-icons/si"; // Importing icons for TypeScript, Cinema 4D, and Adobe XD
 import { DiPhotoshop, DiIllustrator } from "react-icons/di"; // Importing icons for Photoshop and Illustrator
 import { usePageContext } from "./PageContext"; // Importing the usePageContext hook to access page context
+import { useInView } from "react-intersection-observer";
+import { motion } from "framer-motion";
 
 const PremiumTools: React.FC = () => {
   const { darkMode } = useTheme(); // Destructuring darkMode from the theme context
   const { isDetailPage } = usePageContext(); // Destructuring isDetailPage from the page context
+
+  const { ref, inView } = useInView({
+    triggerOnce: false,
+    threshold: 0.1,
+  });
 
   useEffect(() => {
     // Effect to toggle dark and light mode classes on the body element
@@ -107,7 +114,14 @@ const PremiumTools: React.FC = () => {
   const displayedProjects = isDetailPage ? Tools : Tools.slice(0, 9);
 
   return (
-    <div className="mt-20 text-center md:text-left">
+    <motion.div
+      className="mt-20 text-center md:text-left"
+      ref={ref}
+      initial={{ opacity: 0}}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      exit={{ opacity: 0 }} 
+      transition={{ duration: 0.5 }}
+    >
       <h1
         className={`font-bold text-[40px] md:text-[60px] xl:text-[80px] leading-none tracking-wide mb-2 ${
           darkMode ? "text-text-title-light" : "text-text-title-dark"
@@ -157,7 +171,7 @@ const PremiumTools: React.FC = () => {
           )}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

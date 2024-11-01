@@ -1,8 +1,16 @@
 import React, { useEffect } from "react";
 import { useTheme } from "./ThemeContext"; // Importing ThemeContext for managing dark/light mode
+import { useInView } from "react-intersection-observer";
+import { motion } from "framer-motion";
+
 
 const About: React.FC = () => {
   const { darkMode } = useTheme(); // Access dark mode state and toggle function from ThemeContext
+
+  const { ref, inView } = useInView({
+    triggerOnce: false,
+    threshold: 0.1, 
+  });
 
   useEffect(() => {
     document.body.classList.toggle("dark-mode", darkMode); // Apply dark mode class to body
@@ -10,7 +18,14 @@ const About: React.FC = () => {
   }, [darkMode]);
 
   return (
-    <div className="text-center md:text-left">
+    <motion.div
+      className="text-center md:text-left"
+      ref={ref}
+      initial={{ opacity: 0 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      exit={{ opacity: 0}} 
+      transition={{ duration: 0.5 }}
+    >
       <h1
         className={`font-bold text-[50px] md:text-[75px] xl:text-[110px] leading-none tracking-wide pb-2 ${
           darkMode ? "text-text-title-light" : "text-text-title-dark"
@@ -46,14 +61,18 @@ const About: React.FC = () => {
           >
             +1
           </h2>
-          <h3 className={`text-[12px] md:text-sm ${
+          <h3
+            className={`text-[12px] md:text-sm ${
               darkMode ? "text-text-title-light" : "text-text-title-dark"
-            }`}>
+            }`}
+          >
             Years
           </h3>
-          <h3 className={`text-[12px] md:text-sm ${
+          <h3
+            className={`text-[12px] md:text-sm ${
               darkMode ? "text-text-title-light" : "text-text-title-dark"
-            }`}>
+            }`}
+          >
             Experience
           </h3>
         </div>
@@ -66,9 +85,11 @@ const About: React.FC = () => {
           >
             +1
           </h2>
-          <h3 className={`text-[12px] md:text-sm ${
+          <h3
+            className={`text-[12px] md:text-sm ${
               darkMode ? "text-text-title-light" : "text-text-title-dark"
-            }`}>
+            }`}
+          >
             Projects
           </h3>
           <h3
@@ -88,19 +109,23 @@ const About: React.FC = () => {
           >
             +1
           </h2>
-          <h3 className={`text-[12px] md:text-sm ${
+          <h3
+            className={`text-[12px] md:text-sm ${
               darkMode ? "text-text-title-light" : "text-text-title-dark"
-            }`}>
+            }`}
+          >
             Worldwide
           </h3>
-          <h3 className={`text-[12px] md:text-sm ${
+          <h3
+            className={`text-[12px] md:text-sm ${
               darkMode ? "text-text-title-light" : "text-text-title-dark"
-            }`}>
+            }`}
+          >
             Clients
           </h3>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

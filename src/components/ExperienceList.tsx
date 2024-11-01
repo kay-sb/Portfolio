@@ -3,11 +3,18 @@ import { useTheme } from "./ThemeContext"; // Importing ThemeContext for managin
 import { usePageContext } from "./PageContext"; // Importing PageContext to manage page state
 import { useNavigate } from "react-router-dom"; // Importing useNavigate for navigation
 import { experienceData } from "../data/datas.json"; // Importing experience data from JSON file
+import { useInView } from "react-intersection-observer";
+import { motion } from "framer-motion";
 
 const ExperienceList: React.FC = () => {
   const { darkMode } = useTheme(); // Access dark mode state from ThemeContext
   const { isDetailPage } = usePageContext(); // Access whether the page is a detail page from PageContext
   const navigate = useNavigate(); // Initialize navigation function
+
+  const { ref, inView } = useInView({
+    triggerOnce: false,
+    threshold: 0.1,
+  });
 
   // Effect to apply dark/light mode class to the body
   useEffect(() => {
@@ -31,7 +38,14 @@ const ExperienceList: React.FC = () => {
     : experienceData.slice(0, 3); // Otherwise, display the first 3 experiences
 
   return (
-    <div className="mt-20 text-center md:text-left">
+    <motion.div
+      className="mt-20 text-center md:text-left"
+      ref={ref}
+      initial={{ opacity: 0 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      exit={{ opacity: 0 }} 
+      transition={{ duration: 0.5 }}
+    >
       {" "}
       {/* Container for the component */}
       <h1
@@ -64,7 +78,7 @@ const ExperienceList: React.FC = () => {
                     : "bg-text-title2-light hover:bg-text-title2-dark" // Background color for light mode
                 }`}
                 onClick={() =>
-                  navigate(`/details/experience/${experience.id}`, {
+                  navigate(`/experiences/d/${experience.id}`, {
                     state: {
                       previousScrollPosition: window.scrollY,
                       data: experience,
@@ -122,7 +136,7 @@ const ExperienceList: React.FC = () => {
           )}
         </ul>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
