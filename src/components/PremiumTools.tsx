@@ -1,15 +1,16 @@
-import React, { useEffect } from "react"; // Importing React and the useEffect hook from React
-import { useTheme } from "./ThemeContext"; // Importing the useTheme hook to access the theme context
-import { FaReact } from "react-icons/fa"; // Importing React icon
-import { SiTypescript, SiCinema4D, SiAdobexd } from "react-icons/si"; // Importing icons for TypeScript, Cinema 4D, and Adobe XD
-import { DiPhotoshop, DiIllustrator } from "react-icons/di"; // Importing icons for Photoshop and Illustrator
-import { usePageContext } from "./PageContext"; // Importing the usePageContext hook to access page context
+"use client";
+import React, { useEffect } from "react";
+import { useThemeStore } from "@/stores/useThemeStore";
+import { FaReact } from "react-icons/fa";
+import { SiTypescript, SiCinema4D, SiAdobexd } from "react-icons/si";
+import { DiPhotoshop, DiIllustrator } from "react-icons/di";
+import { usePageStore } from "@/stores/usePageStore"; 
 import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
 
 const PremiumTools: React.FC = () => {
-  const { darkMode } = useTheme(); // Destructuring darkMode from the theme context
-  const { isDetailPage } = usePageContext(); // Destructuring isDetailPage from the page context
+  const { darkMode } = useThemeStore();
+  const { isDetailPage, setIsDetailPage } = usePageStore();
 
   const { ref, inView } = useInView({
     triggerOnce: false,

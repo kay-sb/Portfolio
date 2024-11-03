@@ -1,22 +1,24 @@
+"use client";
 import React, { useEffect } from "react";
-import Profile from "../components/ProfileCart";
-import { useTheme } from "../components/ThemeContext"; // Importing ThemeContext for managing dark/light mode
-import ProjectList from "../components/RecentProjects";
-import { usePageContext } from "../components/PageContext";
-import Form from "../components/Form";
+import { useThemeStore } from "@/stores/useThemeStore"; 
+import { usePageStore } from "@/stores/usePageStore";
+import Profile from "@/components/ProfileCart";
+import ProjectList from "@/components/RecentProjects";
+import Form  from "@/components/Form";
+
 
 const ProjectsPage: React.FC = () => {
-  const { darkMode } = useTheme();
-  const { setIsDetailPage } = usePageContext();
+    const { darkMode } = useThemeStore();
+    const { setIsDetailPage } = usePageStore();
 
   useEffect(() => {
-    document.body.classList.toggle("dark-mode", darkMode); // Apply dark mode class to body
-    document.body.classList.toggle("light-mode", !darkMode); // Apply light mode class to body
+    document.body.classList.toggle("dark-mode", darkMode);
+    document.body.classList.toggle("light-mode", !darkMode);
   }, [darkMode]);
 
   useEffect(() => {
     setIsDetailPage(true);
-    return () => setIsDetailPage(false); // Reset when leaving
+    return () => setIsDetailPage(false);
   }, [setIsDetailPage]);
 
   return (

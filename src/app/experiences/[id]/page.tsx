@@ -1,25 +1,31 @@
-// سایر واردات بدون تغییر
+// app/experience/[id]/page.tsx
+"use client";
+
 import React, { useEffect, useState } from "react";
-import Profile from "../components/ProfileCart";
-import { useTheme } from "../components/ThemeContext";
-import Form from "../components/Form";
-import { useLocation, useParams } from "react-router-dom";
-import { experienceData, projectsData } from "../data/datas.json";
+import { useThemeStore } from "@/stores/useThemeStore";
+import Profile from "@/components/ProfileCart";
+import Form from "@/components/Form";
 import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
+import experienceData from "@/data/experiences.json";
+import { useParams } from "next/navigation";
 
-const DetailsPage: React.FC = () => {
-  const { darkMode } = useTheme();
-  const { id } = useParams<{ id: string }>();
-  const location = useLocation();
+interface experienceData {
+  id: string;
+  image: string;
+  title: string;
+  description: string;
+}
+
+const ProjectPage: React.FC = () => {
+  const { darkMode } = useThemeStore();
+  const [experience, setExperience] = useState<experienceData | null>(null);
+  const params = useParams();
 
   const { ref, inView } = useInView({
     triggerOnce: false,
     threshold: 0.1,
   });
-
-  const [data, setData] = useState<any>(null);
-  const { type } = location.state || {};
 
   useEffect(() => {
     document.body.classList.toggle("dark-mode", darkMode);
@@ -27,58 +33,34 @@ const DetailsPage: React.FC = () => {
   }, [darkMode]);
 
   useEffect(() => {
-    const fetchData = () => {
-      let item;
-      switch (type) {
-        case "project":
-          item = projectsData.find((p) => p.id === id);
-          break;
-        case "experience":
-          item = experienceData.find((e) => e.id === id);
-          break;
-        default:
-          item = null;
+    const { id } = params;
+    if (typeof id === "string") {
+      const foundBlog = experienceData.experienceData.find((b) => b.id === id) as
+        | experienceData
+        | undefined;
+      if (foundBlog) {
+        setExperience(foundBlog);
       }
-      if (!item) {
-        console.warn(`Data with ID ${id} not found in ${type}.`);
-      }
-      setData(item);
-    };
-
-    fetchData();
-  }, [id, type]);
-
-  const renderTitle = () => {
-    if (!data) return "Data not available.";
-    switch (type) {
-      case "project":
-        return data.title || "Project Title";
-      case "experience":
-        return data.title || "Experience Title";
-      default:
-        return "Details";
     }
-  };
+  }, [params]);
 
-  useEffect(() => {
-    window.scrollTo({ top: 0 });
-  }, []);
+  if (!experience) return <p>Blog not available.</p>;
 
   return (
     <div className="min-h-screen flex flex-col items-center mt-2">
       <div className="w-full max-w-5xl flex flex-col md:flex-row items-center justify-center mt-20">
-        <div className=" hidden md:flex">
+        <div className="hidden md:flex">
           <Profile />
         </div>
         <motion.div
-          className="flex-1 w-full text-center md:text-left mt-5 "
+          className="flex-1 w-full text-center md:text-left mt-5"
           ref={ref}
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.5 }}
         >
-          {data ? (
+          {experience ? (
             <div className="text-start md:text-left rounded-lg mx-auto md:mx-0 w-[80%] md:w-full">
               <div
                 className={`p-4 rounded-lg mb-5 ${
@@ -90,7 +72,7 @@ const DetailsPage: React.FC = () => {
                     darkMode ? "text-text-title-light" : "text-text-title-dark"
                   }`}
                 >
-                  {renderTitle()}
+                  {experience.title}
                 </h2>
               </div>
 
@@ -99,7 +81,7 @@ const DetailsPage: React.FC = () => {
                   darkMode ? "text-text-title-light" : "text-text-title-dark"
                 }`}
               >
-                {data.description || "No description provided."}
+                {experience.description || "No description provided."}
               </p>
             </div>
           ) : (
@@ -113,7 +95,7 @@ const DetailsPage: React.FC = () => {
           )}
 
           <Form />
-          <div className=" flex justify-center items-center md:hidden">
+          <div className="flex justify-center items-center md:hidden">
             <Profile />
           </div>
         </motion.div>
@@ -122,4 +104,4 @@ const DetailsPage: React.FC = () => {
   );
 };
 
-export default DetailsPage;
+export default ProjectPage;

@@ -1,15 +1,18 @@
+"use client";
 import React, { useEffect } from "react";
-import Profile from "../components/ProfileCart";
-import { useTheme } from "../components/ThemeContext"; // Importing ThemeContext for managing dark/light mode
-import Thoughts from "../components/InspirationThoughts";
-import Form from "../components/Form";
+import { useThemeStore } from "@/stores/useThemeStore"; 
+import { usePageStore } from "@/stores/usePageStore";
+import Profile from "@/components/ProfileCart";
+import Thoughts from "@/components/InspirationThoughts";
+import Form  from "@/components/Form";
 
 const ThoughtsPage: React.FC = () => {
-  const { darkMode } = useTheme();
+    const { darkMode } = useThemeStore();
+    const { setIsDetailPage } = usePageStore();
 
   useEffect(() => {
-    document.body.classList.toggle("dark-mode", darkMode); // Apply dark mode class to body
-    document.body.classList.toggle("light-mode", !darkMode); // Apply light mode class to body
+    document.body.classList.toggle("dark-mode", darkMode); 
+    document.body.classList.toggle("light-mode", !darkMode);
   }, [darkMode]);
 
   return (

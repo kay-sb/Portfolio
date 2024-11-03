@@ -1,8 +1,8 @@
 import React from "react";
-import { useTheme } from "./ThemeContext";
+import { useThemeStore } from "@/stores/useThemeStore";
 
 const GradientOverlay: React.FC = () => {
-  const { darkMode } = useTheme();
+  const { darkMode } = useThemeStore();
 
   return (
     <div className="fixed top-0 left-0 w-full h-full pointer-events-none z-20">

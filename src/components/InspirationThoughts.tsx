@@ -1,15 +1,23 @@
+"use client";
+
 import React, { useEffect } from "react";
-import { useTheme } from "./ThemeContext";
-import { usePageContext } from "./PageContext";
-import { useNavigate } from "react-router-dom";
-import { blogData } from "../data/blog.json"; // Importing new blog data
+import { useThemeStore } from "@/stores/useThemeStore";
+import { usePageStore } from "@/stores/usePageStore";
+import { useRouter } from "next/navigation";
+import { blogData } from "@/data/blog.json";
 import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
 
 const ThoughtsList: React.FC = () => {
-  const { darkMode } = useTheme();
-  const { isDetailPage } = usePageContext();
-  const navigate = useNavigate();
+  const { darkMode } = useThemeStore();
+  const { isDetailPage, setIsDetailPage } = usePageStore();
+  const router = useRouter();
+
+  const handleClick = (blogId: string) => {
+    setIsDetailPage(!isDetailPage);
+    router.push(`/thoughts/${blogId}`);
+  };
+  
 
   const { ref, inView } = useInView({
     triggerOnce: false,
@@ -37,9 +45,9 @@ const ThoughtsList: React.FC = () => {
     <motion.div
       className="mt-20 text-center md:text-left"
       ref={ref}
-      initial={{ opacity: 0}}
+      initial={{ opacity: 0 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
-      exit={{ opacity: 0 }} 
+      exit={{ opacity: 0 }}
       transition={{ duration: 0.5 }}
     >
       <h1
@@ -58,18 +66,15 @@ const ThoughtsList: React.FC = () => {
       </h1>
       <div>
         <ul className="flex flex-col items-center md:items-start md:px-0">
-          {displayedBlogs.map((blog, index) => (
+          {displayedBlogs.map((blog) => (
             <li
-              key={index}
+              key={blog.id}
               className={`relative flex items-center rounded-xl w-[80%] md:w-full h-auto my-4 p-4 transition duration-300 ease-in-out cursor-pointer ${
                 darkMode
                   ? "bg-text-title2-dark hover:bg-text-title2-light"
                   : "bg-text-title2-light hover:bg-text-title2-dark"
               }`}
-              onClick={() => {
-                localStorage.setItem("selectedBlog", JSON.stringify(blog));
-                navigate(`/thoughts/${blog.id}`);
-              }}
+              onClick={() => handleClick(blog.id)}
             >
               <div className="mb-2 flex-1">
                 <h3

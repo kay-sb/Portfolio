@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from "react"; // Importing React and hooks
-import { useTheme } from "./ThemeContext"; // Importing ThemeContext for managing dark/light mode
+"use client";
+
+import React, { useState, useEffect } from "react"; 
+import { useThemeStore }  from "@/stores/useThemeStore"; 
 import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
 
 // Main Form component
 const Form: React.FC = () => {
-  const { darkMode } = useTheme(); // Access dark mode state from ThemeContext
+  const { darkMode } = useThemeStore();
   const { ref, inView } = useInView({
     triggerOnce: false,
     threshold: 0.1,
@@ -45,7 +47,7 @@ const Form: React.FC = () => {
 
 // FormHome component where the actual form is defined
 const FormHome: React.FC = () => {
-  const { darkMode } = useTheme(); // Access dark mode state
+  const { darkMode } = useThemeStore();
   // State for form data
   const [formData, setFormData] = useState({
     name: "",

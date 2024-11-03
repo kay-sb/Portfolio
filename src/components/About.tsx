@@ -1,11 +1,12 @@
+"use client";
 import React, { useEffect } from "react";
-import { useTheme } from "./ThemeContext"; // Importing ThemeContext for managing dark/light mode
+import { useThemeStore } from "@/stores/useThemeStore"; 
 import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
 
 
 const About: React.FC = () => {
-  const { darkMode } = useTheme(); // Access dark mode state and toggle function from ThemeContext
+  const { darkMode } = useThemeStore();
 
   const { ref, inView } = useInView({
     triggerOnce: false,
@@ -13,8 +14,8 @@ const About: React.FC = () => {
   });
 
   useEffect(() => {
-    document.body.classList.toggle("dark-mode", darkMode); // Apply dark mode class to body
-    document.body.classList.toggle("light-mode", !darkMode); // Apply light mode class to body
+    document.body.classList.toggle("dark-mode", darkMode); 
+    document.body.classList.toggle("light-mode", !darkMode);
   }, [darkMode]);
 
   return (

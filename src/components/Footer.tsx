@@ -1,12 +1,12 @@
 import React from "react";
-import { useTheme } from "./ThemeContext"; // Importing ThemeContext for managing dark/light mode
+import { useThemeStore }  from "@/stores/useThemeStore";
 
 const Footer: React.FC = () => {
-  const { darkMode } = useTheme();
+  const { darkMode } = useThemeStore();
 
   return (
     <footer
-      className={`mb-20 p-4 text-center z-30 ${
+      className={`mb-20 mt-20 p-4 text-center z-30 ${
         darkMode ? "text-light-mode" : "text-dark-mode"
       }`}
     >

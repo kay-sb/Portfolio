@@ -1,12 +1,14 @@
-import React from "react"; // Importing React
-import { useTheme } from "./ThemeContext"; // Import the useTheme hook to manage dark mode
+"use client";
+
+import React from "react"; 
+import { useThemeStore } from "@/stores/useThemeStore";
 import {
   FaTelegramPlane,
   FaInstagram,
   FaGithub,
   FaLinkedin,
   FaYoutube,
-} from "react-icons/fa"; // Importing icons from react-icons
+} from "react-icons/fa"; 
 
 const Profile: React.FC = () => {
   return (
@@ -58,12 +60,12 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
   description,
   profileImage,
 }) => {
-  const theme = useTheme(); // Access the theme object to determine if dark mode is active
+  const { darkMode } = useThemeStore(); // Access the theme object to determine if dark mode is active
 
   return (
     <div
       className={`flex flex-col items-center shadow-lg rounded-xl p-4 ${
-        theme.darkMode ? "light-mode" : "dark-mode"
+        darkMode ? "bg-light-mode" : "bg-dark-mode"
       }`} // Conditional class for dark/light mode
       style={{
         width: "300px", // Fixed width for the card
@@ -81,7 +83,7 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
       {/* Profile name */}
       <h2
         className={`text-xl my-7 font-bold ${
-          theme.darkMode ? "text-dark-mode" : "text-light-mode"
+          darkMode ? "text-dark-mode" : "  text-light-mode"
         }`}
       >
         {name} {/* Display the name */}
@@ -90,7 +92,7 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
         {/* Profile description */}
         <p
           className={`text-center flex-grow ${
-            theme.darkMode ? "text-dark-mode" : "text-light-mode"
+            darkMode ? "text-dark-mode" : "  text-light-mode"
           }`}
         >
           {description} {/* Display the description */}
@@ -106,7 +108,7 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
               icon = (
                 <FaTelegramPlane
                   className={`w-6 h-6 ${
-                    theme.darkMode ? "fill-active-dark" : "fill-active-dark"
+                    darkMode ? "fill-active-dark" : "fill-active-dark"
                   }`}
                 />
               );
@@ -115,7 +117,7 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
               icon = (
                 <FaInstagram
                   className={`w-6 h-6 ${
-                    theme.darkMode ? "fill-active-dark" : "fill-active-dark"
+                    darkMode ? "fill-active-dark" : "fill-active-dark"
                   }`}
                 />
               );
@@ -124,7 +126,7 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
               icon = (
                 <FaGithub
                   className={`w-6 h-6 ${
-                    theme.darkMode ? "fill-active-dark" : "fill-active-dark"
+                    darkMode ? "fill-active-dark" : "fill-active-dark"
                   }`}
                 />
               );
@@ -133,7 +135,7 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
               icon = (
                 <FaLinkedin
                   className={`w-6 h-6 ${
-                    theme.darkMode ? "fill-active-dark" : "fill-active-dark"
+                    darkMode ? "fill-active-dark" : "fill-active-dark"
                   }`}
                 />
               );
@@ -142,7 +144,7 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
               icon = (
                 <FaYoutube
                   className={`w-6 h-6 ${
-                    theme.darkMode ? "fill-active-dark" : "fill-active-dark"
+                    darkMode ? "fill-active-dark" : "fill-active-dark"
                   }`}
                 />
               );

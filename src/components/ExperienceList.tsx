@@ -1,16 +1,22 @@
+"use client";
+
 import React, { useEffect } from "react"; // Importing React and useEffect hook for managing component lifecycle
-import { useTheme } from "./ThemeContext"; // Importing ThemeContext for managing dark/light mode
-import { usePageContext } from "./PageContext"; // Importing PageContext to manage page state
-import { useNavigate } from "react-router-dom"; // Importing useNavigate for navigation
-import { experienceData } from "../data/datas.json"; // Importing experience data from JSON file
+import { useThemeStore } from "@/stores/useThemeStore"; // Importing ThemeContext for managing dark/light mode
+import { usePageStore } from "@/stores/usePageStore"; // Importing PageContext to manage page state
+import {experienceData} from "@/data/experiences.json"; // Importing experience data from JSON file
 import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
+import { useRouter } from "next/navigation";
 
 const ExperienceList: React.FC = () => {
-  const { darkMode } = useTheme(); // Access dark mode state from ThemeContext
-  const { isDetailPage } = usePageContext(); // Access whether the page is a detail page from PageContext
-  const navigate = useNavigate(); // Initialize navigation function
+  const { darkMode } = useThemeStore();
+  const { isDetailPage, setIsDetailPage } = usePageStore();
+  const router = useRouter();
 
+  const handleClick = (id: string) => {
+    setIsDetailPage(!isDetailPage);
+    router.push(`/experiences/${id}`);
+  };
   const { ref, inView } = useInView({
     triggerOnce: false,
     threshold: 0.1,
@@ -43,7 +49,7 @@ const ExperienceList: React.FC = () => {
       ref={ref}
       initial={{ opacity: 0 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
-      exit={{ opacity: 0 }} 
+      exit={{ opacity: 0 }}
       transition={{ duration: 0.5 }}
     >
       {" "}
@@ -77,15 +83,7 @@ const ExperienceList: React.FC = () => {
                     ? "bg-text-title2-dark hover:bg-text-title2-light" // Background color for dark mode
                     : "bg-text-title2-light hover:bg-text-title2-dark" // Background color for light mode
                 }`}
-                onClick={() =>
-                  navigate(`/experiences/d/${experience.id}`, {
-                    state: {
-                      previousScrollPosition: window.scrollY,
-                      data: experience,
-                      type: "experience",
-                    }, // Navigate to detail page with experience data
-                  })
-                }
+                onClick={() => handleClick(experience.id)} 
               >
                 <div className="flex-1 top-4 left-4">
                   {" "}
