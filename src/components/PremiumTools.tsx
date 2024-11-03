@@ -9,9 +9,10 @@ import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
 
 const PremiumTools: React.FC = () => {
-  const { darkMode } = useThemeStore();
+  const { darkMode , } = useThemeStore();
   const { isDetailPage } = usePageStore();
 
+  
   const { ref, inView } = useInView({
     triggerOnce: false,
     threshold: 0.1,

@@ -1,7 +1,7 @@
 import React from "react";
 import { useThemeStore } from "@/stores/useThemeStore";
 
-const GradientOverlay: React.FC = React.memo(() => {
+const GradientOverlay: React.FC = () => {
   const { darkMode } = useThemeStore();
 
   return (
@@ -18,6 +18,8 @@ const GradientOverlay: React.FC = React.memo(() => {
       ></div>
     </div>
   );
-});
+};
 
-export default GradientOverlay;
+GradientOverlay.displayName = "GradientOverlay";
+
+export default React.memo(GradientOverlay);
