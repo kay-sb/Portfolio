@@ -4,7 +4,7 @@ import React, { useEffect } from "react";
 import { useThemeStore } from "@/stores/useThemeStore";
 import { usePageStore } from "@/stores/usePageStore";
 import { useRouter } from "next/navigation";
-import { blogData } from "@/data/blog.json";
+import  blogData from "@/data/blog.json";
 import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
 
@@ -38,7 +38,7 @@ const ThoughtsList: React.FC = () => {
   };
 
   // Display only needed data: id, date, title, and introduction
-  const displayedBlogs = isDetailPage ? blogData : blogData.slice(0, 3);
+  const displayedBlogs = isDetailPage ? blogData.blogData : blogData.blogData.slice(0, 3);
   // Adjust slice as needed
 
   return (

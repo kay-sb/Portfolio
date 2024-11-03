@@ -3,7 +3,7 @@
 import React, { useEffect } from "react"; // Importing React and useEffect hook for managing component lifecycle
 import { useThemeStore } from "@/stores/useThemeStore"; // Importing ThemeContext for managing dark/light mode
 import { usePageStore } from "@/stores/usePageStore"; // Importing PageContext to manage page state
-import {experienceData} from "@/data/experiences.json"; // Importing experience data from JSON file
+import experienceData from "@/data/experiences.json"; // Importing experience data from JSON file
 import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
@@ -40,8 +40,8 @@ const ExperienceList: React.FC = () => {
 
   // Determine which experiences to display based on whether it's a detail page
   const displayedProjects = isDetailPage
-    ? experienceData // If it's a detail page, display all experiences
-    : experienceData.slice(0, 3); // Otherwise, display the first 3 experiences
+    ? experienceData.experienceData // If it's a detail page, display all experiences
+    : experienceData.experienceData.slice(0, 3); // Otherwise, display the first 3 experiences
 
   return (
     <motion.div

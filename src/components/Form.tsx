@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useState, useEffect } from "react"; 
-import { useThemeStore }  from "@/stores/useThemeStore"; 
+import React, { useState, useEffect } from "react";
+import { useThemeStore } from "@/stores/useThemeStore";
 import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
 
@@ -19,7 +19,7 @@ const Form: React.FC = () => {
       ref={ref}
       initial={{ opacity: 0 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
-      exit={{ opacity: 0}} 
+      exit={{ opacity: 0 }}
       transition={{ duration: 0.5 }}
     >
       <div className="flex flex-col items-center md:items-start ">
@@ -29,7 +29,7 @@ const Form: React.FC = () => {
             darkMode ? "text-text-title-light" : "text-text-title-dark"
           }`}
         >
-          LET'S WORK
+          LET&apos;S WORK
         </h1>
         <h1
           className={`font-bold text-[40px] md:text-[60px] xl:text-[80px] leading-none tracking-wide mb-4 ${

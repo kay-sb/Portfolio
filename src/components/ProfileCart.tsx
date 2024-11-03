@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react"; 
+import React from "react";
 import { useThemeStore } from "@/stores/useThemeStore";
 import {
   FaTelegramPlane,
@@ -8,7 +8,8 @@ import {
   FaGithub,
   FaLinkedin,
   FaYoutube,
-} from "react-icons/fa"; 
+} from "react-icons/fa";
+import Image from "next/image";
 
 const Profile: React.FC = () => {
   return (
@@ -74,10 +75,12 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
     >
       {/* Profile image */}
       <div className="w-60 h-72 pb-4 py-2">
-        <img
-          src={profileImage} // Profile image source
-          alt="Profile" // Alt text for the image
-          className="w-full h-full object-cover rounded-xl" // Styling for the image
+        <Image
+          src={profileImage}
+          alt="Profile"
+          width={160}
+          height={90}
+          className="w-full h-full object-cover rounded-xl"
         />
       </div>
       {/* Profile name */}

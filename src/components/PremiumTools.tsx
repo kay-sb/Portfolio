@@ -4,13 +4,13 @@ import { useThemeStore } from "@/stores/useThemeStore";
 import { FaReact } from "react-icons/fa";
 import { SiTypescript, SiCinema4D, SiAdobexd } from "react-icons/si";
 import { DiPhotoshop, DiIllustrator } from "react-icons/di";
-import { usePageStore } from "@/stores/usePageStore"; 
+import { usePageStore } from "@/stores/usePageStore";
 import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
 
 const PremiumTools: React.FC = () => {
   const { darkMode } = useThemeStore();
-  const { isDetailPage, setIsDetailPage } = usePageStore();
+  const { isDetailPage } = usePageStore();
 
   const { ref, inView } = useInView({
     triggerOnce: false,
@@ -118,9 +118,9 @@ const PremiumTools: React.FC = () => {
     <motion.div
       className="mt-20 text-center md:text-left"
       ref={ref}
-      initial={{ opacity: 0}}
+      initial={{ opacity: 0 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
-      exit={{ opacity: 0 }} 
+      exit={{ opacity: 0 }}
       transition={{ duration: 0.5 }}
     >
       <h1

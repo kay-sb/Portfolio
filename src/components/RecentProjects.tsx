@@ -2,11 +2,12 @@
 
 import React, { useEffect } from "react";
 import { useThemeStore } from "@/stores/useThemeStore";
-import { projectsData } from "@/data/projects.json";
+import projectsData from "@/data/projects.json";
 import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
 import { usePageStore } from "@/stores/usePageStore";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 const ProjectList: React.FC = () => {
   const { darkMode } = useThemeStore();
@@ -28,8 +29,8 @@ const ProjectList: React.FC = () => {
   }, [darkMode]);
 
   const displayedProjects = isDetailPage
-    ? projectsData
-    : projectsData.slice(0, 3);
+    ? projectsData.projectsData
+    : projectsData.projectsData.slice(0, 3);
 
   return (
     <motion.div
@@ -64,11 +65,13 @@ const ProjectList: React.FC = () => {
                   ? "bg-text-title2-dark hover:bg-text-title2-light"
                   : "bg-text-title2-light hover:bg-text-title2-dark"
               }`}
-              onClick={() => handleClick(project.id)} // ارسال شناسه پروژه به handleClick
+              onClick={() => handleClick(project.id)} 
             >
-              <img
+              <Image
                 src={project.image}
                 alt="Thumbnail"
+                width={400}
+                height={400}
                 className="w-16 h-16 md:w-24 md:h-24 rounded-md mr-4"
               />
               <div className="flex-1">
