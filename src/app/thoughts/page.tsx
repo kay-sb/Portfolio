@@ -4,6 +4,7 @@ import { useThemeStore } from "@/stores/useThemeStore";
 import Profile from "@/components/ProfileCart";
 import Thoughts from "@/components/InspirationThoughts";
 import Form from "@/components/Form";
+import { Suspense } from "react";
 
 const ThoughtsPage: React.FC = () => {
   const { darkMode } = useThemeStore();
@@ -14,7 +15,7 @@ const ThoughtsPage: React.FC = () => {
   }, [darkMode]);
 
   return (
-    <div>
+    <Suspense>
       <div className="min-h-screen flex flex-col items-center ">
         <div className="w-full max-w-5xl flex flex-col md:flex-row items-center justify-center mt-0 ">
           <div className="justify-center hidden md:flex">
@@ -29,7 +30,7 @@ const ThoughtsPage: React.FC = () => {
           </div>
         </div>
       </div>
-    </div>
+    </Suspense>
   );
 };
 

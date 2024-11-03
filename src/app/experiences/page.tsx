@@ -1,14 +1,15 @@
 "use client";
 import React, { useEffect } from "react";
-import { useThemeStore } from "@/stores/useThemeStore"; 
+import { useThemeStore } from "@/stores/useThemeStore";
 import { usePageStore } from "@/stores/usePageStore";
 import Profile from "@/components/ProfileCart";
 import ExperoenceList from "@/components/ExperienceList";
-import Form  from "@/components/Form";
+import Form from "@/components/Form";
+import { Suspense } from "react";
 
 const ExperiencePage: React.FC = () => {
-    const { darkMode } = useThemeStore();
-    const { setIsDetailPage } = usePageStore();
+  const { darkMode } = useThemeStore();
+  const { setIsDetailPage } = usePageStore();
 
   useEffect(() => {
     document.body.classList.toggle("dark-mode", darkMode);
@@ -21,22 +22,22 @@ const ExperiencePage: React.FC = () => {
   }, [setIsDetailPage]);
 
   return (
-    <div>
-    <div className="min-h-screen flex flex-col items-center ">
-      <div className="w-full max-w-5xl flex flex-col md:flex-row items-center justify-center mt-0 ">
-        <div className=" hidden md:flex">
-        <Profile />
-        </div>
-        <div className="flex-1 w-full text-center md:text-left mt-10 md:mt-5">
-          <ExperoenceList />
-          <Form/>
-          <div className=" flex justify-center items-center md:hidden">
+    <Suspense>
+      <div className="min-h-screen flex flex-col items-center ">
+        <div className="w-full max-w-5xl flex flex-col md:flex-row items-center justify-center mt-0 ">
+          <div className=" hidden md:flex">
             <Profile />
+          </div>
+          <div className="flex-1 w-full text-center md:text-left mt-10 md:mt-5">
+            <ExperoenceList />
+            <Form />
+            <div className=" flex justify-center items-center md:hidden">
+              <Profile />
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
+    </Suspense>
   );
 };
 

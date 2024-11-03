@@ -1,15 +1,15 @@
 "use client";
 import React, { useEffect } from "react";
-import { useThemeStore } from "@/stores/useThemeStore"; 
+import { useThemeStore } from "@/stores/useThemeStore";
 import { usePageStore } from "@/stores/usePageStore";
 import Profile from "@/components/ProfileCart";
 import ProjectList from "@/components/RecentProjects";
-import Form  from "@/components/Form";
-
+import Form from "@/components/Form";
+import { Suspense } from "react";
 
 const ProjectsPage: React.FC = () => {
-    const { darkMode } = useThemeStore();
-    const { setIsDetailPage } = usePageStore();
+  const { darkMode } = useThemeStore();
+  const { setIsDetailPage } = usePageStore();
 
   useEffect(() => {
     document.body.classList.toggle("dark-mode", darkMode);
@@ -22,7 +22,7 @@ const ProjectsPage: React.FC = () => {
   }, [setIsDetailPage]);
 
   return (
-    <div>
+    <Suspense>
       <div className="min-h-screen flex flex-col items-center ">
         <div className="w-full max-w-5xl flex flex-col md:flex-row items-center justify-center mt-0 ">
           <div className=" hidden md:flex">
@@ -39,7 +39,7 @@ const ProjectsPage: React.FC = () => {
           </div>
         </div>
       </div>
-    </div>
+    </Suspense>
   );
 };
 

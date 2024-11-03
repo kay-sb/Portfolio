@@ -148,7 +148,7 @@ const Navbar: React.FC = () => {
       <button
         onClick={toggleDarkMode}
         className={`fixed bottom-5 left-5 w-[50px] h-[50px] rounded-full flex items-center justify-center shadow-lg z-50 ${
-          darkMode ? "dark-mode" : "light-mode"
+          darkMode ? "bg-dark-mode" : "bg-light-mode"
         }`}
       >
         {darkMode ? (
@@ -161,7 +161,7 @@ const Navbar: React.FC = () => {
         <button
           onClick={scrollToTop}
           className={`fixed bottom-5 right-5 w-[50px] h-[50px] rounded-full flex items-center justify-center shadow-lg z-40 ${
-            darkMode ? "dark-mode" : "light-mode"
+            darkMode ? "bg-dark-mode" : "bg-light-mode"
           }`}
         >
           <ArrowUpIcon

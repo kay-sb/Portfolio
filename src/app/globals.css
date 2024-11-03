@@ -9,6 +9,10 @@ body {
   transition: background 0.3s ease; 
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 .dark-mode {
   --background: rgb(21, 19, 18);
 }

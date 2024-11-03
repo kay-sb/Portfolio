@@ -1,4 +1,4 @@
-import {create} from 'zustand';
+import { create } from 'zustand';
 
 interface ThemeStore {
   darkMode: boolean;
@@ -6,9 +6,14 @@ interface ThemeStore {
 }
 
 export const useThemeStore = create<ThemeStore>((set) => ({
-  darkMode: false,
-  toggleDarkMode: () => set((state) => ({ darkMode: !state.darkMode })),
+  darkMode: localStorage.getItem('darkMode') === 'true',  
+  toggleDarkMode: () => {
+    set((state) => {
+      const newDarkMode = !state.darkMode;
+      localStorage.setItem('darkMode', newDarkMode.toString()); 
+      return { darkMode: newDarkMode };
+    });
+  },
 }));
-
 
 export default useThemeStore;
