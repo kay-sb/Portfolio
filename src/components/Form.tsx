@@ -1,18 +1,24 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { useThemeStore } from "@/stores/useThemeStore";
+import { useTheme } from "next-themes";
 import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
 
 // Main Form component
 const Form: React.FC = () => {
-  const { darkMode } = useThemeStore();
+  const { theme } = useTheme();
   const { ref, inView } = useInView({
     triggerOnce: false,
     threshold: 0.1,
   });
 
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
   return (
     <motion.div
       className="mt-20 text-center w-full md:text-left"
@@ -26,14 +32,16 @@ const Form: React.FC = () => {
         {/* Heading for the form */}
         <h1
           className={`font-bold text-[40px] md:text-[60px] xl:text-[80px] leading-none tracking-wide mb-2 ${
-            darkMode ? "text-text-title-light" : "text-text-title-dark"
+            theme === "dark" ? "text-text-title-light" : "text-text-title-dark"
           }`}
         >
           LET&apos;S WORK
         </h1>
         <h1
           className={`font-bold text-[40px] md:text-[60px] xl:text-[80px] leading-none tracking-wide mb-4 ${
-            darkMode ? "text-text-title2-light" : "text-text-title2-dark"
+            theme === "dark"
+              ? "text-text-title2-light"
+              : "text-text-title2-dark"
           }`}
         >
           TOGETHER
@@ -47,7 +55,10 @@ const Form: React.FC = () => {
 
 // FormHome component where the actual form is defined
 const FormHome: React.FC = () => {
-  const { darkMode } = useThemeStore();
+  const { theme } = useTheme();
+
+
+  
   // State for form data
   const [formData, setFormData] = useState({
     name: "",
@@ -112,9 +123,9 @@ const FormHome: React.FC = () => {
 
   return (
     <div
-      className={`text-center  md:text-left rounded-lg mx-auto md:mx-0 w-[80%] md:w-full ${
-        darkMode ? "text-light-mode" : "text-dark-mode"
-      } `}
+      className={`text-center md:text-left rounded-lg mx-auto md:mx-0 w-[80%] md:w-full ${
+        theme === "dark" ? "text-light-mode" : "text-dark-mode"
+      }`}
     >
       <form onSubmit={handleSubmit} className="gap-4">
         {/* Name input field */}
@@ -131,7 +142,7 @@ const FormHome: React.FC = () => {
               onChange={handleChange}
               placeholder="Your Name"
               className={`rounded-xl p-2 w-full ${
-                darkMode
+                theme === "dark"
                   ? "bg-text-title2-light text-light-mode"
                   : "bg-text-title2-dark text-dark-mode"
               }`}
@@ -152,7 +163,7 @@ const FormHome: React.FC = () => {
               value={formData.email}
               onChange={handleChange}
               className={`rounded-xl p-2 w-full ${
-                darkMode
+                theme === "dark"
                   ? "bg-text-title2-light text-light-mode"
                   : "bg-text-title2-dark text-dark-mode"
               } `}
@@ -172,7 +183,7 @@ const FormHome: React.FC = () => {
             value={formData.budget}
             onChange={handleChange}
             className={`rounded-xl p-2 w-full ${
-              darkMode
+              theme === "dark"
                 ? "bg-text-title2-light text-light-mode"
                 : "bg-text-title2-dark text-dark-mode"
             }`}
@@ -181,7 +192,7 @@ const FormHome: React.FC = () => {
           >
             <option
               className={`${
-                darkMode
+                theme === "dark"
                   ? "bg-dark-mode text-light-mode"
                   : "bg-light-mode text-dark-mode"
               }`}
@@ -192,7 +203,7 @@ const FormHome: React.FC = () => {
             </option>
             <option
               className={`${
-                darkMode
+                theme === "dark"
                   ? "bg-dark-mode text-light-mode"
                   : "bg-light-mode text-dark-mode"
               }`}
@@ -202,7 +213,7 @@ const FormHome: React.FC = () => {
             </option>
             <option
               className={`${
-                darkMode
+                theme === "dark"
                   ? "bg-dark-mode text-light-mode"
                   : "bg-light-mode text-dark-mode"
               }`}
@@ -212,7 +223,7 @@ const FormHome: React.FC = () => {
             </option>
             <option
               className={`${
-                darkMode
+                theme === "dark"
                   ? "bg-dark-mode text-light-mode"
                   : "bg-light-mode text-dark-mode"
               }`}
@@ -235,7 +246,7 @@ const FormHome: React.FC = () => {
             onChange={handleChange}
             placeholder="Your message here..."
             className={`rounded-xl p-2 w-full ${
-              darkMode
+              theme === "dark"
                 ? "bg-text-title2-light text-light-mode"
                 : "bg-text-title2-dark text-dark-mode"
             }`}
@@ -248,7 +259,7 @@ const FormHome: React.FC = () => {
         <button
           type="submit"
           className={`${
-            darkMode
+            theme === "dark"
               ? "bg-text-title2-light text-light-mode"
               : "bg-text-title2-dark text-dark-mode"
           } font-semibold mt-2 py-2 w-full rounded-xl hover:bg-active-dark transition duration-200`}
@@ -261,7 +272,7 @@ const FormHome: React.FC = () => {
       {displayMessage && (
         <div
           className={`mt-4 p-2 rounded-xl ${
-            darkMode
+            theme === "dark"
               ? "bg-active-light text-light-mode"
               : "bg-active-light text-dark-mode"
           }`}

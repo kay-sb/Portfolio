@@ -1,17 +1,15 @@
 // pages/_app.tsx
 import React from "react";
 import { AppProps } from "next/app";
-import { useThemeStore } from "@/stores/useThemeStore";
-import { Suspense } from "react";
+import { ThemeProvider } from 'next-themes';
+import '@/app/globals.css';
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const { darkMode } = useThemeStore();
+
   return (
-    <Suspense>
-      <div className={darkMode ? "dark" : "light"}>
-        <Component {...pageProps} />
-      </div>
-    </Suspense>
+    <ThemeProvider attribute="class">
+      <Component {...pageProps} />
+      </ThemeProvider>
   );
 }
 

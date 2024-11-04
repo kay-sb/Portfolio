@@ -13,10 +13,19 @@ html {
   scroll-behavior: smooth;
 }
 
-.dark-mode {
-  --background: rgb(21, 19, 18);
+body {
+  --background: rgb(234, 236, 237); 
 }
 
-.light-mode {
-  --background: rgb(234, 236, 237); 
+.dark body {
+  --background: rgb(21, 19, 18); 
+}
+
+
+body {
+  --foreground: rgba(0, 0, 0, 0.80); 
+}
+
+.dark body {
+  --foreground: rgba(255, 255, 255, 0.80); 
 }

@@ -2,7 +2,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { useThemeStore } from "@/stores/useThemeStore";
+import { useTheme } from 'next-themes';
 import Profile from "@/components/ProfileCart";
 import Form from "@/components/Form";
 import { useInView } from "react-intersection-observer";
@@ -31,15 +31,10 @@ interface BlogData {
 }
 
 const BlogPage: React.FC = () => {
-  const { darkMode } = useThemeStore();
+  const { theme } = useTheme();
   const params = useParams();
   const [blog, setBlog] = useState<BlogData | null>(null);
   const { ref, inView } = useInView({ triggerOnce: false, threshold: 0.1 });
-
-  useEffect(() => {
-    document.body.classList.toggle("dark-mode", darkMode);
-    document.body.classList.toggle("light-mode", !darkMode);
-  }, [darkMode]);
 
   useEffect(() => {
     const { id } = params;
@@ -83,19 +78,19 @@ const BlogPage: React.FC = () => {
               )}
               <div
                 className={`p-4 rounded-lg mb-5 ${
-                  darkMode ? "bg-text-title2-light" : "bg-text-title2-dark"
+                  theme === "dark" ? "bg-text-title2-light" : "bg-text-title2-dark"
                 }`}
               >
                 <p
                   className={`text-sm mb-4 flex justify-between ${
-                    darkMode ? "text-text-title-light" : "text-text-title-dark"
+                    theme === "dark" ? "text-text-title-light" : "text-text-title-dark"
                   }`}
                 >
                   {blog.date} • {blog.readTime}
                 </p>
                 <h1
                   className={`text-xl font-bold mb-4 ${
-                    darkMode ? "text-text-title-light" : "text-text-title-dark"
+                    theme === "dark" ? "text-text-title-light" : "text-text-title-dark"
                   }`}
                 >
                   {blog.title}
@@ -103,7 +98,7 @@ const BlogPage: React.FC = () => {
               </div>
               <p
                 className={`mb-8 leading-7 ${
-                  darkMode ? "text-text-title-light" : "text-text-title-dark"
+                  theme === "dark" ? "text-text-title-light" : "text-text-title-dark"
                 }`}
               >
                 {blog.introduction}
@@ -113,7 +108,7 @@ const BlogPage: React.FC = () => {
                 <div key={index} className="mb-8">
                   <h2
                     className={`text-2xl font-semibold mb-4 ${
-                      darkMode
+                      theme === "dark" 
                         ? "text-text-title-light"
                         : "text-text-title-dark"
                     }`}
@@ -122,7 +117,7 @@ const BlogPage: React.FC = () => {
                   </h2>
                   <p
                     className={`mb-4 ${
-                      darkMode
+                      theme === "dark" 
                         ? "text-text-title-light"
                         : "text-text-title-dark"
                     }`}
@@ -135,7 +130,7 @@ const BlogPage: React.FC = () => {
                         <li
                           key={i}
                           className={`mb-2 ${
-                            darkMode
+                            theme === "dark" 
                               ? "text-text-title-light"
                               : "text-text-title-dark"
                           }`}

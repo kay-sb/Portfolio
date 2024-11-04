@@ -1,6 +1,5 @@
 "use client";
 import React, { useEffect } from "react";
-import { useThemeStore } from "@/stores/useThemeStore";
 import { usePageStore } from "@/stores/usePageStore";
 import Profile from "@/components/ProfileCart";
 import ExperoenceList from "@/components/ExperienceList";
@@ -8,13 +7,7 @@ import Form from "@/components/Form";
 import { Suspense } from "react";
 
 const ExperiencePage: React.FC = () => {
-  const { darkMode } = useThemeStore();
   const { setIsDetailPage } = usePageStore();
-
-  useEffect(() => {
-    document.body.classList.toggle("dark-mode", darkMode);
-    document.body.classList.toggle("light-mode", !darkMode);
-  }, [darkMode]);
 
   useEffect(() => {
     setIsDetailPage(true);

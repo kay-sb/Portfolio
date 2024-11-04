@@ -2,7 +2,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { useThemeStore } from "@/stores/useThemeStore";
+import { useTheme } from "next-themes";
 import Profile from "@/components/ProfileCart";
 import Form from "@/components/Form";
 import { useInView } from "react-intersection-observer";
@@ -19,7 +19,7 @@ interface experienceData {
 }
 
 const ProjectPage: React.FC = () => {
-  const { darkMode } = useThemeStore();
+  const { theme } = useTheme();
   const [experience, setExperience] = useState<experienceData | null>(null);
   const params = useParams();
 
@@ -27,11 +27,6 @@ const ProjectPage: React.FC = () => {
     triggerOnce: false,
     threshold: 0.1,
   });
-
-  useEffect(() => {
-    document.body.classList.toggle("dark-mode", darkMode);
-    document.body.classList.toggle("light-mode", !darkMode);
-  }, [darkMode]);
 
   useEffect(() => {
     const { id } = params;
@@ -66,12 +61,14 @@ const ProjectPage: React.FC = () => {
               <div className="text-start md:text-left rounded-lg mx-auto md:mx-0 w-[80%] md:w-full">
                 <div
                   className={`p-4 rounded-lg mb-5 ${
-                    darkMode ? "bg-text-title2-light" : "bg-text-title2-dark"
+                    theme === "dark"
+                      ? "bg-text-title2-light"
+                      : "bg-text-title2-dark"
                   }`}
                 >
                   <h2
                     className={`text-xl font-bold mb-4 ${
-                      darkMode
+                      theme === "dark"
                         ? "text-text-title-light"
                         : "text-text-title-dark"
                     }`}
@@ -82,7 +79,9 @@ const ProjectPage: React.FC = () => {
 
                 <p
                   className={`text-md flex text-start mb-10 ${
-                    darkMode ? "text-text-title-light" : "text-text-title-dark"
+                    theme === "dark"
+                      ? "text-text-title-light"
+                      : "text-text-title-dark"
                   }`}
                 >
                   {experience.description || "No description provided."}
@@ -91,7 +90,9 @@ const ProjectPage: React.FC = () => {
             ) : (
               <p
                 className={`mt-10 font-bold text-[40px] leading-none tracking-wide mb-2 ${
-                  darkMode ? "text-text-title2-light" : "text-text-title2-dark"
+                  theme === "dark"
+                    ? "text-text-title2-light"
+                    : "text-text-title2-dark"
                 }`}
               >
                 Data not available.
