@@ -2,12 +2,12 @@
 
 import React, { useState, useEffect, useCallback } from "react";
 import { useTheme } from "next-themes";
-import projectsData from "@/data/projects.json";
 import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
 import { usePageStore } from "@/stores/usePageStore";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import data from "@/data/locales/en/common.json"; // Import JSON Data
 
 const ProjectList: React.FC = () => {
   const { theme } = useTheme();
@@ -33,8 +33,8 @@ const ProjectList: React.FC = () => {
   });
 
   const displayedProjects = isDetailPage
-    ? projectsData.projectsData
-    : projectsData.projectsData.slice(0, 3);
+    ? data.projectsPage.projectsData
+    : data.projectsPage.projectsData.slice(0, 3);
 
   if (!mounted) return null;
 
@@ -52,14 +52,14 @@ const ProjectList: React.FC = () => {
           theme === "dark" ? "text-text-title-light" : "text-text-title-dark"
         }`}
       >
-        RECENT
+        {data.projectsPage.title.recent}
       </h1>
       <h1
         className={`font-bold text-[40px] md:text-[60px] xl:text-[80px] leading-none tracking-wide mb-4 ${
           theme === "dark" ? "text-text-title2-light" : "text-text-title2-dark"
         }`}
       >
-        PROJECTS
+        {data.projectsPage.title.projects}
       </h1>
       <div>
         <ul className="flex flex-col items-center md:items-start">

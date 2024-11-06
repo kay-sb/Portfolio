@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
 import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
+import data from '@/data/locales/en/common.json'; 
 
 // Main Form component
 const Form: React.FC = () => {
@@ -28,14 +29,14 @@ const Form: React.FC = () => {
       exit={{ opacity: 0 }}
       transition={{ duration: 0.5 }}
     >
-      <div className="flex flex-col items-center md:items-start ">
+      <div className="flex flex-col items-center md:items-start">
         {/* Heading for the form */}
         <h1
           className={`font-bold text-[40px] md:text-[60px] xl:text-[80px] leading-none tracking-wide mb-2 ${
             theme === "dark" ? "text-text-title-light" : "text-text-title-dark"
           }`}
         >
-          LET&apos;S WORK
+          {data.form.heading.part1}
         </h1>
         <h1
           className={`font-bold text-[40px] md:text-[60px] xl:text-[80px] leading-none tracking-wide mb-4 ${
@@ -44,7 +45,7 @@ const Form: React.FC = () => {
               : "text-text-title2-dark"
           }`}
         >
-          TOGETHER
+          {data.form.heading.part2}
         </h1>
         {/* Rendering the FormHome component */}
         <FormHome />
@@ -57,8 +58,6 @@ const Form: React.FC = () => {
 const FormHome: React.FC = () => {
   const { theme } = useTheme();
 
-
-  
   // State for form data
   const [formData, setFormData] = useState({
     name: "",
@@ -91,7 +90,7 @@ const FormHome: React.FC = () => {
     // Clear the previous display message
     setDisplayMessage("");
     // Set the submit message
-    setSubmitMessage("Thank you for your submission!");
+    setSubmitMessage(data.form.submit.thank_you_message);
     // Reset form fields
     setFormData({
       name: "",
@@ -132,7 +131,7 @@ const FormHome: React.FC = () => {
         <div className="flex flex-col md:flex-row md:gap-4">
           <div className={`flex-1`}>
             <label className="block font-semibold mb-1" htmlFor="name">
-              Name:
+              {data.form.fields.name.label}
             </label>
             <input
               type="text"
@@ -140,7 +139,7 @@ const FormHome: React.FC = () => {
               name="name"
               value={formData.name}
               onChange={handleChange}
-              placeholder="Your Name"
+              placeholder={data.form.fields.name.placeholder}
               className={`rounded-xl p-2 w-full ${
                 theme === "dark"
                   ? "bg-text-title2-light text-light-mode"
@@ -153,13 +152,13 @@ const FormHome: React.FC = () => {
           {/* Email input field */}
           <div className="flex-1">
             <label className="block font-semibold mb-1" htmlFor="email">
-              Email:
+              {data.form.fields.email.label}
             </label>
             <input
               type="email"
               id="email"
               name="email"
-              placeholder="youremail@example.com"
+              placeholder={data.form.fields.email.placeholder}
               value={formData.email}
               onChange={handleChange}
               className={`rounded-xl p-2 w-full ${
@@ -175,7 +174,7 @@ const FormHome: React.FC = () => {
         {/* Budget selection */}
         <div>
           <label className="block font-semibold mb-1" htmlFor="budget">
-            Budget:
+            {data.form.fields.budget.label}
           </label>
           <select
             id="budget"
@@ -199,7 +198,7 @@ const FormHome: React.FC = () => {
               value=""
               disabled
             >
-              Select your budget
+              {data.form.fields.budget.options.default}
             </option>
             <option
               className={`${
@@ -209,7 +208,7 @@ const FormHome: React.FC = () => {
               }`}
               value="under_1000"
             >
-              Under $1000
+              {data.form.fields.budget.options.under_1000}
             </option>
             <option
               className={`${
@@ -219,7 +218,7 @@ const FormHome: React.FC = () => {
               }`}
               value="1000_to_10000"
             >
-              $1000 - $10,000
+              {data.form.fields.budget.options["1000_to_10000"]}
             </option>
             <option
               className={`${
@@ -229,7 +228,7 @@ const FormHome: React.FC = () => {
               }`}
               value="over_10000"
             >
-              Over $10,000
+              {data.form.fields.budget.options.over_10000}
             </option>
           </select>
         </div>
@@ -237,14 +236,14 @@ const FormHome: React.FC = () => {
         {/* Message input field */}
         <div>
           <label className="block font-semibold mb-1" htmlFor="message">
-            Message:
+            {data.form.fields.message.label}
           </label>
           <textarea
             id="message"
             name="message"
             value={formData.message}
             onChange={handleChange}
-            placeholder="Your message here..."
+            placeholder={data.form.fields.message.placeholder}
             className={`rounded-xl p-2 w-full ${
               theme === "dark"
                 ? "bg-text-title2-light text-light-mode"
@@ -264,24 +263,18 @@ const FormHome: React.FC = () => {
               : "bg-text-title2-dark text-dark-mode"
           } font-semibold mt-2 py-2 w-full rounded-xl hover:bg-active-dark transition duration-200`}
         >
-          Submit
+          {data.form.submit.button}
         </button>
       </form>
 
       {/* Displaying the submit message after form submission */}
       {displayMessage && (
-        <div
-          className={`mt-4 p-2 rounded-xl ${
-            theme === "dark"
-              ? "bg-active-light text-light-mode"
-              : "bg-active-light text-dark-mode"
-          }`}
-        >
-          {displayMessage} {/* Render the animated display message */}
+        <div className="mt-4 text-lg font-semibold">
+          {displayMessage}
         </div>
       )}
     </div>
   );
 };
 
-export default Form; // Exporting the Form component
+export default Form;

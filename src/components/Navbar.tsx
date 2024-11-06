@@ -1,19 +1,21 @@
 "use client";
-
 import React, { useState, useEffect } from "react";
-import Link from "next/link";
-import {
-  HomeIcon,
-  FolderIcon,
-  BriefcaseIcon,
-  WrenchIcon,
-  PencilSquareIcon,
-  SunIcon,
-  MoonIcon,
-  ArrowUpIcon,
-} from "@heroicons/react/24/outline";
 import { motion } from "framer-motion";
 import { useTheme } from "next-themes";
+import Link from "next/link";
+import { MoonIcon, SunIcon, ArrowUpIcon } from "@heroicons/react/24/outline";
+
+// Importing JSON file
+import data from "@/data/locales/en/common.json";
+
+// Create a mapping of icon names to components
+const iconMap: { [key: string]: React.FC<React.SVGProps<SVGSVGElement>> } = {
+  HomeIcon: require("@heroicons/react/24/outline").HomeIcon,
+  FolderIcon: require("@heroicons/react/24/outline").FolderIcon,
+  BriefcaseIcon: require("@heroicons/react/24/outline").BriefcaseIcon,
+  WrenchIcon: require("@heroicons/react/24/outline").WrenchIcon,
+  PencilSquareIcon: require("@heroicons/react/24/outline").PencilSquareIcon,
+};
 
 interface NavItemProps {
   to: string;
@@ -36,6 +38,7 @@ const NavItem: React.FC<NavItemProps> = ({ to, Icon, label, isActive }) => {
     }, 150);
   };
   if (!mounted) return null;
+
   return (
     <div
       className="relative flex flex-col items-center"
@@ -98,6 +101,7 @@ const Navbar: React.FC = () => {
   };
 
   if (!mounted) return null;
+
   return (
     <div>
       <nav
@@ -106,31 +110,10 @@ const Navbar: React.FC = () => {
         }`}
       >
         <div className="flex items-center justify-around w-full">
-          <NavItem to="/" Icon={HomeIcon} label="Home" isActive={true} />
-          <NavItem
-            to="/projects"
-            Icon={FolderIcon}
-            label="Projects"
-            isActive={false}
-          />
-          <NavItem
-            to="/experiences"
-            Icon={BriefcaseIcon}
-            label="Experience"
-            isActive={false}
-          />
-          <NavItem
-            to="/tools"
-            Icon={WrenchIcon}
-            label="Tools"
-            isActive={false}
-          />
-          <NavItem
-            to="/thoughts"
-            Icon={PencilSquareIcon}
-            label="Thoughts"
-            isActive={false}
-          />
+          {data.navbarData.map((item) => {
+            const IconComponent = iconMap[item.Icon];
+            return <NavItem key={item.to} {...item} Icon={IconComponent} />;
+          })}
         </div>
       </nav>
       <button

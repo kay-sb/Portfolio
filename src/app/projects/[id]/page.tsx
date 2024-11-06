@@ -7,7 +7,7 @@ import Profile from "@/components/ProfileCart";
 import Form from "@/components/Form";
 import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
-import projectsData from "@/data/projects.json";
+import data from "@/data/locales/en/common.json";
 import { useParams } from "next/navigation";
 import { Suspense } from "react";
 
@@ -32,7 +32,7 @@ const ProjectPage: React.FC = () => {
   useEffect(() => {
     const { id } = params;
     if (typeof id === "string") {
-      const foundBlog = projectsData.projectsData.find((b) => b.id === id) as
+      const foundBlog = data.projectsPage.projectsData.find((b) => b.id === id) as
         | ProjectData
         | undefined;
       if (foundBlog) {

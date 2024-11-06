@@ -7,7 +7,7 @@ import Profile from "@/components/ProfileCart";
 import Form from "@/components/Form";
 import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
-import blogData from "@/data/blog.json";
+import data from "@/data/locales/en/common.json";
 import { useParams } from "next/navigation";
 import Image from "next/image";
 import { Suspense } from "react";
@@ -39,7 +39,7 @@ const BlogPage: React.FC = () => {
   useEffect(() => {
     const { id } = params;
     if (typeof id === "string") {
-      const foundBlog = blogData.blogData.find((b) => b.id === id) as
+      const foundBlog = data.blogData.find((b) => b.id === id) as
         | BlogData
         | undefined;
       if (foundBlog) {

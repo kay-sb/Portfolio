@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
 import { usePageStore } from "@/stores/usePageStore";
 import { useRouter } from "next/navigation";
-import blogData from "@/data/blog.json";
+import data from "@/data/locales/en/common.json";
 import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
 
@@ -35,8 +35,8 @@ const ThoughtsList: React.FC = () => {
   };
 
   const displayedBlogs = isDetailPage
-    ? blogData.blogData
-    : blogData.blogData.slice(0, 3);
+    ? data.blogData
+    : data.blogData.slice(0, 3);
 
   if (!mounted) return null;
   return (
@@ -53,14 +53,14 @@ const ThoughtsList: React.FC = () => {
           theme === "dark" ? "text-text-title-light" : "text-text-title-dark"
         }`}
       >
-        INSPIRATION
+        {data.titleThoughts.main}
       </h1>
       <h1
         className={`font-bold text-[40px] md:text-[60px] xl:text-[80px] leading-none tracking-wide mb-4 ${
           theme === "dark" ? "text-text-title2-light" : "text-text-title2-dark"
         }`}
       >
-        THOUGHTS
+        {data.titleThoughts.sub}
       </h1>
       <div>
         <ul className="flex flex-col items-center md:items-start md:px-0">

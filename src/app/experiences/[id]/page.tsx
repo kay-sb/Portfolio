@@ -7,7 +7,7 @@ import Profile from "@/components/ProfileCart";
 import Form from "@/components/Form";
 import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
-import experienceData from "@/data/experiences.json";
+import data from "@/data/locales/en/common.json";
 import { useParams } from "next/navigation";
 import { Suspense } from "react";
 
@@ -31,7 +31,7 @@ const ProjectPage: React.FC = () => {
   useEffect(() => {
     const { id } = params;
     if (typeof id === "string") {
-      const foundBlog = experienceData.experienceData.find(
+      const foundBlog = data.experienceData.find(
         (b) => b.id === id
       ) as experienceData | undefined;
       if (foundBlog) {

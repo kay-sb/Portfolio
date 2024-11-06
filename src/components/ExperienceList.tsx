@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
 import { usePageStore } from "@/stores/usePageStore";
-import experienceData from "@/data/experiences.json";
+import data from "@/data/locales/en/common.json";
 import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
@@ -28,16 +28,15 @@ const ExperienceList: React.FC = () => {
     threshold: 0.1,
   });
 
-  // Function to truncate description text if it exceeds maxLength
   const truncateDescription = (description: string, maxLength: number) => {
     return description.length > maxLength
       ? `${description.substring(0, maxLength)}...`
       : description;
   };
 
-  const displayedProjects = isDetailPage
-    ? experienceData.experienceData
-    : experienceData.experienceData.slice(0, 3);
+  const displayedExperiences = isDetailPage
+    ? data.experienceData
+    : data.experienceData.slice(0, 3);
 
   if (!mounted) return null;
   return (
@@ -54,18 +53,18 @@ const ExperienceList: React.FC = () => {
           theme === "dark" ? "text-text-title-light" : "text-text-title-dark"
         }`}
       >
-        YEARS OF
+        {data.titleExperience.main}
       </h1>
       <h1
         className={`font-bold text-[40px] md:text-[60px] xl:text-[80px] leading-none tracking-wide mb-4 ${
           theme === "dark" ? "text-text-title2-light" : "text-text-title2-dark"
         }`}
       >
-        EXPERIENCE
+        {data.titleExperience.sub}
       </h1>
       <div>
         <ul className="flex flex-col items-center md:items-start">
-          {displayedProjects.map((experience) => (
+          {displayedExperiences.map((experience) => (
             <li
               key={experience.id}
               className={`relative flex items-center rounded-xl w-[80%] md:w-full h-auto my-4 p-4 transition duration-300 ease-in-out cursor-pointer ${

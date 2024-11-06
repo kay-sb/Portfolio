@@ -10,6 +10,7 @@ import {
   FaYoutube,
 } from "react-icons/fa";
 import Image from "next/image";
+import data from "@/data/locales/en/common.json"; // Importing the profile data
 
 const Profile: React.FC = () => {
   const [mounted, setMounted] = useState(false);
@@ -23,18 +24,18 @@ const Profile: React.FC = () => {
       {/* ProfileCard for mobile view (hidden in md and up) */}
       <div className="md:invisible">
         <ProfileCard
-          name="Kianoush Sabouri" // Profile name
-          description="I'm a frontend developer with graphic design skills. I also have experience in music production, photography, and videography." // Profile description
-          profileImage="/Profile.jpg" // Profile image
+          name={data.profile.name}
+          description={data.profile.description}
+          profileImage={data.profile.profileImage}
         />
       </div>
       {/* ProfileCard for desktop view (visible in md and up) */}
       <div className="flex flex-col items-center rounded-lg max-w-sm fixed top-24">
         <div className="invisible md:visible hidden md:flex">
           <ProfileCard
-            name="Kianoush Sabouri" // Profile name
-            description="I'm a frontend developer with graphic design skills. I also have experience in music production, photography, and videography." // Profile description
-            profileImage="/Profile.jpg" // Profile image
+            name={data.profile.name}
+            description={data.profile.description}
+            profileImage={data.profile.profileImage}
           />
         </div>
       </div>
@@ -42,31 +43,12 @@ const Profile: React.FC = () => {
   );
 };
 
-// Define the props that the ProfileCard component will accept
-interface ProfileCardProps {
-  name: string; // Name of the person
-  description: string; // Description or bio of the person
-  profileImage: string; // URL for the profile image
-}
-
-// Array of social media links
-const socialLinks = [
-  { platform: "telegram", url: "https://t.me/kianoush_sb" },
-  { platform: "instagram", url: "https://instagram.com/kianoush_sb" },
-  { platform: "github", url: "https://github.com/kay-sb" },
-  { platform: "linkedin", url: "https://linkedin.com/in/yourusername" },
-  {
-    platform: "youtube",
-    url: "https://www.youtube.com/channel/UCDcNg9t3D1W9KyzJejVZV5Q",
-  },
-];
-
 // ProfileCard functional component definition
-const ProfileCard: React.FC<ProfileCardProps> = ({
-  name,
-  description,
-  profileImage,
-}) => {
+const ProfileCard: React.FC<{
+  name: string;
+  description: string;
+  profileImage: string;
+}> = ({ name, description, profileImage }) => {
   const { theme } = useTheme();
   const [mounted, setMounted] = useState(false);
   useEffect(() => {
@@ -79,10 +61,10 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
     <div
       className={`flex flex-col items-center shadow-lg rounded-xl p-4 ${
         theme === "dark" ? "bg-light-mode" : "bg-dark-mode"
-      }`} // Conditional class for dark/light mode
+      }`}
       style={{
-        width: "300px", // Fixed width for the card
-        height: "600px", // Fixed height for the card
+        width: "300px",
+        height: "600px",
       }}
     >
       {/* Profile image */}
@@ -101,7 +83,7 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
           theme === "dark" ? "text-dark-mode" : "  text-light-mode"
         }`}
       >
-        {name} {/* Display the name */}
+        {name}
       </h2>
       <div>
         {/* Profile description */}
@@ -110,15 +92,14 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
             theme === "dark" ? "text-dark-mode" : "  text-light-mode"
           }`}
         >
-          {description} {/* Display the description */}
+          {description}
         </p>
       </div>
       <div className="flex space-x-4 mt-auto">
         {/* Map through socialLinks array to create icons */}
-        {socialLinks.map((link) => {
-          let icon; // Variable to hold the icon based on the platform
+        {data.socialLinks.map((link) => {
+          let icon;
           switch (link.platform) {
-            // Determine which icon to render based on platform
             case "telegram":
               icon = (
                 <FaTelegramPlane
@@ -165,7 +146,7 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
               );
               break;
             default:
-              icon = null; // Default case if platform is unknown
+              icon = null;
               break;
           }
           return (
@@ -175,7 +156,7 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
               target="_blank"
               rel="noopener noreferrer"
             >
-              {icon} {/* Render the corresponding icon */}
+              {icon}
             </a>
           );
         })}
@@ -184,4 +165,4 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
   );
 };
 
-export default Profile; // Exporting Profile component
+export default Profile;

@@ -1,5 +1,3 @@
-"use client";
-
 import "@/app/globals.css";
 import { ReactNode } from "react";
 import Navbar from "@/components/Navbar";
@@ -9,7 +7,7 @@ import { ThemeProvider } from "next-themes";
 
 const RootLayout = ({ children }: { children: ReactNode }) => {
   return (
-    <html lang="fa" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <body>
         <ThemeProvider attribute="class" defaultTheme="dark">
           <Navbar />
